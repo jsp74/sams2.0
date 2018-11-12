@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        
+        /******************************* Page GRID LAYOUT FORMATE CSS *******************************/
+        
+        .item1 { 
+            grid-area: header; 
+        }
+        
+        .item2 { 
+            grid-area: menu; 
+        }
+        
+        .item3 { 
+            grid-area: main; 
+        }
+        
+        .item4 { 
+            grid-area: right; 
+        }
+        
+        .item5 { 
+            grid-area: footer; 
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+            'header header header header header header'
+            'menu main main main right right'
+            'menu footer footer footer footer footer';
+            grid-gap: 10px;
+            padding: 10px;
+        }
+        
+        .grid-container > div {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 30px;
+        }
+        
+        /******************************* Page Title Start Here *******************************/
+        
+        body{
+            background-color: #17202A;
+        }
+        
+        
+        
+    </style>
+    
+    </head>
+    
+    <body>
+
+        
+    </body>
+</html>
+
