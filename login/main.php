@@ -23,13 +23,8 @@
 session_start();
 include( "functions.php" );
 
-//if cookies are set and the pass and the user in the cookies match then let them in without checking the gatekeeper?
-if ( !isset( $_COOKIES[ 'user_name' ] ) || !isset( $_COOKIES[ 'user_password' ] )) {
-	gatekeeper();
+//check if there is a logged in session, then allow to login in, else redirect
+if( !isset( $_SESSION[ 'logged' ] )  || !( $_SESSION[ 'logged' ] ) ) { 
+   gatekeeper();
 }
-else {
-	auth_red( $_COOKIES[ 'user_name' ], $_COOKIES[ 'user_password' ] );
-}
-
-
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();  
 
 //method to check the user and pass credentials
 function auth( $user, $pass ) {
@@ -6,34 +7,21 @@ function auth( $user, $pass ) {
   return ( $user == "user" && $pass == SHA1( 'password' ) ); 
 }
 
-// Checks if the username and password are correct with the database. Redirects to new page whether correct or not
+// Checks if the username and password are correct with the database then redirects to new page based on the result
 function auth_red( $user, $pass ) {
-	if( !auth( $user, $pass ) ) {
-	  $message = "<center><font color= 'red' ><br><br><h2>LOGIN FAILED</h2></font><br><font color= 'black'>Redirecting to Login Page</center>";
-	  $siteurl = "samslogin.html";
-	  redirect( $message, $siteurl, 1 );
-	}
-	else {
-	  //using cookies for the Remember Me function
-	  if( !empty( $_POST[ "remember" ] ) ) {
-	    setcookie( "user_name", $user, time()+( 365 * 24 * 60 * 60 ) );
-	    setcookie( "user_password", $pass, time()+( 24 * 60 * 60 ) );
-	  } 
-	  else {
-	    if( isset( $_COOKIE[ "user_name" ] ) ) { 
-	      setcookie( "user_name", "" );
-	  }
-	    if( isset( $_COOKIE[ "user_password" ] ) ) {
-	      setcookie( "user_password", "" );
-	    }
-	  }
-
-	  $_SESSION[ 'user' ] = $user;
-	  $_SESSION[ 'logged' ] = true;
-	  $message = "<center><font color= 'green' > <br><br><h2>LOGIN PASSED</h2><br></font>Redirecting to Main Page</center>"; 
-	  $siteurl = "main.php"; 
-	  redirect( $message, $siteurl, 1 );
-	}
+  if( !auth( $user, $pass ) ) {
+    $message = "<center><font color= 'red' ><br><br><h2>LOGIN FAILED</h2></font><br><font color= 'black'>Redirecting to Login Page</center>";
+    $siteurl = "samslogin.html";
+    redirect( $message, $siteurl, 1 );
+  }
+  else {
+  //sets sessions for the duration of the logged in
+    $_SESSION[ 'user' ] = $user;
+    $_SESSION[ 'logged' ] = true;
+    $message = "<center><font color= 'green' > <br><br><h2>LOGIN PASSED</h2><br></font>Redirecting to Main Page</center>"; 
+    $siteurl = "./../SAMShome.php"; 
+    redirect( $message, $siteurl, 1 );
+  }
 }
 
 //method to get the data. The method trims any access white spaces
@@ -49,10 +37,10 @@ function redirect ( $message, $siteurl, $delay ) {
 }
 
 //method to see if the user is logged in the main page
-function gatekeeper() {
+function gatekeeper($address = "samslogin.html") {
   if( !isset( $_SESSION[ 'logged' ] )  || !( $_SESSION[ 'logged' ] ) ) { 
     $message = "<center><font color= 'red' ><br><br><h2>LOGIN FAILED</h2></font><br><font color= 'black'>Redirecting to Login Page</center>";
-    $address = "samslogin.html";
+    //$address = "samslogin.html";
     redirect ($message, $address, 3); 
     return false;
   }
@@ -66,8 +54,9 @@ function gatekeeper() {
 function logout() {
   redirect ( "", "logout.php", 0 );
   
-  //logs out if the user is inactive for TIMEOUT seconds
+  
   /*
+  //logs out if the user is inactive for TIMEOUT seconds
   echo "
   <script type = \"text/javascript\">
     \"use strict\"; 
@@ -85,10 +74,10 @@ function logout() {
     }
     
     function messenger() { 
-    	window.setTimeout( out, TIMEOUT ); 
+      window.setTimeout( out, TIMEOUT ); 
     }
     function out() { 
-    	window.location.href = \"logout.php\"; 
+      window.location.href = \"logout.php\"; 
     }
   
   </script>";

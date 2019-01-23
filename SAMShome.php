@@ -1,4 +1,17 @@
+<?php
 
+include( "login/functions.php" );
+session_set_cookie_params ( 0, "/~jsp74/"); 
+session_start();     
+
+//if cookies are set and the pass and the user in the cookies match then let them in without checking the gatekeeper?
+if ( !isset( $_COOKIES[ 'user_name' ] ) || !isset( $_COOKIES[ 'user_password' ] )) {
+	gatekeeper("login/login.php");
+}
+else {
+	auth_red( $_COOKIES[ 'user_name' ], $_COOKIES[ 'user_password' ] );
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -94,20 +107,7 @@
             color: white;
             text-decoration: none;
         }
-/*
-        table, th, #headingalign{
-            font-size: 25px;
-            color: #F2C200;
-            font-weight: bold;
-            text-align: center;
-            
-        }
-        
-        table{
-            margin-right: 100px;
-        }
-*/
-        
+
     </style>
     
     </head>
@@ -123,7 +123,7 @@
         
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand"  href="SAMhome.html"  style="color: #B3DA2E;">Dashboard</a>
+                <a class="navbar-brand"  href="SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -174,7 +174,16 @@
                             <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
                         </ul>
                     </li>
+                    
                 </ul>
+                <ul class="nav navbar-nav navbar-right dropdown">
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login/logout.php">Logout</a></li>
+                    </ul>
+                </li>
+                </ui>
             </div>
         </nav>
         
@@ -211,80 +220,5 @@
                 
             </div>
         </div>
-        
-    
-<!--
-        <div class="grid-container">
-            
-    
-            
-            <div class="item4">
-                
-                <table style="width:100%">
-                    <tr id = "headingalign">
-                        <th>Venue<br>Number</th>
-                        <th>Default Venue<br>Main Page</th> 
-                        <th>Setup Event<br>Preferences</th>
-                    </tr>
-                    
-                    <tr>
-                        <td>1</td>
-                        <td><button id = "Archery" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "archery.html" style="text-decoration: none;">Archery</a></button></td>
-                        <td><button id = "archeryset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "archeryset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>2</td>
-                        <td><button id = "Track" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "track.html" style="text-decoration: none;">Track</a></button></td>
-                        <td><button id = "trackset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "trackset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>3</td>
-                        <td><button id = "Field" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "field.html" style="text-decoration: none;">Field</a></button></td>
-                        <td><button id = "fieldset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "fieldset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>4</td>
-                        <td><button id = "Swimming" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "swimming.html" style="text-decoration: none;">Swimming</a></button></td>
-                        <td><button id = "swimmingset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "swimmingset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>5</td>
-                        <td><button id = "Tableten" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "tabletennis.html" style="text-decoration: none;">Table Tennis</a></button></td>
-                        <td><button id = "tabletenniesset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "tabletenniesset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>6</td>
-                        <td><button id = "Weighlif" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "weighlifting.html" style="text-decoration: none;">Weighlifting</a></button></td>
-                        <td><button id = "weightliftingset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "weightliftingset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>7</td>
-                        <td><button id = "TeamSport" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "teamsports.html" style="text-decoration: none;">Team Sports</a></button></td>
-                        <td><button id = "teamsportsets" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "teamsportsset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>8</td>
-                        <td><button id = "Fencing" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "fencing.html" style="text-decoration: none;">Fencing</a></button></td>
-                        <td><button id = "fencingset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "fencingset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                    
-                    <tr>
-                        <td>9</td>
-                        <td><button id = "Otherven" class="btn btn-default" style="width: 170px; color: #17202A; margin-bottom: 10px;"><a href = "othersvenues.html" style="text-decoration: none;">Other Venues</a></button></td>
-                        <td><button id = "othervenueset" class="btn btn-success" style="width: 100px; margin-bottom: 10px;"><a href = "othervenueset.html" style="color: white; text-decoration: none;">Set</a></button></td>
-                    </tr>
-                </table>
-            
-            </div>
-            
-        </div>
--->
     </body>
 </html>
