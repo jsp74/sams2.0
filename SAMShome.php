@@ -135,23 +135,24 @@ else {
                 <ul class="nav navbar-nav">
 
                     <!-- ALll nav-pages under this nav-bar is moved to masterpage folder -->
+                    <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
-                            <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li>
+                            <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
+                            <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
                             <li><a id = "register_form" href = "masterpage/registrationform.html">Registration Form</a></li>
                             <li><a id = "find_register" href = "masterpage/findregistration.html">Find All Registration</a></li>
                             <li><a id = "setup_pref" href = "masterpage/setupmaster.html">Setup Master Preferences</a></li>
-                            <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
+                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
                             <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                             <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
                             <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
                             <li><a id = "photo_database" href = "masterpage/photodatabase.html">Photo Database</a></li>
                             <li><a id = "classification" href = "masterpage/classificationfile.html">Classification file</a></li>
                             <li><a id = "Implements" href = "masterpage/implementsusedfile.html">Implements used file</a></li>
-                            <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li>
+                            <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li> -->
                         </ul>
                     </li>
 
@@ -167,22 +168,39 @@ else {
 
                     <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
 
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preferences <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a id = "backup" href="preferences/backuppreferences.html">Backup Preferences</a></li>
                             <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
                         </ul>
+                    </li> -->
+
+                    <!-- All the Sports -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "archery" href="#">Archery</a></li>
+                            <li><a id = "fencing" href="#">Fencing</a></li>
+                            <li><a id = "field" href="#">Field</a></li>
+                            <li><a id = "swimming" href="#">Swimming</a></li>
+                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="#">Team Sports</a></li>
+                            <li><a id = "track" href="#">Track</a></li>
+                            <li><a id = "other" href="#">Other Sports</a></li>
+                        </ul>
                     </li>
                     
                 </ul>
+
                 <ul class="nav navbar-nav navbar-right dropdown">
-                <li>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="login/logout.php">Logout</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="login/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
                 </ui>
             </div>
         </nav>
@@ -201,7 +219,6 @@ else {
                     <button id = "Paratristhion" class="btn btn-warning"><a href = "dashboard/paratristhion.html">Paratristhion</a></button>
                     <button id = "Paratristhion300" class="btn btn-warning"><a href = "dashboard/paratristhion300.html">Paratristhion - 300</a></button>
                     <button id = "othervenue" class="btn btn-warning"><a href = "dashboard/othervenuename.html">Other Venue Name</a></button>
-                    
                 </div>
 
                 <div class="col-sm-4">
