@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-sm-6 form-group">
                                 <label for="fname">Meet Name:</label>
-                                <input type="text" class="form-control" name="meetName">
+                                <input type="text" class="form-control" name="meetName" required>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -167,24 +167,24 @@
                         <div class = "row">
                             <div class="form-group col-md-3">
                                 <label for="lname">Start Date:</label>
-                                <input type="datetime-local" class="form-control" name="startDate">
+                                <input type="datetime-local" class="form-control" name="startDate" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="lname">End Date:</label>
-                                <input type="datetime-local" class="form-control" name="endDate">
+                                <input type="datetime-local" class="form-control" name="endDate" required>
                             </div>
                         </div>
 
                         <div class = "row">
                             <div class="form-group col-md-3">
                                 <label for="city">Meet City:</label>
-                                <input type="text" class="form-control" name="meetCity">
+                                <input type="text" class="form-control" name="meetCity" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="state">Meet State:</label>
-                                <select name="meetState" class = "form-control">
+                                <select name="meetState" class = "form-control" required>
                                     <option></option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -312,7 +312,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>Assign Bib Numbers:</label><br>
-                                <input type="radio" name="bib" value="1"> Yes<br>
+                                <input type="radio" name="bib" value="1" required> Yes<br>
                                 <input type="radio" name="bib" value="0"> No<br>
                             </div>
                         </div>
