@@ -1,8 +1,8 @@
 <?php
 
-include( "login/functions.php" );
-session_start();     
-gatekeeper("login/login.php");
+	include( "login/functions.php" );
+	session_start();     
+	gatekeeper("login/login.php");
 
 ?>
 
@@ -223,8 +223,6 @@ gatekeeper("login/login.php");
                     <br><br>
                     <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
                 </div>
-                
-               
                 
             </div>
         </div>
