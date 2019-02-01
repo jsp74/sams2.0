@@ -1,16 +1,9 @@
 <?php
 
-include( "login/functions.php" );
-session_set_cookie_params ( 0, "/~jsp74/"); 
-session_start();     
-
-//if cookies are set and the pass and the user in the cookies match then let them in without checking the gatekeeper?
-if ( !isset( $_COOKIES[ 'user_name' ] ) || !isset( $_COOKIES[ 'user_password' ] )) {
+	include( "login/functions.php" );
+	session_start();     
 	gatekeeper("login/login.php");
-}
-else {
-	auth_red( $_COOKIES[ 'user_name' ], $_COOKIES[ 'user_password' ] );
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -211,7 +204,7 @@ else {
             
             <div class="row">
                 
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <button id = "assignbib" class="btn btn-info"><a href = "dashboard/assignbib.html">Assign Bib Numbers</a></button>
                     <button id = "goreport" class="btn btn-info"><a href = "dashboard/goreportpg.html">Go To Report Page</a></button>
                     <br><br>
@@ -221,7 +214,7 @@ else {
                     <button id = "othervenue" class="btn btn-warning"><a href = "dashboard/othervenuename.html">Other Venue Name</a></button>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-6">
 <!--                    <h5>Move data to<br>or get data from<br>other meets</h5>-->
                     <button id = "createfilesbackup" class="btn btn-danger" style="height: 100px;"><a href = "dashboard/backupfiles.html">Create files for backup or to<br>send to National or<br>Next Higher Level Games</a></button>
                     <button id = "importrecord" class="btn btn-primary"><a href = "dashboard/importrecords.html">Import Records</a></button>
@@ -229,10 +222,6 @@ else {
                     <button id = "exportselrecord" class="btn btn-primary"><a href = "dashboard/exportselectedrecords.html">Export Selected Records</a></button>
                     <br><br>
                     <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
-                </div>
-                
-                <div class="col-sm-4">
-
                 </div>
                 
             </div>
