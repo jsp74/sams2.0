@@ -135,9 +135,9 @@
                         <ul class="dropdown-menu">
                             <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                             <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
-                            <li><a id = "register_form" href = "masterpage/registrationform.html">Registration Form</a></li>
+                            <li><a id = "register_form" href = "masterpage/registrationform.php">Registration Form</a></li>
                             <li><a id = "find_register" href = "masterpage/findregistration.html">Find All Registration</a></li>
-                            <li><a id = "setup_pref" href = "masterpage/setupmaster.html">Setup Master Preferences</a></li>
+                            <li><a id = "setup_pref" href = "masterpage/setupmaster.php">Setup Master Preferences</a></li>
                             <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
                             <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                             <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
