@@ -1,3 +1,11 @@
+
+<?php
+	include( "./../login/functions.php" );
+	session_start();     
+	gatekeeper();
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +21,7 @@
         
         <style>
             
-/*
+
             #delete1 {
                 top: 280px;
                 background-color: #f44336;
@@ -40,20 +48,20 @@
                 color: white;
                 border-radius: 0 5px 5px 0;
             }
-
             #mySidenav button:hover {
                 left: 0;
             }
-*/
+
             
             .navbar{
-                margin-bottom: 0;
                 border-radius: 0 !important;
+                margin-bottom: 10;
             }
             
             .jumbotron{
                 border-radius: 0 !important;
                 background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+                margin-bottom: 0;
                 color: white;
             }
             
@@ -88,54 +96,49 @@
             hr{
                 border: 1px solid #009BC1;
             }
-            
-            /********************* Multiple Options CSS Start Here ******************/
-        
-            #add, #remove {  
-                display: block;  
-                color: white;  
-                margin: 2px;  
-                clear:both;  
-                width: 260px;
-                height: 50px;
-                font-size: 18px;
-                margin-left: 70px;
-            }  
 
-            .opt1 {  
-                float:left;  
-                text-align: center;
-            } 
-
-            .opt2 {  
-                float:left;  
-                text-align: center;  
-                margin: 70px;  
-            }
-
-            .opt1 select {  
-                width: 260px;  
-                height: 260px;
+			.opt3 {
+				float:center;
+				text-align:left;
                 padding: 10px;
-                font-size: 20px;
+                font-size: 15px;
                 border-radius: 8px;
-                border: 1px solid black;
-                margin-left: 70px;
-            }
-            
+                /*border: 1px solid black;*/
+				margin:1%;
+				position:center;
+
+			}
+			.opt4 {
+				float:left;
+				text-align:left;
+				font-size: 30px:
+				font-family: "Times"
+			}
+			
+			input[type="checkbox"]{
+				cursor: pointer;
+				position: relative;
+				width: 13px;
+				height: 13px;
+			}
+			
+			input[type=submit], select {
+				width: 25%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				display: inline-block;
+				font-size: 15px;
+				background-color: lightgreen;
+				cursor: pointer; 
+			}
+
         </style>
         
     </head>
     
     <body>
-<!--
-        <div id="mySidenav" class="sidenav">
-            <button href = "" id = "delete1">Find all athletes with no event entries</button>
-            <button href = "" id = "delete2">Delete all records in current found set</button>
-            <button href = "" id = "delete3">Delete current records</button>
-        </div>
--->
-        <nav class="navbar navbar-inverse">
+
+        <!-- <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
@@ -182,16 +185,109 @@
                         </ul>
                     </li>
                 </ul>
+				<ul class="nav navbar-nav navbar-right dropdown">
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login/logout.php">Logout</a></li>
+                    </ul>
+                </li>
+                </ui>
             </div>
-        </nav>
+        </nav> -->
+
 
         <div class = "jumbotron">
-            <center><strong><h1>Athlete Registration Form</h1></strong></center>
+            <center><strong><h1>Registration Form</h1></strong></center>
         </div>
 
 
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand"  href="SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+
+                    <!-- ALll nav-pages under this nav-bar is moved to masterpage folder -->
+                    <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
+                            <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
+                            <li><a id = "register_form" href = "masterpage/registrationform.html">Registration Form</a></li>
+                            <li><a id = "find_register" href = "masterpage/findregistration.html">Find All Registration</a></li>
+                            <li><a id = "setup_pref" href = "masterpage/setupmaster.html">Setup Master Preferences</a></li>
+                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
+                            <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
+                            <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
+                            <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
+                            <li><a id = "photo_database" href = "masterpage/photodatabase.html">Photo Database</a></li>
+                            <li><a id = "classification" href = "masterpage/classificationfile.html">Classification file</a></li>
+                            <li><a id = "Implements" href = "masterpage/implementsusedfile.html">Implements used file</a></li>
+                            <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li> -->
+                        </ul>
+                    </li>
+
+                    <!-- ALll nav-pages under this nav-bar is moved to resultpage folder -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "extrackfield" href="resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                            <li><a id = "exswimming" href="resultpage/exportswimming.html">Export Swimming</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
+
+                    <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preferences <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "backup" href="preferences/backuppreferences.html">Backup Preferences</a></li>
+                            <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
+                        </ul>
+                    </li> -->
+
+                    <!-- All the Sports -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "archery" href="#">Archery</a></li>
+                            <li><a id = "fencing" href="#">Fencing</a></li>
+                            <li><a id = "field" href="#">Field</a></li>
+                            <li><a id = "swimming" href="#">Swimming</a></li>
+                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="#">Team Sports</a></li>
+                            <li><a id = "track" href="#">Track</a></li>
+                            <li><a id = "other" href="#">Other Sports</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right dropdown">
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="login/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ui>
+            </div>
+        </nav>
+
         <div class = "container">
-            <div class="col-sm-12 well">
+            <div class="col-sm-* well">
 
                 <div class = "select_options">
                     <strong>Choose One</strong>
@@ -215,11 +311,11 @@
                         <input name = "radiolabel" type="radio" value="Official"> Official
                     </label>
                 </div>
-
+                <br>
+                <h3>Basic Information</h3>
                 <hr>
-
-                <form name = "athregform" class = "form1" action = "" method="post">
-                    <div class="col-sm-12">
+                <form name = "athregform" class = "form1" action = "" method="POST">
+                    <div class="col-sm-*">
 
                         <div class="row">
                             <div class="col-sm-6 form-group">
@@ -244,12 +340,12 @@
                         </div>
 
                         <div class = "row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-sm-3">
                                 <label for="city">City:</label>
                                 <input type="text" class="form-control" id="city">
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-sm-3">
                                 <label for="state">State:</label>
                                 <select id = "state" class = "form-control">
                                     <option></option>
@@ -307,24 +403,71 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-sm-3">
                                 <label for="zip">Zip / Mail Code:</label>
                                 <input type="number" class="form-control" id="zipcode">
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-sm-3">
                                 <label for="country">Country:</label>
-                                <input type="text" class="form-control" id="country" placeholder="USA">
+                                <input type="text" class="form-control" id="country" placeholder="USA" disabled>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" class="form-control" id="Email">
-                        </div>
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label for="email">Email:</label>
+								<input type="email" name="email" class="form-control" id="Email">
+							</div>
+							
+							<div class="form-group col-sm-6">
+                                <label for="cphone">Cell Phone:</label>
+                                <input type="number" name="cell_phone" class="form-control" id="cphone">
+                            </div>
+						</div>
 
+						<div class="row">
+                            <div class="form-group col-sm-3">
+                                <label for="dob">DOB:</label>
+                                <input type="date" name="dob" class="form-control" id="dob">
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="age">Age:</label>
+                                <input type="number" name="age" class="form-control" id="age">
+                            </div>
+							
+							<div class="form-group col-sm-3">
+                                <label for="gender">Gender:</label>
+                                <select id = "gender" name="gender" class = "form-control">
+                                    <option></option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="tsize">T-Shirt Size:</label>
+                                <select id = "tsize" name="tsize" class = "form-control">
+                                    <option></option>
+                                    <option>Ch. S</option>
+                                    <option>Ch. M</option>
+                                    <option>Ch. L</option>
+                                    <option>Ch. XL</option>
+                                    <option>S</option>
+                                    <option>M</option>
+									<option>L</option>
+                                    <option>XL</option>
+                                    <option>XXL</option>
+                                    <option>XXL</option>    
+                                </select>
+                            </div>
+						</div>
+						<h3>Additional Information</h3>
+						<hr>
                         <div class = "row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-4">
                                 <label for="dso">DSO: Select 2 character code</label>
                                 <select id = "dso" name="dso" class = "form-control">
                                     <option></option>
@@ -352,160 +495,104 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="member">Membership Number:</label>
-                                <input type="text" name="membership_number" class="form-control" id="membernumber">
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label for="cphone">Cell Phone:</label>
-                                <input type="number" name="cell_phone" class="form-control" id="cphone">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="dob">DOB:</label>
-                                <input type="date" name="dob" class="form-control" id="dob">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="gender">Gender:</label>
-                                <select id = "gender" name="gender" class = "form-control">
-                                    <option></option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Others</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="age">Age:</label>
-                                <input type="number" name="age" class="form-control" id="age">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label for="tsize">T-Shirt Size:</label>
-                                <select id = "tsize" name="tsize" class = "form-control">
-                                    <option></option>
-                                    <option>XXXL</option>
-                                    <option>XXL</option>
-                                    <option>XL</option>
-                                    <option>L</option>
-                                    <option>M</option>
-                                    <option>S</option>
-                                    <option>Ch. XL</option>
-                                    <option>Ch. L</option>
-                                    <option>Ch. M</option>
-                                    <option>Ch. S</option>
-                                    <option></option>
-                                    <option></option>
-                                    <option>Edit...</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-4">
                                 <label for="rnumber">Registration Number:</label>
                                 <input type="text" name="rnumber" class="form-control" id="rnumber">
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-4">
                                 <label for="bnumber">Bib Number:</label>
                                 <input type="text" name="bnumber" class="form-control" id="bnumber">
                             </div>
+						</div>
+						
+						<div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="member">Membership Number:</label>
+                                <input type="text" name="membership_number" class="form-control" id="membernumber">
+                            </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-6">
                                 <label for="bnumber">IPC Number:</label>
                                 <input type="text" name="ipcnumber" class="form-control" id="bnumber">
                             </div>
-
-                            <div class="form-group col-md-6">
+						</div>
+						
+						<div class="row">
+                            <div class="form-group col-sm-6">
                                 <label for="tname">Team Name:</label>
                                 <input type="text" class="form-control" id="tname">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-6">
                                 <label for="hcname">Head Coach's Name:</label>
                                 <input type="text" class="form-control" id="hcname">
                             </div>
-
-                            <div class="form-group col-md-4">
+						</div>
+						
+						<div class="row">						
+                            <div class="form-group col-sm-6">
                                 <label for="chpname">Coach's Phone #:</label>
-                                <input type="text" class="form-control" id="hcname">
+                                <input type="number" class="form-control" id="hcname">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-sm-6">
                                 <label for="cwpcname">Coach's Email:</label>
-                                <input type="text" class="form-control" id="hcname">
+                                <input type="email" class="form-control" id="hcname">
                             </div>
-
-                            <div class="form-group col-md-4" id = "ynradio">
+						</div>
+						
+						<div class="row">
+                            <div class="form-group col-sm-4" id = "ynradio">
                                 <label>Needed to be Classified?</label><br>
-                                <input name = "yes" type="radio" value=""> Yes
-                                <input name = "no" type="radio" value=""> No
+                                <input name = "yes" type="radio" value="Classified_Yes"> Yes
+                                <input name = "no" type="radio" value="Classified_No"> No
                             </div>
 
-                            <div class="form-group col-md-4" id = "ynradio">
+                            <div class="form-group col-sm-4" id = "ynradio">
                                 <label>Is Coach coming to meet?</label><br>
-                                <input name = "yes" type="radio" value=""> Yes
-                                <input name = "no" type="radio" value=""> No
+                                <input name = "yes" type="radio" value="Coach_Yes"> Yes
+                                <input name = "no" type="radio" value="Coach_No"> No
                             </div>
-                        </div>  
+                        </div> 
+						
+						<h3>Select the Sports</h3>
+						<hr>
+						<div class = "opt3 row">  	
+							<div class="form-group col-sm-4 col-xs-4">
+								<label><input type = "checkbox" name="Archery" value = "Archery">&nbsp&nbspArchery</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-5">
+								<label><input type = "checkbox" name="Fencing" value = "Fencing">&nbsp&nbspFencing</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-3">
+								<label><input type = "checkbox" name="Field" value = "Field">&nbsp&nbspField</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-3">
+								<label><input type = "checkbox" name="Swim" value = "Swim">&nbsp&nbspSwim</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-5">
+								<label><input type = "checkbox" name="Table Tennis" value = "Table Tennis">&nbsp&nbspTable Tennis</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-4">
+								<label><input type = "checkbox" name="Teams" value = "Teams">&nbsp&nbspTeams</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-4">
+								<label><input type = "checkbox" name="Track" value = "Track">&nbsp&nbspTrack</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-5">
+								<label><input type = "checkbox" name="Weighlifting" value = "Weighlifting">&nbsp&nbspWeighlifting</label><br>
+							</div>
+							<div class="form-group col-sm-4 col-xs-3">
+								<label><input type = "checkbox" name="Other" value = "Other">&nbsp&nbspOther</label><br>
+							</div>
+						</div>						
                     </div>
-                </form>
+					 	
+				<center><input type="submit" font="Helvetica" value="SUBMIT""><br><br>		
+                </form>	
             </div>
-
-            <div class="col-lg-8 well">
-                <div class = "row">
-                    <form name = "athregform" class = "form1" action = "" method="post">
-                        <center><h3>Select Sports from Column 1 and add to Column 2</h3></center>
-                        <hr>
-                        <div class = "opt1">  
-                            <select multiple id="select1">  
-                                <option id = " " value="1">Archery</option>  
-                                <option id = " " value="2">Fencing</option>  
-                                <option id = " " value="3">Field</option>  
-                                <option id = " " value="4">Swim</option>
-                                <option id = " " value="5">Table Tennis</option> 
-                                <option id = " " value="6">Team</option> 
-                                <option id = " " value="7">Track</option> 
-                                <option id = " " value="8">Weightlifting</option> 
-                                <option id = " " value="9">Other</option> 
-                            </select> 
-                            <button id="add" class = "btn btn-success"><a href="#" style="text-decoration: none; color: white;">Add</a></button>  
-                        </div>  
-
-                        <div class = "opt1">  
-                            <select multiple id="select2"></select>  
-                            <button id="remove" class = "btn btn-danger"><a href="#" style="text-decoration: none; color: white;">Remove</a></button>    
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-<!--
-            <input id = "subbtn" type = "submit" value = "Submit" onclick = "athregform()">
-
-            <input id = "resetbtn" type = "reset" value = "Reset">
--->
-
             <br><br>
         </div>
-        
-        <script>
-
-            /********************* Multiple Options JS Start Here ******************/
-
-            $(document).ready(function() {  
-                $('#add').click(function() {  
-                    return !$('#select1 option:selected').remove().appendTo('#select2');  
-                });  
-
-                $('#remove').click(function() {  
-                    return !$('#select2 option:selected').remove().appendTo('#select1');  
-                });  
-            });
-
-
-        </script>
-
     </body>
 </html> 

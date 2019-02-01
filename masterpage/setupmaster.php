@@ -1,3 +1,9 @@
+<?php
+    include( "./../login/functions.php" );
+    session_start();     
+    gatekeeper();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -387,7 +393,6 @@
         function imageIsLoaded(e) {
             $('#jn_logo').attr('src', e.target.result);
         };
-
-
     </script> 
+
 </html> 
