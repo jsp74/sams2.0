@@ -2,7 +2,7 @@
 <?php
 	include( "./../login/functions.php" );
 	session_start();     
-	gatekeeper();
+	gatekeeper("./../login/login.php");
 ?>
 
 
