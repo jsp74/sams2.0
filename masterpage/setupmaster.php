@@ -20,7 +20,7 @@
         <style>
             
             .navbar{
-                margin-bottom: 0;
+                margin-bottom: 10;
                 border-radius: 0 !important;
             }
             
@@ -28,6 +28,7 @@
                 border-radius: 0 !important;
                 background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
                 color: white;
+                margin-bottom: 0;
             }
             
             #subbtn{
@@ -67,7 +68,7 @@
                 margin: 50px;  
                 clear:both;  
                 width: 12%;
-                height: 50px;
+                height: 25px;
                 font-size: 18px;
                 margin-left: 44%;
             }
@@ -81,6 +82,18 @@
                 float:left;  
                 text-align: center;  
                 margin: 70px;  
+            }
+
+            .opt3 {
+                float:center;
+                text-align:left;
+                padding: 10px;
+                font-size: 15px;
+                border-radius: 8px;
+                /*border: 1px solid black;*/
+                margin:1%;
+                position:center;
+
             }
 
             .selectbox select {  
@@ -127,7 +140,7 @@
     </head>
     
     <body>
-        <nav class="navbar navbar-inverse">
+        <!-- <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
@@ -141,7 +154,7 @@
                     <li class="active"><a href="./../SAMShome.php">Dashboard</a></li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
 
         <div class = "jumbotron">
             <div class="form-group col-md-3">
@@ -150,10 +163,94 @@
             <strong><h1>Meet/Event Preferences</h1></strong>
         </div>
 
+                <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand"  href="../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+
+                    <!-- ALll nav-pages under this nav-bar is moved to masterpage folder -->
+                    <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
+                            <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
+                            <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
+                            <li><a id = "find_register" href = "findregistration.html">Find All Registration</a></li>
+                            <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
+                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
+                            <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
+                            <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
+                            <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
+                            <li><a id = "photo_database" href = "masterpage/photodatabase.html">Photo Database</a></li>
+                            <li><a id = "classification" href = "masterpage/classificationfile.html">Classification file</a></li>
+                            <li><a id = "Implements" href = "masterpage/implementsusedfile.html">Implements used file</a></li>
+                            <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li> -->
+                        </ul>
+                    </li>
+
+                    <!-- ALll nav-pages under this nav-bar is moved to resultpage folder -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "extrackfield" href="../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                            <li><a id = "exswimming" href="../resultpage/exportswimming.html">Export Swimming</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
+
+                    <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preferences <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "backup" href="preferences/backuppreferences.html">Backup Preferences</a></li>
+                            <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
+                        </ul>
+                    </li> -->
+
+                    <!-- All the Sports -->
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "archery" href="#">Archery</a></li>
+                            <li><a id = "fencing" href="#">Fencing</a></li>
+                            <li><a id = "field" href="#">Field</a></li>
+                            <li><a id = "swimming" href="#">Swimming</a></li>
+                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="#">Team Sports</a></li>
+                            <li><a id = "track" href="#">Track</a></li>
+                            <li><a id = "other" href="#">Other Sports</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right dropdown">
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../login/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ui>
+            </div>
+        </nav>
+
         <div class = "container">
             <div class="col-sm-12 well">
 
-                <form name = "athregform" class = "form1" action = "./handleSetupMaster.php" method="get">
+                <form name = "athregform" class = "form1" action = "./handleSetupMaster.php" method="POST">
 
                     <h3>Basic Information</h3><hr>
                     <div class="col-sm-12">
@@ -173,12 +270,12 @@
                         <div class = "row">
                             <div class="form-group col-md-3">
                                 <label for="lname">Start Date:</label>
-                                <input type="datetime-local" class="form-control" name="startDate" required>
+                                <input type="date" class="form-control" name="startDate" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="lname">End Date:</label>
-                                <input type="datetime-local" class="form-control" name="endDate" required>
+                                <input type="date" class="form-control" name="endDate" required>
                             </div>
                         </div>
 
@@ -284,14 +381,9 @@
                         </div>
                     </div>
 
-                    <h3>Others</h3><hr>
+                    <h3>Select the Sports</h3><hr>
                     <div class="col-sm-12">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label>Select the Sports:</label>
-                            </div>
-                        </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="form-group col-md-4">
                                 <div class = "selectbox">  
                                     <select multiple id="list" name="list">  
@@ -314,7 +406,36 @@
                                     <button id="remove" class = "btn btn-danger"><a href="#" style="text-decoration: none; color: white;">Remove</a></button>    
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <div class = "opt3 row">    
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" name="archery" value = "1">&nbsp&nbspArchery</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-5">
+                                <label><input type = "checkbox" name="fencing" value = "1">&nbsp&nbspFencing</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-3">
+                                <label><input type = "checkbox" name="field" value = "1">&nbsp&nbspField</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-3">
+                                <label><input type = "checkbox" name="swim" value = "1">&nbsp&nbspSwim</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-5">
+                                <label><input type = "checkbox" name="tableTennis" value = "1">&nbsp&nbspTable Tennis</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" name="teams" value = "1">&nbsp&nbspTeams</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" name="track" value = "1">&nbsp&nbspTrack</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-5">
+                                <label><input type = "checkbox" name="weighlifting" value = "1">&nbsp&nbspWeighlifting</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-3">
+                                <label><input type = "checkbox" name="other" value = "1">&nbsp&nbspOther</label><br>
+                            </div>
+                        </div>  
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>Assign Bib Numbers:</label><br>
@@ -324,7 +445,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-*">
                             <button id="center" type="submit" name="Submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
