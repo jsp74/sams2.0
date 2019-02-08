@@ -301,7 +301,7 @@
 
                 <h3>Basic Information</h3>
                 <hr>
-                <form name = "athregform" class = "form1" action = "" method="POST">
+                <form name = "athregform" class = "form1" action = "regFormAction.php" method="POST">
                     <div class="col-sm-*">
 
                         <div class = "select_options">
