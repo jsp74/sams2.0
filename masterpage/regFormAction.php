@@ -1,46 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Logout Page | SAMS</title>
-    <style>
-    .loader {
-      border: 7px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 5px solid #3498db;
-      width: 30px;
-      height: 30px;
-      -webkit-animation: spin 2s linear infinite; 
-      animation: spin 2s linear infinite;
-      margin:auto;
-      left:0;
-      right:0;
-      top:0;
-      bottom:0;
-    }
-    /* Safari */
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    </style>
-  </head>
-
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Session to avoid entering invalid entries without signing in 
 include( "./../login/functions.php" );
-session_start();     
-gatekeeper("registrationform.php");
+session_start();
+gatekeeper("./../login/samslogin.html");
 
+//If the file does not have any column labels, or if the file does not exist, then create column labels
+if(!file_exists("data.csv") or empty("data.csv")) {
+  $file = fopen("data.csv", 'a') or errOccurred();
+  $labels = [1111,"Type","First Name","Last Name","Address Line 1","Address Line 2","City","State","Zip","Country","Email","CellPhone","Date of Birth","Age","Gender","TShirt Size","DSO","Registration Number","Bib Num","Membership Number","IPC Number","Team Name","Coach Name","Coach Phone","Coach Email","Classified","Coach Coming","Archery","Fencing","Field","Swim","TableTennis","Teams","Track","Weightlifting","Other"];
+  fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
+  fclose($file) or errOccurred();
+}
 
 $file = fopen("data.csv", 'a+') or errOccurred(); // Opens the file, or returns error
-
 //Getting the ID number for the next person
 $ID = 1111;
 while(!feof($file)) {
@@ -95,22 +72,17 @@ success();
 
 exit();
 
-//Removes any white spaces from $name and returns the value
-function getdata ( $name ) {  
-  return trim ( $_POST[ $name ] ) ;
-}
-
 //Displays an error alert and then redirects to the form
 function errOccurred() {
   echo "<center><font color= 'red' ><br><br><h2>Error Occurred While Registering, Please Try Again...</h2></font><br><div class='loader'></div>";
-  header( "refresh:5; url = https://web.njit.edu/~jsp74/download/masterpage/regform.html" );
+  header( "refresh:5; url = registrationform.php" );
   exit();
 }
 
 //Displays a successfully reigstered and then redirects to the form
 function success() {
-  echo "<center><font color= 'black' ><br><br><h2>SUCCESSFULLY REGISTERED</h2></font><br><div class='loader'></div>";
-  header( "refresh:5; url = https://web.njit.edu/~jsp74/download/masterpage/regform.html" );
+  echo "<center><font color= 'black' ><br><br><h2>REGISTERED SUCCESSFULLY</h2></font><br><div class='loader'></div>";
+  header( "refresh:5; url = registrationform.php" );
   exit();
 }
 
@@ -121,4 +93,35 @@ fs setacl ~/public_html/download/masterpage/ http write
 */
 
 ?>
- 
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logout Page | SAMS</title>
+    <style>
+    .loader {
+      border: 7px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #3498db;
+      width: 30px;
+      height: 30px;
+      -webkit-animation: spin 2s linear infinite; 
+      animation: spin 2s linear infinite;
+      margin:auto;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+    }
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    </style>
+  </head>
