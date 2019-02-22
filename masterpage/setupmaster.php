@@ -65,12 +65,36 @@
 
             #center{
                 display: block;   
-                margin: 50px;  
-                clear:both;  
+                margin: 25px;  
+                clear: both;  
                 width: 12%;
-                height: 25px;
+                height: 50px;
                 font-size: 18px;
                 margin-left: 44%;
+            }
+
+            /* Submit button */
+            #half-right{
+                display: block;   
+                margin: 25px;  
+                clear: both;  
+                width: 24%;
+                height: 50px;
+                font-size: 18px;
+                float: right
+            }
+
+            /* Update button */
+            #half-left{
+                display: block;
+                background-color: #303639;
+                color: white; 
+                margin: 25px;  
+                clear: both;  
+                width: 24%;
+                height: 50px;
+                font-size: 18px;
+                float: left
             }
 
             .selectbox {  
@@ -158,12 +182,12 @@
 
         <div class = "jumbotron">
             <div class="form-group col-md-3">
-                <img src="./../asusa_logo.png" alt="Asusa Logo">
+                <img src="images/asusa_logo.png" alt="Asusa Logo">
             </div>
             <strong><h1>Meet/Event Preferences</h1></strong>
         </div>
 
-                <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <a class="navbar-brand"  href="../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -223,14 +247,14 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "archery" href="#">Archery</a></li>
-                            <li><a id = "fencing" href="#">Fencing</a></li>
-                            <li><a id = "field" href="#">Field</a></li>
-                            <li><a id = "swimming" href="#">Swimming</a></li>
-                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
-                            <li><a id = "teamsports" href="#">Team Sports</a></li>
-                            <li><a id = "track" href="#">Track</a></li>
-                            <li><a id = "other" href="#">Other Sports</a></li>
+                            <li><a href="#">Archery</a></li>
+                            <li><a href="#">Fencing</a></li>
+                            <li><a href="#">Field</a></li>
+                            <li><a href="#">Swimming</a></li>
+                            <li><a href="#">Table Tennis</a></li>
+                            <li><a href="#">Team Sports</a></li>
+                            <li><a href="#">Track</a></li>
+                            <li><a href="#">Other Sports</a></li>
                         </ul>
                     </li>
                     
@@ -258,36 +282,36 @@
                         <div class="row">
                             <div class="col-sm-6 form-group">
                                 <label for="fname">Meet Name:</label>
-                                <input type="text" class="form-control" name="meetName" required>
+                                <input type="text" class="form-control" id="meetName" name="meetName" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="lname">Short Meet Name:</label>
-                                <input type="text" class="form-control" name="shortName">
+                                <input type="text" class="form-control" id="shortName" name="shortName">
                             </div>
                         </div>
 
                         <div class = "row">
                             <div class="form-group col-md-3">
                                 <label for="lname">Start Date:</label>
-                                <input type="date" class="form-control" name="startDate" required>
+                                <input type="date" class="form-control" id="startDate" name="startDate" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="lname">End Date:</label>
-                                <input type="date" class="form-control" name="endDate" required>
+                                <input type="date" class="form-control" id="endDate" name="endDate" required>
                             </div>
                         </div>
 
                         <div class = "row">
                             <div class="form-group col-md-3">
                                 <label for="city">Meet City:</label>
-                                <input type="text" class="form-control" name="meetCity" required>
+                                <input type="text" class="form-control" id="meetCity" name="meetCity" required>
                             </div>
 
                             <div class="form-group col-md-3">
                                 <label for="state">Meet State:</label>
-                                <select name="meetState" class = "form-control" required>
+                                <select id="meetState" name="meetState" class = "form-control" required>
                                     <option></option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -345,7 +369,7 @@
 
                             <div class="form-group col-md-3">
                                 <label for="country">Meet Country:</label>
-                                <input type="text" class="form-control" name="country" value="USA" disabled>
+                                <input type="text" class="form-control" id="country" name="country" value="USA" disabled>
                             </div>
                         </div>
                     </div>
@@ -356,164 +380,187 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="member">Meet Director:</label>
-                                <input type="text" name="meetDirector" class="form-control" id="director">
+                                <input type="text" id="meetDirector" name="meetDirector" class="form-control">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="member">Host Hotel:</label>
-                                <input type="text" name="meetHotel" class="form-control" id="hotel">
+                                <input type="text" id="meetHotel" name="meetHotel" class="form-control">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="member">Event Sponsors (max 7):</label>
-                                <textarea class="form-control" name="meetSponsors" rows="8"></textarea>
+                                <textarea class="form-control" id="meetSponsors" name="meetSponsors" rows="8"></textarea>
                              </div>
                              <div class="form-group col-md-4">
                                  <label>Local Organizaing Committees:</label>
-                                 <textarea class="form-control" name="meetLOC" rows="8"></textarea>
+                                 <textarea class="form-control" id="meetLOC" name="meetLOC" rows="8"></textarea>
                              </div>
                              <div class="form-group col-md-4">
                                 <input type='file' name="meetLogo" />
-                                <img id="jn_logo" src="./../junior_nationals.png" alt="logo" />
+                                <img id="jn_logo" name="jn_logo" src="images/junior_nationals.png" alt="logo" />
+                                <!-- <input type="text" id="logo_source" name="logo_source" width="100%" disabled> -->
                             </div>
                         </div>
                     </div>
 
                     <h3>Select the Sports</h3><hr>
                     <div class="col-sm-12">
-                        <!-- <div class="row">
-                            <div class="form-group col-md-4">
-                                <div class = "selectbox">  
-                                    <select multiple id="list" name="list">  
-                                        <option value="1">Archery</option>  
-                                        <option value="2">Fencing</option>  
-                                        <option value="3">Field</option>  
-                                        <option value="4">Swim</option>
-                                        <option value="5">Table Tennis</option> 
-                                        <option value="6">Team</option> 
-                                        <option value="7">Track</option> 
-                                        <option value="8">Weightlifting</option> 
-                                        <option value="9">Other</option> 
-                                    </select> 
-                                    <button id="add" class = "btn btn-success"><a href="#" style="text-decoration: none; color: white;">Add</a></button>  
-                                </div>  
-                            </div>
-                            <div class="form-group col-md-4">
-                                <div class = "selectbox">  
-                                    <select multiple id="selected" name="selected"></select>  
-                                    <button id="remove" class = "btn btn-danger"><a href="#" style="text-decoration: none; color: white;">Remove</a></button>    
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class = "opt3 row">    
+                        <div class = "opt3 row checkbox-group required">    
                             <div class="form-group col-sm-4 col-xs-4">
-                                <label><input type = "checkbox" name="archery" value = "1">&nbsp&nbspArchery</label><br>
-                            </div>
-                            <div class="form-group col-sm-4 col-xs-5">
-                                <label><input type = "checkbox" name="fencing" value = "1">&nbsp&nbspFencing</label><br>
-                            </div>
-                            <div class="form-group col-sm-4 col-xs-3">
-                                <label><input type = "checkbox" name="field" value = "1">&nbsp&nbspField</label><br>
-                            </div>
-                            <div class="form-group col-sm-4 col-xs-3">
-                                <label><input type = "checkbox" name="swim" value = "1">&nbsp&nbspSwim</label><br>
-                            </div>
-                            <div class="form-group col-sm-4 col-xs-5">
-                                <label><input type = "checkbox" name="tableTennis" value = "1">&nbsp&nbspTable Tennis</label><br>
+                                <label><input type = "checkbox" id="archery" name="archery" value = "1">&nbsp&nbspArchery</label><br>
                             </div>
                             <div class="form-group col-sm-4 col-xs-4">
-                                <label><input type = "checkbox" name="teams" value = "1">&nbsp&nbspTeams</label><br>
+                                <label><input type = "checkbox" id="fencing" name="fencing" value = "1">&nbsp&nbspFencing</label><br>
                             </div>
                             <div class="form-group col-sm-4 col-xs-4">
-                                <label><input type = "checkbox" name="track" value = "1">&nbsp&nbspTrack</label><br>
+                                <label><input type = "checkbox" id="field" name="field" value = "1">&nbsp&nbspField</label><br>
                             </div>
-                            <div class="form-group col-sm-4 col-xs-5">
-                                <label><input type = "checkbox" name="weighlifting" value = "1">&nbsp&nbspWeighlifting</label><br>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="swim" name="swim" value = "1">&nbsp&nbspSwim</label><br>
                             </div>
-                            <div class="form-group col-sm-4 col-xs-3">
-                                <label><input type = "checkbox" name="other" value = "1">&nbsp&nbspOther</label><br>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="tableTennis" name="tableTennis" value = "1">&nbsp&nbspTable Tennis</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="teams" name="teams" value = "1">&nbsp&nbspTeams</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="track" name="track" value = "1">&nbsp&nbspTrack</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="weightlifting" name="weightlifting" value = "1">&nbsp&nbspWeighlifting</label><br>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-4">
+                                <label><input type = "checkbox" id="other" name="other" value = "1">&nbsp&nbspOther</label><br>
                             </div>
                         </div>  
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>Assign Bib Numbers:</label><br>
-                                <input type="radio" name="bib" value="1" required> Yes<br>
-                                <input type="radio" name="bib" value="0"> No<br>
+                                <input type="radio" id="bibYes" name="bib" value="1" required> Yes<br>
+                                <input type="radio" id="bibNo" name="bib" value="0"> No<br>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-*">
-                            <button id="center" type="submit" name="Submit" class="btn btn-primary">Submit</button>
+                        <div class="col-sm-6">
+                            <button id="half-right" type="submit" name="Submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" id="half-left" onclick="enableSubmit()" class="btn btn-dark" disabled>Update</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </body>
-
-<!--
-            <input id = "subbtn" type = "submit" value = "Submit" onclick = "athregform()">
-
-            <input id = "resetbtn" type = "reset" value = "Reset">
--->
         
     <script>
 
-        /********************* Multiple Options JS Start Here ******************/
+        // function imageFunction(){
+        //     console.log("reacehd")
+        // 	var source = document.getElementById("jn_logo").src;
+        // 	var n = source.search("images");
+        // 	var src = source.substring(n);
+        // 	console.log(src);
+        // 	document.getElementById("logo_source").value = src;
+        // }
 
-        $(document).ready(function() {  
-            $('#add').click(function() {  
-                return !$('#list option:selected').remove().appendTo('#selected');  
-            });  
-
-            $('#remove').click(function() {  
-                return !$('#selected option:selected').remove().appendTo('#list');  
-            });  
-        });
-
-        function addFields(){
-            // Number of inputs to create
-            var number = document.getElementById("sponsorsNumber").value;
-            // Container <div> where dynamic content will be placed
-            var container = document.getElementById("listSponsors");
-            // Clear previous contents of the container
-            while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-
-            for (i=0;i<number;i++){
-                // Append a node with a random text
-                var label = document.createElement("LABEL");
-                var text = document.createTextNode("Sponsor " + (i+1));
-                label.appendChild(text);
-                container.appendChild(label);
-                // Create an <input> element, set its type and name attributes
-                var input = document.createElement("input");
-                input.type = "text";
-                input.className = "form-control"
-                input.name = "sponsor" + i;
-                container.appendChild(input);
-                // Append a line break 
-                container.appendChild(document.createElement("br"));
-            }
-        }
-
-        $(function () {
-            $(":file").change(function () {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = imageIsLoaded;
-                    reader.readAsDataURL(this.files[0]);
-                }
+        // checks if data file exists, if success -> poppulate the form
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: "masterData.csv",
+                dataType: "text",
+                success: function(data){populateForm(data);}
             });
         });
 
-        function imageIsLoaded(e) {
-            $('#jn_logo').attr('src', e.target.result);
-        };
+        // removes all the double quotes from the string that is passed as an argument
+        function removeQuotes(text){
+            return text.replace(/["]+/g, '');
+        }
+
+        function replaceComma(text){
+            return text.replace(/[,]+/g, '\r\n')
+        }
+
+        // Function is triggered if there is an existing excel file,
+        // the function takes all the data from the excel file and populates the form with respection values
+        // and disables the fields
+        function populateForm(data){
+            var cols = 22;
+            var lines = data.split(/\r\n|\n/);
+            var colNames = lines[0].split(',');
+            var info = lines[1].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
+            console.log(colNames);  // title of the columns
+            console.log(info);      // corresponding value of the columns
+
+            // -------------------- populating basic & additional information and disabling the attributes -------------------- //
+            for(var i = 0; i <= 10; i++){
+                var item = colNames[i];
+                var value = info[i];
+                var ele = document.getElementById(item);
+                if(item == "meetSponsors" || item == "meetLOC"){
+                    value = replaceComma(value);
+                }
+                value = removeQuotes(value);
+                ele.disabled = true;
+                ele.value = value;
+            }
+
+            // ------------------- checking either bib is selected or not and disabling both -------------------- //
+            var value12 = info[12];
+            document.getElementById('bibYes').disabled = true;
+            document.getElementById('bibNo').disabled = true;
+            if(value12 == 1){
+                document.getElementById('bibYes').checked = true;
+            }
+            else{
+                document.getElementById('bibNo').checked = true;
+            }
+
+            // -------------------- populating sports sections and disabling the attributes -------------------- //
+            for(var i = 13; i <= 21; i++){
+                var item = colNames[i];
+                var value = info[i];
+                var ele = document.getElementById(item);
+                ele.disabled = true;
+                if(value == 1){
+                    ele.checked = true;
+                }
+            }
+
+            // -------------------- disabling/enabling the buttons -------------------- //
+            document.getElementById("half-right").disabled = true; // submit button
+            document.getElementById("half-left").disabled = false; // update button
+
+        }
+
+        // when triggered enables all the form field to make it editable
+        function enableSubmit(){
+
+            var enableArray = [ 'meetName', 'shortName', 'startDate', 'endDate', 'meetCity', 'meetState', 
+                                'meetDirector', 'meetHotel', 'meetSponsors', 'meetLOC', 'bibYes', 'bibNo',
+                                'archery', 'fencing', 'field','swim', 'tableTennis', 'teams', 'track', 'weightlifting', 'other' ]
+
+            // enabling all the attributes mentioned in the array,i.e., basic & addtional information and sports section
+            for(var i = 0; i < enableArray.length; i++){
+                document.getElementById(enableArray[i]).disabled = false;
+            }
+
+            // enabling/disbaling buttons
+            document.getElementById("half-right").disabled = false; // submit button
+            document.getElementById("half-left").disabled = true;   // update button
+        }
+
+        // function imageIsLoaded(e) {
+        //     $('#jn_logo').attr('src', e.target.result);
+        // };
+
     </script> 
 
 </html> 
