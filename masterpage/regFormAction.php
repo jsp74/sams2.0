@@ -7,7 +7,7 @@ gatekeeper("./../login/samslogin.html");
 //If the file does not have any column labels, or if the file does not exist, then create column labels
 if(!file_exists("data.csv") or empty("data.csv")) {
   $file = fopen("data.csv", 'a') or errOccurred();
-  $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coacPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
+  $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coachPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
   fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
   fclose($file) or errOccurred();
 }
