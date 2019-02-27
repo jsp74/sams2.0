@@ -1,9 +1,4 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Session to avoid entering invalid entries without signing in 
 include( "./../login/functions.php" );
 session_start();
@@ -12,7 +7,7 @@ gatekeeper("./../login/samslogin.html");
 //If the file does not have any column labels, or if the file does not exist, then create column labels
 if(!file_exists("data.csv") or empty("data.csv")) {
   $file = fopen("data.csv", 'a') or errOccurred();
-  $labels = [1111,"Type","First Name","Last Name","Address Line 1","Address Line 2","City","State","Zip","Country","Email","CellPhone","Date of Birth","Age","Gender","TShirt Size","DSO","Registration Number","Bib Num","Membership Number","IPC Number","Team Name","Coach Name","Coach Phone","Coach Email","Classified","Coach Coming","Archery","Fencing","Field","Swim","TableTennis","Teams","Track","Weightlifting","Other"];
+  $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coachPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
   fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
   fclose($file) or errOccurred();
 }

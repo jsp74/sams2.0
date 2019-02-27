@@ -211,7 +211,8 @@
                             <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
                             <li><a id = "find_register" href = "findregistration.html">Find All Registration</a></li>
                             <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
-                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
+                            <li><a id = "athlete_perform_record" href = "athleteRecords.php">Setup Master Preferences</a></li>
+                        <!-- 
                             <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                             <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
                             <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
