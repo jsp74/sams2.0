@@ -5,10 +5,6 @@ to give permission to write to a file in AFS:
 fs setacl ~/public_html/download/masterpage/ http write
 */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Session to avoid entering invalid entries without signing in 
 include( "./../login/functions.php" );
 session_start();
