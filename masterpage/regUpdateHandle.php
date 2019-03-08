@@ -56,7 +56,7 @@
   </head>
   <body>
         <div class = "jumbotron">
-            <center><strong><h1>Registration Form</h1></strong></center>
+            <center><strong><h1>Registration Update</h1></strong></center>
         </div>
 
 
@@ -147,96 +147,86 @@
 </html>
 
 <?php
-// Session to avoid entering invalid entries without signing in 
-include( "./../login/functions.php" );
-session_start();
-gatekeeper("./../login/samslogin.html");
+	// ini_set('display_errors', 1);	
+	// ini_set('display_startup_errors', 1);	
+	// error_reporting(E_ALL);
+	
+	include( "./../login/functions.php" );
+	session_start();     
+	gatekeeper("./../login/login.php");
 
-//If the file does not have any column labels, or if the file does not exist, then create column labels
-if(!file_exists("data.csv") or empty("data.csv")) {
-  $file = fopen("data.csv", 'a') or errOccurred();
-  $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coachPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
-  fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
-  fclose($file) or errOccurred();
-}
+	$file = fopen("data.csv", 'a+') or errOccurred();
+	$newfile = fopen("newdata.csv", 'w+') or errOccurred();
 
-$file = fopen("data.csv", 'a+') or errOccurred(); // Opens the file, or returns error
-//Getting the ID number for the next person
-$ID = 1111;
-while(!feof($file)) {
-  $ar = fgetcsv($file);
-  if (!empty($ar[0]))
-    $ID = $ar[0] + 1;
-}
+	$id = getdata("ID");
+	$type = getdata("radiolabel");
+	$first = getdata("fname"); if (empty($first)) errOccurred();
+	$last = getdata("lname"); if (empty($last)) errOccurred();
+	$add1 = getdata("address1");
+	$add2 = getdata("address2");
+	$city = getdata("city");
+	$state = getdata("state");
+	$zip = getdata("zipcode");
+	$country = getdata("country"); if (empty($country)) $country = "USA"; //Default value of country is USA
+	$email = getdata("email");
+	$cellphone = getdata("phone");
+	$dob = getdata("dob");
+	$age = getdata("age");
+	$gender = getdata("gender");
+	$tshirt = getdata("tsize");
+	$dso = getdata("dso");
+	$reg_num = getdata("regNumber");
+	$bib_num = getdata("bibNumber");
+	$mem_num = getdata("memNumber");
+	$ipc_num = getdata("ipcNumber");
+	$team = getdata("teamName");
+	$coach = getdata("hcName");
+	$coach_phone = getdata("hcPhone");
+	$coach_email = getdata("hcEmail");
+	$classified = getdata("classified"); if (empty($classified) || $classified == '0') $classified = "No"; else $classified = "Yes";
+	$coach_coming = getdata("coachPresence"); if (empty($coach_coming) || $coach_coming == '0') $coach_coming = "No"; else $coach_coming = "Yes";
+	$archery = getdata("archery"); if (empty($archery)) $archery = 0;
+	$fencing = getdata("fencing"); if (empty($fencing)) $fencing = 0;
+	$field = getdata("field"); if (empty($field)) $field = 0;
+	$swim = getdata("swim"); if (empty($swim)) $swim = 0;
+	$tableTennis = getdata("tableTennis"); if (empty($tableTennis)) $tableTennis = 0;
+	$teams = getdata("teams"); if (empty($teams)) $teams = 0;
+	$track = getdata("track"); if (empty($track)) $track = 0;
+	$weightlifting = getdata("weightlifting"); if (empty($weightlifting)) $weightlifting = 0;
+	$other = getdata("other"); if (empty($other)) $other = 0;
+	$delete = getdata("Delete"); if (empty($delete)) $delete = 0;
+	$edit = getdata("Update"); if (empty($edit)) $edit = 0;
+	echo "ID: $id, DELETE: $delete, EDIT: $edit";
 
-//Gets Data from each Field of the Form
-$type = getdata("radiolabel");
-$first = getdata("fname"); if (empty($first)) errOccurred();
-$last = getdata("lname"); if (empty($last)) errOccurred();
-$add1 = getdata("address1");
-$add2 = getdata("address2");
-$city = getdata("city");
-$state = getdata("state");
-$zip = getdata("zipcode");
-$country = getdata("country"); if (empty($country)) $country = "USA"; //Default value of country is USA
-$email = getdata("email");
-$cellphone = getdata("phone");
-$dob = getdata("dob");
-$age = getdata("age");
-$gender = getdata("gender");
-$tshirt = getdata("tsize");
-$dso = getdata("dso");
-$reg_num = getdata("regNumber");
-$bib_num = getdata("bibNumber");
-$mem_num = getdata("memNumber");
-$ipc_num = getdata("ipcNumber");
-$team = getdata("teamName");
-$coach = getdata("hcName");
-$coach_phone = getdata("hcPhone");
-$coach_email = getdata("hcEmail");
-$classified = getdata("classified"); if (empty($classified) || $classified == '0') $classified = "No"; else $classified = "Yes";
-$coach_coming = getdata("coachPresence"); if (empty($coach_coming) || $coach_coming == '0') $coach_coming = "No"; else $coach_coming = "Yes";
-$archery = getdata("archery"); if (empty($archery)) $archery = 0;
-$fencing = getdata("fencing"); if (empty($fencing)) $fencing = 0;
-$field = getdata("field"); if (empty($field)) $field = 0;
-$swim = getdata("swim"); if (empty($swim)) $swim = 0;
-$tableTennis = getdata("tableTennis"); if (empty($tableTennis)) $tableTennis = 0;
-$teams = getdata("teams"); if (empty($teams)) $teams = 0;
-$track = getdata("track"); if (empty($track)) $track = 0;
-$weightlifting = getdata("weightlifting"); if (empty($weightlifting)) $weightlifting = 0;
-$other = getdata("other"); if (empty($other)) $other = 0;
+	$data = [$id, $type, $first, $last, $add1, $add2, $city, $state, $zip, $country, $email, $cellphone, $dob, $age, $gender, $tshirt, $dso, $reg_num, $bib_num, $mem_num, $ipc_num, $team, $coach, $coach_phone, $coach_email, $classified, $coach_coming, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other];
 
-//Data is an array of all the elements from the form
-$data = [$ID, $type, $first, $last, $add1, $add2, $city, $state, $zip, $country, $email, $cellphone, $dob, $age, $gender, $tshirt, $dso, $reg_num, $bib_num, $mem_num, $ipc_num, $team, $coach, $coach_phone, $coach_email, $classified, $coach_coming, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other];
+	while(!feof($file)) {
+		$ar = fgetcsv($file);
+		if(!empty($ar[0])) {
+			if($ar[0] == $id && $edit == "1") {
+				fputcsv($newfile, $data) or errOccurred();
+			}
+			elseif ($ar[0] == $id && $delete == "1") {
+				continue;
+			}
+			else {
+				fputcsv($newfile, $ar) or errOccurred();
+			}
+		}
+	}
 
-fputcsv($file, $data) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
-fclose($file) or errOccurred(); //Closes the file, or returns error
-success(); 
+  fclose($file);
+  fclose($newfile);
 
-exit();
+	copy("newdata.csv", "data.csv") or errOccurred();
+	unlink("newdata.csv");
 
-//Displays an error alert and then redirects to the form
-function errOccurred() {
-  echo "<center><font color= 'red' ><br><br><h2>Error Occurred While Registering, Please Try Again...</h2></font><br><div class='loader'></div>";
-  echo "<script LANGUAGE='javascript'>";
-  echo "window.setTimeout(function() {window.location.href='registrationform.php';}, 2000)";
-  echo "</script>";
-  exit();
-}
-
-//Displays a successfully reigstered and then redirects to the form
-function success() {
-  echo "<center><font color= 'black' ><br><br><h2>REGISTERED SUCCESSFULLY</h2></font><br><div class='loader'></div>";
-  echo "<script LANGUAGE='javascript'>";
-  echo "window.setTimeout(function() {window.location.href='registrationform.php';}, 2000)";
-  echo "</script>";
-  exit();
-}
-
-
-/*
-to give permission to write to a file in AFS:
-fs setacl ~/public_html/ http write
-*/
-
+	function errOccurred() {
+		echo "<center><font color= 'red' ><br><br><h2>Error Occurred While Registering, Please Try Again...</h2></font><br><div class='loader'></div>";
+		echo "<script LANGUAGE='javascript'>";
+		echo "window.setTimeout(function() {window.location.href='registrationform.php';}, 2000)";
+		echo "</script>";
+		exit();
+	}
 ?>
+

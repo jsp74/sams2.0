@@ -70,7 +70,7 @@
   }
   
   //method to see if the user is logged in the main page
-  function gatekeeper($address = "login.php") {
+  function gatekeeper($address = "https://web.njit.edu/~jsp74/sams2.0/login/login.php") {
     if( !isset( $_SESSION[ 'logged' ] )  || !( $_SESSION[ 'logged' ] ) ) { 
       $message = "";
       //$message = "<center><font color= 'red' ><br><br><h2>LOGIN FAILED</h2></font><br><font color= 'black'>Redirecting to Login Page</center>";

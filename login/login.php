@@ -1,3 +1,12 @@
+<!DOCTYPE HTML>
+
+<style>
+body {
+    background-image: url("images/background.png");
+    background-color: #cccccc; 
+}
+</style>
+
 <?php
 
 include( "functions.php" );
