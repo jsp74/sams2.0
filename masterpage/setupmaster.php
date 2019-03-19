@@ -189,7 +189,7 @@
 
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand"  href="../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+                <a class="navbar-brand"  href="./../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -209,9 +209,9 @@
                             <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                             <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
                             <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
-                            <li><a id = "find_register" href = "findregistration.html">Find All Registration</a></li>
+                            <li><a id = "find_register" href = "findregistration.php">Find All Registration</a></li>
                             <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
-                        <!-- 
+                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
                             <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                             <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
                             <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
@@ -227,8 +227,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "extrackfield" href="../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
-                            <li><a id = "exswimming" href="../resultpage/exportswimming.html">Export Swimming</a></li>
+                            <li><a id = "extrackfield" href="./../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                            <li><a id = "exswimming" href="./../resultpage/exportswimming.html">Export Swimming</a></li>
                         </ul>
                     </li>
 
@@ -247,27 +247,27 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Archery</a></li>
-                            <li><a href="#">Fencing</a></li>
-                            <li><a href="#">Field</a></li>
-                            <li><a href="#">Swimming</a></li>
-                            <li><a href="#">Table Tennis</a></li>
-                            <li><a href="#">Team Sports</a></li>
-                            <li><a href="#">Track</a></li>
-                            <li><a href="#">Other Sports</a></li>
+                            <li><a id = "archery" href="./../sports/sportsTable.php?sport=archery">Archery</a></li>
+                            <li><a id = "fencing" href="./../sports/sportsTable.php?sport=fencing">Fencing</a></li>
+                            <li><a id = "field" href="./../sports/sportsTable.php?sport=field">Field</a></li>
+                            <li><a id = "swimming" href="./../sports/sportsTable.php?sport=swim">Swimming</a></li>
+                            <li><a id = "tabletennis" href="./../sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="./../sports/sportsTable.php?sport=teams">Team Sports</a></li>
+                            <li><a id = "track" href="./../sports/sportsTable.php?sport=track">Track</a></li>
+                            <li><a id = "weightlifting" href="./../sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
+                            <li><a id = "other" href="./../sports/sportsTable.php?sport=other">Other Sports</a></li>
                         </ul>
                     </li>
-                    
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right dropdown">
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../login/logout.php">Logout</a></li>
+                            <li><a href="./../login/logout.php">Logout</a></li>
                         </ul>
                     </li>
-                </ui>
+                </ul>
             </div>
         </nav>
 

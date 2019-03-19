@@ -4,10 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Logout Page | SAMS</title>
     <style>
-    body {
-      background-image: url("images/background.png");
-      background-color: #cccccc; 
-    }
     .loader {
     	border: 7px solid #f3f3f3;
     	border-radius: 50%;
