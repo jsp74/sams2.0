@@ -136,7 +136,7 @@
                             <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                             <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
                             <li><a id = "register_form" href = "masterpage/registrationform.php">Registration Form</a></li>
-                            <li><a id = "find_register" href = "masterpage/findregistration.html">Find All Registration</a></li>
+                            <li><a id = "find_register" href = "masterpage/findregistration.php">Find All Registration</a></li>
                             <li><a id = "setup_pref" href = "masterpage/setupmaster.php">Setup Master Preferences</a></li>
                             <li><a id = "athlete_perform_record" href = "masterpage/athleteRecords.php">Athlete Records</a></li>
                             <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
@@ -175,17 +175,17 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "archery" href="#">Archery</a></li>
-                            <li><a id = "fencing" href="#">Fencing</a></li>
-                            <li><a id = "field" href="#">Field</a></li>
-                            <li><a id = "swimming" href="#">Swimming</a></li>
-                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
-                            <li><a id = "teamsports" href="#">Team Sports</a></li>
-                            <li><a id = "track" href="#">Track</a></li>
-                            <li><a id = "other" href="#">Other Sports</a></li>
+                            <li><a id = "archery" href="sports/sportsTable.php?sport=archery">Archery</a></li>
+                            <li><a id = "fencing" href="sports/sportsTable.php?sport=fencing">Fencing</a></li>
+                            <li><a id = "field" href="sports/sportsTable.php?sport=field">Field</a></li>
+                            <li><a id = "swimming" href="sports/sportsTable.php?sport=swim">Swimming</a></li>
+                            <li><a id = "tabletennis" href="sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="sports/sportsTable.php?sport=teams">Team Sports</a></li>
+                            <li><a id = "track" href="sports/sportsTable.php?sport=track">Track</a></li>
+                            <li><a id = "weightlifting" href="sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
+                            <li><a id = "other" href="sports/sportsTable.php?sport=other">Other Sports</a></li>
                         </ul>
                     </li>
-                    
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right dropdown">
@@ -195,7 +195,7 @@
                             <li><a href="login/logout.php">Logout</a></li>
                         </ul>
                     </li>
-                </ui>
+                </ul>
             </div>
         </nav>
         
@@ -224,7 +224,6 @@
                     <br><br>
                     <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
                 </div>
-                
             </div>
         </div>
     </body>

@@ -1,9 +1,7 @@
 <?php
-
-	include( "./../login/functions.php" );
-	session_start();     
-	gatekeeper("./../login/login.php");
-
+include( "./../login/functions.php" );
+session_start();
+gatekeeper("./../login/samslogin.html");
 ?>
 
 <!DOCTYPE HTML>
@@ -18,7 +16,7 @@ body{margin-top:20px;}
 .profile-user-info {
     display: table;
     width: 98%;
-    width: calc(75% - 24px);
+    width: calc(100% - 24px);
     margin: 0 auto
 }
 
@@ -218,9 +216,9 @@ body{margin-top:20px;}
     background-color: #FFF
 }
 
-@media only screen and (max-width:50%) {
+@media only screen and (max-width:480px) {
     .profile-info-name {
-        width: 200px;
+        width: 80px
     }
     .profile-user-info-striped .profile-info-name {
         float: none;
@@ -1160,42 +1158,8 @@ body{
     font-family: 'Do Hyeon', sans-serif; 
 }
 
-.collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 20px;
-  width:100%;
-}
-
-.collapsible:hover {
-  background-color: #555;
-}
-
-.content {
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-  border: none;
-  outline: none;
-}
-
-.sportIcon {
-	height:25px;
-	width:25px;
-}
-
-.list-group.list-group-horizontal {
-    display: flex;
-    flex-direction: row;
-}
-
 </style>
-<title>Athlete Information | SAMS</title>
+
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
@@ -1215,7 +1179,7 @@ body{
 
     <nav class="navbar navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand"  href="SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+            <a class="navbar-brand"  href="./../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -1235,9 +1199,9 @@ body{
                         <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                         <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
                         <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
-                        <li><a id = "find_register" href = "findregistration.html">Find All Registration</a></li>
+                        <li><a id = "find_register" href = "findregistration.php">Find All Registration</a></li>
                         <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
-                        <!-- 
+                        <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
                         <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                         <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
                         <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
@@ -1273,14 +1237,15 @@ body{
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Archery</a></li>
-                        <li><a href="#">Fencing</a></li>
-                        <li><a href="#">Field</a></li>
-                        <li><a href="#">Swimming</a></li>
-                        <li><a href="#">Table Tennis</a></li>
-                        <li><a href="#">Team Sports</a></li>
-                        <li><a href="#">Track</a></li>
-                        <li><a href="#">Other Sports</a></li>
+                        <li><a id = "archery" href="./../sports/sportsTable.php?sport=archery">Archery</a></li>
+                        <li><a id = "fencing" href="./../sports/sportsTable.php?sport=fencing">Fencing</a></li>
+                        <li><a id = "field" href="./../sports/sportsTable.php?sport=field">Field</a></li>
+                        <li><a id = "swimming" href="./../sports/sportsTable.php?sport=swim">Swimming</a></li>
+                        <li><a id = "tabletennis" href="./../sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
+                        <li><a id = "teamsports" href="./../sports/sportsTable.php?sport=teams">Team Sports</a></li>
+                        <li><a id = "track" href="./../sports/sportsTable.php?sport=track">Track</a></li>
+                        <li><a id = "weightlifting" href="./../sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
+                        <li><a id = "other" href="./../sports/sportsTable.php?sport=other">Other Sports</a></li>
                     </ul>
                 </li>
                 
@@ -1293,7 +1258,7 @@ body{
                         <li><a href="./../login/logout.php">Logout</a></li>
                     </ul>
                 </li>
-            </ui>
+            </ul>
         </div>
     </nav>
 
@@ -1303,21 +1268,21 @@ body{
             <ul class="nav nav-tabs padding-18">
                 <li class="active">
                     <a data-toggle="tab" href="#home">
-                        <i class="ace-icon fa fa-user bigger-110"></i>
+                        <i class="ace-icon fa fa-user bigger-120"></i>
                         Athlete
                     </a>
                 </li>
 
                 <li>
                     <a data-toggle="tab" href="#sports">
-                        <i class="ace-icon fa fa-users bigger-110"></i>
+                        <i class="ace-icon fa fa-users bigger-120"></i>
                         Sports
                     </a>
                 </li>
 
                 <li>
                     <a data-toggle="tab" href="#pictures">
-                        <i class="ace-icon fa fa-picture-o bigger-110"></i>
+                        <i class="ace-icon fa fa-picture-o bigger-120"></i>
                         Pictures
                     </a>
                 </li>
@@ -1328,8 +1293,7 @@ body{
                     <div class="row">
                         <div class="col-xs-12 col-sm-3 center">
                             <span class="profile-picture">
-                                <img class="img-responsive" alt=" Avatar" id="avatar2" src="images/portrait.png">
-                                <!-- https://cdn3.iconfinder.com/data/icons/sympletts-part-3/128/circle-user-2-512.png -->
+                                <img class="img-responsive" alt=" Avatar" id="avatar2" src="https://cdn3.iconfinder.com/data/icons/sympletts-part-3/128/circle-user-2-512.png">
                             </span>
 
                             <div class="space space-4"></div>
@@ -1340,19 +1304,16 @@ body{
                             <a id="hrefEmail" href="#" class="btn btn-sm btn-block btn-primary">
                                 <span class="bigger-100" id="email">Email Not Provided</span>
                             </a>
-                            <a id = "hrefAddress" href="#"  target="_blank" class="btn btn-sm btn-block btn-success btn-group">
+                            <a id = "hrefAddress" href="#"  target="_blank" class="btn btn-sm btn-block btn-success">
                                 <span class="bigger-100" id="address">Address Not Provided</span>
                             </a>
                         </div><!-- /.col -->
 
                         <div class="col-xs-12 col-sm-9">
-
-                        	<h4 class="blue">
-                            	<span id="names">Name Not Provided</span>
-                        	</h4>
-                            <a id="editProfile" href="registrationUpdate.php"> EDIT PROFILE </a>
-
-                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h4 class="blue">
+                                <span class="middle" id="names">Name Not Provided</span>
+                            </h4>
+                            <div class="col-sm-12 col-md-6">
                                 <div class="profile-user-info">
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> DSO </div>
@@ -1385,7 +1346,7 @@ body{
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> T-Shirt Size </div>
                                         <div class="profile-info-value">
-                                            <span id="tsize">TShirt Size Not Provided</span>
+                                            <span id="tshirt">TShirt Size Not Provided</span>
                                         </div>
                                     </div>
 
@@ -1393,7 +1354,7 @@ body{
 
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-xs-12 col-md-6">
                                 <div class="profile-user-info">
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> ID </div>
@@ -1405,28 +1366,28 @@ body{
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Registration Number </div>
                                         <div class="profile-info-value">
-                                            <span id="regNumber">Registration Number Not Provided</span>
+                                            <span id="regNum">Registration Number Not Provided</span>
                                         </div>
                                     </div>
                                     
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Bib Number </div>
                                         <div class="profile-info-value">
-                                            <span id="bibNumber">Bib Number Not Provided</span>
+                                            <span id="bibNum">Bib Number Not Provided</span>
                                         </div>
                                     </div>
 
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Membership Number </div>
                                         <div class="profile-info-value">
-                                            <span id="memNumber">Membership Number Not Provided</span>
+                                            <span id="memNum">Membership Number Not Provided</span>
                                         </div>
                                     </div>
 
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> IPC Number </div>
                                         <div class="profile-info-value">
-                                            <span id="ipcNumber">IPC Number Not Provided</span>
+                                            <span id="ipcNum">IPC Number Not Provided</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1442,14 +1403,14 @@ body{
                             <div class="profile-info-row">
                                 <div class="profile-info-name"> Head Coach </div>
                                 <div class="profile-info-value">
-                                    <span id="hcName">Coach Not Provided</span>
+                                    <span id="coach">Coach Not Provided</span>
                                 </div>
                             </div>
 
                             <div class="profile-info-row">
                                 <div class="profile-info-name"> Team Name </div>
                                 <div class="profile-info-value">
-                                    <span id="teamName">Team Name Not Provided</span>
+                                    <span id="team">Team Name Not Provided</span>
                                 </div>
                             </div>
 
@@ -1483,97 +1444,160 @@ body{
                         </div>
 
                         <div class = "col-xs-12 col-sm-9 center">
-                        	<div id="noSports">No Sports to Display</div>
-                            <div id="archery" style="display: none;">
-								<button class="collapsible">
-									<img src="images/archery.png" class="sportIcon"/> 
-										Archery
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT ARCHERY</p>
-								</div>
-							</div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="archery1" href="#">
+                                            <img src="http://res.publicdomainfiles.com/pdf_view/68/13927378217564.png">
+                                        </a>
+                                    </div>
 
-							<div id="fencing" style="display: none;">
-								<button class="collapsible">
-									<img src="images/fencing.png" class="sportIcon"/> 
-										Fencing
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT FENCING</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="archery2" href="#">
+                                                Archery
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-							<div id="field" style="display: none;">
-								<button class="collapsible">
-									<img src="images/field.png" class="sportIcon"/> 
-										Field
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT FIELD</p>
-								</div>
-							</div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="fencing1" href="#">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fencing_pictogram.svg/2000px-Fencing_pictogram.svg.png">
+                                        </a>
+                                    </div>
 
-							<div id="swim" style="display: none;">
-								<button class="collapsible">
-									<img src="images/swim.png" class="sportIcon"/> 
-										Swim
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT SWIM</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="fencing2" href="#">
+                                                Fencing
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="field1" href="#">
+                                            <img src="https://cdn.pixabay.com/photo/2018/08/18/03/02/sport-3614173_960_720.png">
+                                        </a>
+                                    </div>
 
-							<div id="tableTennis" style="display: none">
-								<button class="collapsible">
-									<img src="images/tableTennis.png" class="sportIcon"/> 
-										Table Tennis
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT TABLE TENNIS</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="field2" href="#">
+                                                Field
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="swim1" href="#">
+                                            <img src="http://res.publicdomainfiles.com/pdf_view/64/13548494415937.png">
+                                        </a>
+                                    </div>
 
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="swim2" href="#">
+                                                Swim
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="tableTennis1" href="#">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Table_tennis_pictogram.svg/480px-Table_tennis_pictogram.svg.png">
+                                        </a>
+                                    </div>
 
-							<div id="teams" style="display: none">
-								<button class="collapsible">
-									<img src="images/teams.png" class="sportIcon"/> 
-										Teams
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT TEAMS</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="tableTennis2" href="#">
+                                                Table Tennis
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="teams1" href="#">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Plus_font_awesome.svg/2000px-Plus_font_awesome.svg.png">
+                                        </a>
+                                    </div>
 
-							<div id="track" style="display: none">
-								<button class="collapsible">
-									<img src="images/track.png" class="sportIcon"/> 
-										Track
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT TRACK</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="teams2" href="#">
+                                                Teams
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="track1" href="#">
+                                            <img src="http://www.clker.com/cliparts/9/N/8/G/a/0/run.svg">
+                                        </a>
+                                    </div>
 
-							<div id="weightlifting" style="display: none">
-								<button class="collapsible">
-									<img src="images/weightlifting.png" class="sportIcon"/>
-										Weightlifting
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT WEIGHTLIFTING</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="track2" href="#">
+                                                Track
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id="weightlifting1" href="#">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Weightlifting_pictogram.svg/2000px-Weightlifting_pictogram.svg.png">
+                                        </a>
+                                    </div>
 
-							<div id="other" style="display: none">
-								<button class="collapsible" >
-									<img src="images/other.png" class="sportIcon"/> 
-										Other
-								</button>
-								<div class="content">
-								  <p>INFO ABOUT OTHER SPORTS</p>
-								</div>
-							</div>
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="weightlifting2" href="#">
+                                                Weightlifting
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemdiv memberdiv">
+                                <div class="inline pos-rel">
+                                    <div class="user">
+                                        <a id = "other1" href="#">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Minus_font_awesome.svg/2000px-Minus_font_awesome.svg.png">
+                                        </a>
+                                    </div>
+
+                                    <div class="body">
+                                        <div class="name">
+                                            <a id="other2" href="#">
+                                                Other
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div><!-- /#sports -->
@@ -1805,24 +1829,6 @@ body{
 
 <script type="text/javascript">
 
-	var coll = document.getElementsByClassName("collapsible");
-	var i;
-console.log(coll);
-	//For the Sports Section Collapsible
-	for (i = 0; i < coll.length; i++) {
-
-	  coll[i].addEventListener("click", function() {
-	    this.classList.toggle("active");
-	    var content = this.nextElementSibling;
-	    if (content.style.display === "block") {
-	      content.style.display = "none";
-	    } else {
-	      content.style.display = "block";
-	    }
-	  });
-	}
-
-	//Grabs the Data.csv file
     $(document).ready(function(){
             $.ajax({
                 type: "GET",
@@ -1832,16 +1838,16 @@ console.log(coll);
             });
         });
 
-    	//Function populates the page with the athlete's information
         function populateForm(data){
-            console.log(data); //shows all the data of Data.csv in Console Log
-            var lines = data.split(/\r\n|\n/); //Split Each Entry
-            var colNames = lines[0].split(','); //Split Each Entry into each columns
-            console.log(colNames); //displays the names of the columns
+            console.log(data);
+            var cols = 22;
+            var lines = data.split(/\r\n|\n/);
+            var colNames = lines[0].split(',');
+            console.log(colNames);
             var i = 0;
+            var temp = "";
             var url = new URL(window.location.href);
-            var id_url = url.searchParams.get("id"); //gets the athlete's ID needed to display the informaion
-
+            var id_url = url.searchParams.get("id");
             while (i++ < lines.length - 1) {
                 
                 var colEntries = lines[i].split(',');
@@ -1849,123 +1855,135 @@ console.log(coll);
 
                 if (id == id_url) {
 
-                	//removes quotes and spaces from each element. (quotes may be added to the element by default if the stored value is more than one word)
-                    for (var j = 0; j < 36; j++) {
-                        colEntries[j] = trimStr(colEntries[j]);
-                        colNames[j] = trimStr(colNames[j]);
-                    }
+                    var type = trimStr(colEntries[1]);
+                    var fname = trimStr(colEntries[2]);
+                    var lname = trimStr(colEntries[3]);
+                    var address1 = trimStr(colEntries[4]);
+                    var address2 = trimStr(colEntries[5]);
+                    var city = trimStr(colEntries[6]);
+                    var state = trimStr(colEntries[7]);
+                    var zip = trimStr(colEntries[8]);
+                    var country = trimStr(colEntries[9]);
+                    var email = trimStr(colEntries[10]);
+                    var phone = trimStr(colEntries[11]);
+                    var dob = trimStr(colEntries[12]);
+                    var age = trimStr(colEntries[13]);
+                    var gender = trimStr(colEntries[14]);
+                    var tsize = trimStr(colEntries[15]);
+                    var dso = trimStr(colEntries[16]);
+                    var regNumber = trimStr(colEntries[17]);
+                    var bibNumber = trimStr(colEntries[18]);
+                    var memNumber = trimStr(colEntries[19]);
+                    var ipcNumber = trimStr(colEntries[20]);
+                    var teamName = trimStr(colEntries[21]);
+                    var hcName = trimStr(colEntries[22]);
+                    var hcPhone = trimStr(colEntries[23]);
+                    var hcEmail = trimStr(colEntries[24]);
+                    var classified = trimStr(colEntries[25]);
+                    var coachPresence = trimStr(colEntries[26]);
+                    var archery = trimStr(colEntries[27]);
+                    var fencing = trimStr(colEntries[28]);
+                    var field = trimStr(colEntries[29]);
+                    var swim = trimStr(colEntries[30]);
+                    var tableTennis = trimStr(colEntries[31]);
+                    var teams = trimStr(colEntries[32]);
+                    var track = trimStr(colEntries[33]);
+                    var weightlifting = trimStr(colEntries[34]);
+                    var other = trimStr(colEntries[35]);
 
-					//List of what each colEntry represent:
-                    /*
-                    var type = (colEntries[1]);
-                    var fname = (colEntries[2]);
-                    var lname = (colEntries[3]);
-                    var address1 = (colEntries[4]);
-                    var address2 = (colEntries[5]);
-                    var city = (colEntries[6]);
-                    var state = (colEntries[7]);
-                    var zip = (colEntries[8]);
-                    var country = (colEntries[9]);
-                    var email = (colEntries[10]);
-                    var phone = (colEntries[11]);
-                    
-                    var dob = (colEntries[12]);
-                    var age = (colEntries[13]);
-                    var gender = (colEntries[14]);
-                    var tsize = (colEntries[15]);
-                    var dso = (colEntries[16]);
-                    var regNumber = (colEntries[17]);
-                    var bibNumber = (colEntries[18]);
-                    var memNumber = (colEntries[19]);
-                    var ipcNumber = (colEntries[20]);
-                    var teamName = (colEntries[21]);
-                    var hcName = (colEntries[22]);
-                    
-                    var hcPhone = (colEntries[23]);
-                    var hcEmail = (colEntries[24]);
-                    
-                    var classified = (colEntries[25]);
-                    var coachPresence = (colEntries[26]);
-                    
-                    var archery = (colEntries[27]);
-                    var fencing = (colEntries[28]);
-                    var field = (colEntries[29]);
-                    var swim = (colEntries[30]);
-                    var tableTennis = (colEntries[31]);
-                    var teams = (colEntries[32]);
-                    var track = (colEntries[33]);
-                    var weightlifting = (colEntries[34]);
-                    var other = (colEntries[35]); 
-                    */
-
-                    //Gets the ID of the athlete
-                    if(!(isEmpty(colEntries[0]))) document.getElementById("id").innerHTML = colEntries[0];
-                    if(!(isEmpty(colEntries[2]) && isEmpty(colEntries[3]))) document.getElementById("names").innerHTML = colEntries[2] + " " + colEntries[3]; //Gets the names of the person
-                   
-                   	//Gets the phone and email of the athlete and places them as a link
-                    if(!isEmpty(colEntries[11])) {
-                        document.getElementById("call").innerHTML = phoneFormat(colEntries[11]); 
-                        document.getElementById("hrefCall").href = "tel:" + colEntries[11];
+                    if(!(isEmpty(fname) && isEmpty(lname))) document.getElementById("names").innerHTML = fname + " " + lname;
+                    if(!isEmpty(phone)) {
+                        document.getElementById("call").innerHTML = phoneFormat(phone); 
+                        document.getElementById("hrefCall").href = "tel:" + phone; 
                     }
-                    if(!isEmpty(colEntries[10])){ 
-                        document.getElementById("email").innerHTML = colEntries[10]; 
-                        document.getElementById("hrefEmail").href = "mailto:" + colEntries[10];
+                    if(!isEmpty(email)){ 
+                        document.getElementById("email").innerHTML = email; 
+                        document.getElementById("hrefEmail").href = "mailto: " + email;
                     }
-                   
-
-                    //Gets the addresss
-                    //State and City must be provided if zip is not provided. Address Line 1 must be provided
-                    if(!isEmpty(colEntries[4]) && (!isEmpty(colEntries[8]) || (!isEmpty(colEntries[6]) && !isEmpty(colEntries[7])))) {
-                        var address = colEntries[4] + (isEmpty(colEntries[5]) ? "" : ", <br>") + colEntries[5]  + (isEmpty(colEntries[6]) ? "" : ", <br>") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9]; 
+                    if(!isEmpty(address1) && (!isEmpty(zip) || (!isEmpty(city) && !isEmpty(state)))) {
+                        var address = address1 + (isEmpty(address2) ? "" : ", ") + address2  + (isEmpty(city) ? "" : ", ") + city + (isEmpty(state) ? "" : ", ") + state + (isEmpty(zip) ? "" : ", ") + zip + (isEmpty(country) ? "" : ", ") + country; 
                         document.getElementById("address").innerHTML = address;
-                        var address = colEntries[4] + (isEmpty(colEntries[6]) ? "" : ", ") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9]; 
+                        var address = address1 + (isEmpty(city) ? "" : ", ") + city + (isEmpty(state) ? "" : ", ") + state + (isEmpty(zip) ? "" : ", ") + zip + (isEmpty(country) ? "" : ", ") + country; 
                         document.getElementById("hrefAddress").href = "http://maps.google.com/?q=" + address;
                     }
+                    if(!isEmpty(dso)) document.getElementById("dso").innerHTML = dso;
+                    if(!isEmpty(gender)) document.getElementById("gender").innerHTML = gender;
+                    if(!isEmpty(dob)) document.getElementById("dob").innerHTML = dob;
+                    if (!isEmpty(age)) document.getElementById("age").innerHTML = age;
+                    if(!isEmpty(id)) document.getElementById("id").innerHTML = trimStr(id);
+                    if(!isEmpty(tsize)) document.getElementById("tshirt").innerHTML = tsize;
+                    if(!isEmpty(regNumber)) document.getElementById("regNum").innerHTML = regNumber;
+                    if(!isEmpty(bibNumber)) document.getElementById("bibNum").innerHTML = bibNumber;
+                    if(!isEmpty(memNumber)) document.getElementById("memNum").innerHTML = memNumber;
+                    if(!isEmpty(ipcNumber)) document.getElementById("ipcNum").innerHTML = ipcNumber;
 
-                    //Populated dob, age, gender, tsize, dso, regNum, bibNum, memNum, ipcNum, teamName, hcName, hcPhone, hcEmail. In that order
-                    for(var j = 12; j <= 26; j++) {
-                    	if(!isEmpty(colEntries[j]))
-                    		document.getElementById(colNames[j]).innerHTML = colEntries[j];
+                    if(!isEmpty(teamName)) document.getElementById("team").innerHTML = teamName;
+                    if(!isEmpty(hcName)) document.getElementById("coach").innerHTML = hcName;
+                    if(!isEmpty(hcPhone)) {
+                        document.getElementById("hcPhone").innerHTML = phoneFormat(hcPhone);
+                        document.getElementById("hrefHcPhone").href = "tel:" + hcPhone;
                     }
-
-                    //Gets the phone and email of the athlete and places them as a link
-                    if(!isEmpty(colEntries[23])) {
-                        document.getElementById("hcPhone").innerHTML = phoneFormat(colEntries[23]);
-                        document.getElementById("hrefHcPhone").href = "tel:" + colEntries[23];
+                    if(!isEmpty(hcEmail)) {
+                        document.getElementById("hcEmail").innerHTML = hcEmail;
+                        document.getElementById("hrefHcEmail").href = "email" + hcEmail;
                     }
-                    if(!isEmpty(colEntries[24])) {
-                        document.getElementById("hrefHcEmail").href = "mailto:" + colEntries[24];
+                    if(!isEmpty(classified)) document.getElementById("classified").innerHTML = "Yes";
+                    if(!isEmpty(coachPresence)) document.getElementById("coachPresence").innerHTML = "Yes";
+                    
+                    if(!isEmpty(archery) && archery == 1) {
+                        document.getElementById("archery1").href = "#";
+                        document.getElementById("archery2").href = "#";
                     }
-
-                    //Displays the sport section if selected
-                    for(var j = 27; j < 36; j++) {
-                    	if(!isEmpty(colEntries[j])  && colEntries[j] == 1) {
-                    		document.getElementById("noSports").style.display = "none";
-                    		document.getElementById(colNames[j]).style.display = "block";
-                    	}
+                    if(!isEmpty(fencing) && fencing == 1) {
+                        document.getElementById("fencing1").href = "#";
+                        document.getElementById("fencing2").href = "#";
                     }
-                    document.getElementById("editProfile").href = "registrationUpdate.php?id=" + id;
+                    if(!isEmpty(field) && field == 1) {
+                        document.getElementById("field1").href = "#";
+                        document.getElementById("field2").href = "#";
+                    }
+                    if(!isEmpty(swim) && swim == 1) {
+                        document.getElementById("swim1").href = "#";
+                        document.getElementById("swim2").href = "#";
+                    }
+                    if(!isEmpty(tableTennis) && tableTennis == 1) {
+                        document.getElementById("tableTennis1").href = "#";
+                        document.getElementById("tableTennis2").href = "#";
+                    }
+                    if(!isEmpty(teams) && teams == 1) {
+                        document.getElementById("teams1").href = "#";
+                        document.getElementById("teams2").href = "#";
+                    }
+                    if(!isEmpty(track) && track == 1) {
+                        document.getElementById("track1").href = "#";
+                        document.getElementById("track2").href = "#";
+                    }
+                    if(!isEmpty(weightlifting) && weightlifting == 1) {
+                        document.getElementById("weightlifting1").href = "#";
+                        document.getElementById("weightlifting2").href = "#";
+                    }
+                    if(!isEmpty(other) && other == 1) {
+                        document.getElementById("other1").href = "#";
+                        document.getElementById("other2").href = "#";
+                    }
 
                     break;
                 }
             }
             
-            if (i == lines.length)  alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
+            if (i == lines.length)  alert("ID Not Found in the System");
             
         }
-        
-        //Removes quotes and spaces from a string   
+           
         function trimStr(str) {
             str = str.replace(/^"(.*)"$/, '$1');
             return str.trim();
         }
         
-        //returns if the string provided is empty or not
         function isEmpty(str) {
             return str === "";
         }
         
-        //Puts a string into a number format: xxx-xxx-xxxx
         function phoneFormat(str) {
             var newStr = "";
             for (var i = 0; i < str.length; i++){

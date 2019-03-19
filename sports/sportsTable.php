@@ -1,4 +1,9 @@
 <?php
+
+include( "./../login/functions.php" );
+session_start();     
+gatekeeper("./../login/login.php");
+
 // echo $_GET["sport"];
 $displaySport=$_GET["sport"];
 $file = fopen("../masterpage/data.csv", 'r') or die("Unable to open file!"); // Opens the file, or returns error
@@ -254,7 +259,7 @@ EOD;
 
         <nav class="navbar navbar-inverse">
             <div class="navbar-header">
-                <a class="navbar-brand"  href="../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+                <a class="navbar-brand"  href="./../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -273,11 +278,10 @@ EOD;
                         <ul class="dropdown-menu">
                             <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                             <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
-                            <li><a id = "register_form" href = "../masterpage/registrationform.php">Registration Form</a></li>
-                            <li><a id = "find_register" href = "../masterpage/findregistration.html">Find All Registration</a></li>
-                            <li><a id = "setup_pref" href = "../masterpage/setupmaster.php">Setup Master Preferences</a></li>
-                            
-                        <!-- 
+                            <li><a id = "register_form" href = "./../masterpage/registrationform.php">Registration Form</a></li>
+                            <li><a id = "find_register" href = "./../masterpage/findregistration.php">Find All Registration</a></li>
+                            <li><a id = "setup_pref" href = "./../masterpage/setupmaster.php">Setup Master Preferences</a></li>
+                            <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
                             <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
                             <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
                             <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
@@ -293,8 +297,8 @@ EOD;
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "extrackfield" href="../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
-                            <li><a id = "exswimming" href="../resultpage/exportswimming.html">Export Swimming</a></li>
+                            <li><a id = "extrackfield" href="./../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                            <li><a id = "exswimming" href="./../resultpage/exportswimming.html">Export Swimming</a></li>
                         </ul>
                     </li>
 
@@ -331,7 +335,7 @@ EOD;
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../login/logout.php">Logout</a></li>
+                            <li><a href="./../login/logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -340,7 +344,9 @@ EOD;
 
 
         <div>
-            <p class="text-right" style="padding-right: 2em"><a class="btn btn-info" href="setupField.php" role="button">Set Preferences</a></p>
+             <?php
+               echo "<p class='text-right' style='padding-right: 2em'><a class='btn btn-info' href='setup$displaySport.php' role='button'>Set Preferences</a></p>";
+            ?>
         </div>
 
         <?php
