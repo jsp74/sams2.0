@@ -210,10 +210,12 @@ function errOccurred() {
 
 //Displays a successfully reigstered and then redirects to the form
 function success() {
-  echo "<center><font color= 'black' ><br><br><h2>Saving Preferences</h2></font><br><div class='loader'></div>";
-  header( "refresh:3; url = setupmaster.php" );
-  exit();
-}
+	echo "<center><font color= 'black' ><br><br><h2>Saving Preferences</h2></font><br><div class='loader'></div>";
+	echo "<script LANGUAGE='javascript'>";
+	echo "window.setTimeout(function() {window.location.href='setupmaster.php';}, 2000)";
+	echo "</script>";
+	exit();
+   }
 
 // Check for return & newline and replace it with a comma
 function checkComma($textData){

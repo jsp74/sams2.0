@@ -312,8 +312,10 @@ gatekeeper("./../login/login.php");
 
           <div class="container collapse" id="collapseImport">
                <div class="col-sm-* well">
-                    <center><input type="file" id="registrationFile"></center>
-                    <button type="button" class="btn btn-primary center" onclick="handleImport()">Import File</button>
+                    <form enctype="multipart/form-data" name="regImport" class="form1" action="handleRegImport.php" method="POST">
+                         <center><input type="file" name="regFile" id="regFile"></center>
+                         <button type="submit" class="btn btn-primary center" onclick="handleImport()">Import File</button>
+                    </form>
                </div>
           </div>
 

@@ -164,21 +164,6 @@
     </head>
     
     <body>
-        <!-- <nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="./../SAMShome.php">Dashboard</a></li>
-                </ul>
-            </div>
-        </nav> -->
 
         <div class = "jumbotron">
             <div class="form-group col-md-3">
@@ -247,15 +232,15 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id = "archery" href="./../sports/sportsTable.php?sport=archery">Archery</a></li>
-                            <li><a id = "fencing" href="./../sports/sportsTable.php?sport=fencing">Fencing</a></li>
-                            <li><a id = "field" href="./../sports/sportsTable.php?sport=field">Field</a></li>
-                            <li><a id = "swimming" href="./../sports/sportsTable.php?sport=swim">Swimming</a></li>
-                            <li><a id = "tabletennis" href="./../sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
-                            <li><a id = "teamsports" href="./../sports/sportsTable.php?sport=teams">Team Sports</a></li>
-                            <li><a id = "track" href="./../sports/sportsTable.php?sport=track">Track</a></li>
-                            <li><a id = "weightlifting" href="./../sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
-                            <li><a id = "other" href="./../sports/sportsTable.php?sport=other">Other Sports</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=archery">Archery</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=fencing">Fencing</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=field">Field</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=swim">Swimming</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=teams">Team Sports</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=track">Track</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
+                            <li><a href="./../sports/sportsTable.php?sport=other">Other Sports</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -556,10 +541,6 @@
             document.getElementById("half-right").disabled = false; // submit button
             document.getElementById("half-left").disabled = true;   // update button
         }
-
-        // function imageIsLoaded(e) {
-        //     $('#jn_logo').attr('src', e.target.result);
-        // };
 
     </script> 
 
