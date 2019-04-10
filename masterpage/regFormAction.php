@@ -152,21 +152,18 @@ session_start();
 gatekeeper("./../login/samslogin.html");
 
 //If the file does not have any column labels, or if the file does not exist, then create column labels
-if(!file_exists("data.csv") or empty("data.csv")) {
-  $file = fopen("data.csv", 'a') or errOccurred();
+if(!file_exists("dataBackUp.csv") or empty("dataBackUp.csv")) {
+  $file = fopen("dataBackUp.csv", 'a') or errOccurred();
   $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coachPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
+
   fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
   fclose($file) or errOccurred();
 }
 
-$file = fopen("data.csv", 'a+') or errOccurred(); // Opens the file, or returns error
-//Getting the ID number for the next person
-$ID = 1111;
-while(!feof($file)) {
-  $ar = fgetcsv($file);
-  if (!empty($ar[0]))
-    $ID = $ar[0] + 1;
-}
+$ID = nextBib(); //gets the next bib number
+
+$file = fopen("dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
+$file2 = fopen("tempData987.csv", 'w+') or errOccurred(); // Creates and opens a temporary file or returns error
 
 //Gets Data from each Field of the Form
 $type = getdata("radiolabel");
@@ -206,13 +203,113 @@ $weightlifting = getdata("weightlifting"); if (empty($weightlifting)) $weightlif
 $other = getdata("other"); if (empty($other)) $other = 0;
 
 //Data is an array of all the elements from the form
-$data = [$ID, $type, $first, $last, $add1, $add2, $city, $state, $zip, $country, $email, $cellphone, $dob, $age, $gender, $tshirt, $dso, $reg_num, $bib_num, $mem_num, $ipc_num, $team, $coach, $coach_phone, $coach_email, $classified, $coach_coming, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other];
+$data = [$type, $first, $last, $add1, $add2, $city, $state, $zip, $country, $email, $cellphone, $dob, $age, $gender, $tshirt, $dso, $reg_num, $bib_num, $mem_num, $ipc_num, $team, $coach, $coach_phone, $coach_email, $classified, $coach_coming, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other];
 
-fputcsv($file, $data) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
-fclose($file) or errOccurred(); //Closes the file, or returns error
+//$type, $first, $last, $gender, $dob, $add1, $add2, $city, $state, $zip, $country, $cellphone, $email, $mem_num, agetrkfld, trclass, trevent1, trev1mark, trevent2, trev2mark, trevent3, trev3mark, trevent4, trev4mark, trevent5, trev5mark, trevent6, trev6mark, trevent7, trev7mark, trevent8, trev8mark, fifieldclass, flevent1, flev1mark, flevent2, flevent2, flev2mark, flevent3, flev3mark, flevent4, flev4mark, flevent5, flev5mark, flevent6, flev6mark, flevent7, flev7mark, flevent8, flev8mark.
+
+//NOT IN KEVIN'S REGISTRATION: (50)
+//coach info, sports, tshirt, dso. ipc, bib (20 elements)
+
+
+$dataIncluded = false;
+$ar = fgetcsv($file); //gets the title line
+fputcsv($file2, $ar);
+$ar = fgetcsv($file);
+
+while(!feof($file) && $ar != false) {
+  //Orders Based on Last Name, First Name, Class, Age, Gender
+  if(!$dataIncluded) { //Checks if the new data is already in
+      //Checks Last Name
+    if(strcasecmp($ar[3],$data[3]) < 0) {
+      fputcsv($file2, $ar) or errOccurred();
+    }
+    else if(strcasecmp($ar[3],$data[3]) > 0) {
+      fputcsv($file2, $data) or errOccurred();
+      fputcsv($file2, $ar) or errOccurred();
+      $dataIncluded = true;
+    }
+    else if(strcasecmp($ar[3],$data[3]) == 0) {
+        //Checks First Name
+      if(strcasecmp($ar[2],$data[2]) < 0) {
+        fputcsv($file2, $ar) or errOccurred();
+      }
+      else if(strcasecmp($ar[2],$data[2]) > 0) {
+        fputcsv($file2, $data) or errOccurred();
+        fputcsv($file2, $ar) or errOccurred();
+        $dataIncluded = true;
+      }
+      else if(strcasecmp($ar[2],$data[2]) == 0) {
+        //Checks Class
+        if(strcasecmp($ar[1],$data[1]) < 0) {
+          fputcsv($file2, $ar) or errOccurred();
+        }
+        else if(strcasecmp($ar[1],$data[1]) > 0) {
+          fputcsv($file2, $data) or errOccurred();
+          fputcsv($file2, $ar) or errOccurred();
+          $dataIncluded = true;
+        }
+        else if(strcasecmp($ar[1],$data[1]) == 0) {
+            //Checks Age
+          if(strcasecmp($ar[13],$data[13]) < 0) {
+            fputcsv($file2, $ar) or errOccurred();
+          }
+          else if(strcasecmp($ar[13],$data[13]) > 0) {
+            fputcsv($file2, $data) or errOccurred();
+            fputcsv($file2, $ar) or errOccurred();
+            $dataIncluded = true;
+          }
+          else if(strcasecmp($ar[13],$data[13]) == 0) {
+            //Checks Gender
+            if(strcasecmp($ar[14],$data[14]) < 0) {
+              fputcsv($file2, $ar) or errOccurred();
+            }
+            else if(strcasecmp($ar[14],$data[14]) > 0) {
+              fputcsv($file2, $data) or errOccurred();
+              fputcsv($file2, $ar) or errOccurred();
+              $dataIncluded = true;
+            }
+            else {
+              fputcsv($file2, $ar) or errOccurred();
+              fputcsv($file2, $data) or errOccurred();
+              $dataIncluded = true;
+            }
+          }
+        }
+      }
+    }
+  }
+  else {
+    fputcsv($file2, $ar) or errOccurred();
+  }
+  $ar = fgetcsv($file);
+}
+if(!$dataIncluded) {
+  fputcsv($file2, $data) or errOccurred();
+}
+
+fclose($file) or errOccurred();
+fclose($file2) or errOccurred();
+
+copy("tempData987.csv", "dataBackUp.csv") or errOccurred();
+unlink("tempData987.csv") or errOccurred();
+
 success(); 
 
 exit();
+
+function nextBib() {
+  $file = fopen("dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
+  $ID = 0;
+  while(!feof($file)) {
+    $ar = fgetcsv($file);
+    if (!empty($ar[0])) {
+      if( $ar[0] > $ID) $ID = $ar[0];
+    }
+  }
+  $ID += 1;
+  fclose($file) or errOccurred(); //Closes the file, or returns error
+  return $ID;
+}
 
 //Displays an error alert and then redirects to the form
 function errOccurred() {

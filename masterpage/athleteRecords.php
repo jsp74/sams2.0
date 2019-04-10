@@ -216,9 +216,9 @@ body{margin-top:20px;}
     background-color: #FFF
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width:50%) {
     .profile-info-name {
-        width: 80px
+        width: 200px;
     }
     .profile-user-info-striped .profile-info-name {
         float: none;
@@ -1158,7 +1158,42 @@ body{
     font-family: 'Do Hyeon', sans-serif; 
 }
 
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  width:100%;
+}
+
+.collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+}
+
+.sportIcon {
+	height:25px;
+	width:25px;
+}
+
+.list-group.list-group-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
 </style>
+<title>Athlete Information | SAMS</title>
 
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1263,26 +1298,95 @@ body{
     </nav>
 
     <div class="container">
+
+<?php
+
+//Gets the ID of the First Row
+$handle = fopen("dataBackUp.csv", 'a+');
+$rows = array();
+$firstID = fgetcsv($handle);
+$firstID = $firstID[0];
+fclose("dataBackUp.csv");
+
+$handle = fopen("dataBackUp.csv", 'a+');
+$rows = array();
+
+//Opens the file. Gets the 3 rows at a time. The current. Prev and Next.
+while(($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
+    $rows[] = $data;
+    if(count($rows) == 3) {
+        $currentRow = $rows[1];
+        if($_GET['id'] != $currentRow[0])
+            array_shift($rows);    
+        else {
+            break;
+        }
+    }
+}
+
+$prevID = $rows[0][0];
+$nextID = $rows[2][0];
+if(!empty($prevID) && $prevID != $firstID) {
+    $prevLink = '<a href="https://web.njit.edu/~jsp74/sams2.0_2/masterpage/athleteRecords.php?id='.$prevID.'" class="previous round">&#8592;</a>';
+}
+else {
+    $prevLink = "";
+}
+if(!empty($nextID)){
+    $nextLink = '<a href="https://web.njit.edu/~jsp74/sams2.0_2/masterpage/athleteRecords.php?id='.$nextID.'" class="next round">&#8594;</a>';
+}
+else {
+    $nextLink = "";
+}
+
+$arrow = '
+<style>
+.previous {
+  background-color: #009664;
+  color: white;
+  float: inline-start;
+}
+.next {
+  background-color: #009664;
+  color: white;
+  float: right;
+}
+.round {
+  border-radius: 100%;
+  display: inline-block;
+  padding: 8px 16px;
+}
+</style>
+<body>
+'.$prevLink.$nextLink.'
+</body>
+<br>
+';
+
+echo $arrow;
+
+?>
+
         <div id="user-profile-2" class="user-profile">
         <div class="tabbable">
             <ul class="nav nav-tabs padding-18">
                 <li class="active">
                     <a data-toggle="tab" href="#home">
-                        <i class="ace-icon fa fa-user bigger-120"></i>
+                        <i class="ace-icon fa fa-user bigger-110"></i>
                         Athlete
                     </a>
                 </li>
 
                 <li>
                     <a data-toggle="tab" href="#sports">
-                        <i class="ace-icon fa fa-users bigger-120"></i>
+                        <i class="ace-icon fa fa-users bigger-110"></i>
                         Sports
                     </a>
                 </li>
 
                 <li>
                     <a data-toggle="tab" href="#pictures">
-                        <i class="ace-icon fa fa-picture-o bigger-120"></i>
+                        <i class="ace-icon fa fa-picture-o bigger-110"></i>
                         Pictures
                     </a>
                 </li>
@@ -1293,7 +1397,8 @@ body{
                     <div class="row">
                         <div class="col-xs-12 col-sm-3 center">
                             <span class="profile-picture">
-                                <img class="img-responsive" alt=" Avatar" id="avatar2" src="https://cdn3.iconfinder.com/data/icons/sympletts-part-3/128/circle-user-2-512.png">
+                                <img class="img-responsive" alt=" Avatar" id="avatar2" src="images/portrait.png">
+                                <!-- https://cdn3.iconfinder.com/data/icons/sympletts-part-3/128/circle-user-2-512.png -->
                             </span>
 
                             <div class="space space-4"></div>
@@ -1304,16 +1409,22 @@ body{
                             <a id="hrefEmail" href="#" class="btn btn-sm btn-block btn-primary">
                                 <span class="bigger-100" id="email">Email Not Provided</span>
                             </a>
-                            <a id = "hrefAddress" href="#"  target="_blank" class="btn btn-sm btn-block btn-success">
+                            <a id = "hrefAddress" href="#"  target="_blank" class="btn btn-sm btn-block btn-success btn-group">
                                 <span class="bigger-100" id="address">Address Not Provided</span>
                             </a>
                         </div><!-- /.col -->
 
                         <div class="col-xs-12 col-sm-9">
-                            <h4 class="blue">
-                                <span class="middle" id="names">Name Not Provided</span>
-                            </h4>
-                            <div class="col-sm-12 col-md-6">
+
+                        	<h4 class="blue">
+                            	<span id="names">Name Not Provided</span>
+                        	</h4>
+                            
+                            <div class="button">
+                                <a id="editProfile" href="registrationUpdate.php"> EDIT PROFILE </a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="profile-user-info">
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> DSO </div>
@@ -1346,7 +1457,7 @@ body{
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> T-Shirt Size </div>
                                         <div class="profile-info-value">
-                                            <span id="tshirt">TShirt Size Not Provided</span>
+                                            <span id="tsize">TShirt Size Not Provided</span>
                                         </div>
                                     </div>
 
@@ -1354,7 +1465,7 @@ body{
 
                             </div>
 
-                            <div class="col-xs-12 col-md-6">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="profile-user-info">
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> ID </div>
@@ -1366,28 +1477,28 @@ body{
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Registration Number </div>
                                         <div class="profile-info-value">
-                                            <span id="regNum">Registration Number Not Provided</span>
+                                            <span id="regNumber">Registration Number Not Provided</span>
                                         </div>
                                     </div>
                                     
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Bib Number </div>
                                         <div class="profile-info-value">
-                                            <span id="bibNum">Bib Number Not Provided</span>
+                                            <span id="bibNumber">Bib Number Not Provided</span>
                                         </div>
                                     </div>
 
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> Membership Number </div>
                                         <div class="profile-info-value">
-                                            <span id="memNum">Membership Number Not Provided</span>
+                                            <span id="memNumber">Membership Number Not Provided</span>
                                         </div>
                                     </div>
 
                                     <div class="profile-info-row">
                                         <div class="profile-info-name"> IPC Number </div>
                                         <div class="profile-info-value">
-                                            <span id="ipcNum">IPC Number Not Provided</span>
+                                            <span id="ipcNumber">IPC Number Not Provided</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1403,14 +1514,14 @@ body{
                             <div class="profile-info-row">
                                 <div class="profile-info-name"> Head Coach </div>
                                 <div class="profile-info-value">
-                                    <span id="coach">Coach Not Provided</span>
+                                    <span id="hcName">Coach Not Provided</span>
                                 </div>
                             </div>
 
                             <div class="profile-info-row">
                                 <div class="profile-info-name"> Team Name </div>
                                 <div class="profile-info-value">
-                                    <span id="team">Team Name Not Provided</span>
+                                    <span id="teamName">Team Name Not Provided</span>
                                 </div>
                             </div>
 
@@ -1444,160 +1555,97 @@ body{
                         </div>
 
                         <div class = "col-xs-12 col-sm-9 center">
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="archery1" href="#">
-                                            <img src="http://res.publicdomainfiles.com/pdf_view/68/13927378217564.png">
-                                        </a>
-                                    </div>
+                        	<div id="noSports">No Sports to Display</div>
+                            <div id="archery" style="display: none;">
+								<button class="collapsible">
+									<img src="images/archery.png" class="sportIcon"/> 
+										Archery
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT ARCHERY</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="archery2" href="#">
-                                                Archery
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+							<div id="fencing" style="display: none;">
+								<button class="collapsible">
+									<img src="images/fencing.png" class="sportIcon"/> 
+										Fencing
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT FENCING</p>
+								</div>
+							</div>
 
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="fencing1" href="#">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fencing_pictogram.svg/2000px-Fencing_pictogram.svg.png">
-                                        </a>
-                                    </div>
+							<div id="field" style="display: none;">
+								<button class="collapsible">
+									<img src="images/field.png" class="sportIcon"/> 
+										Field
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT FIELD</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="fencing2" href="#">
-                                                Fencing
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="field1" href="#">
-                                            <img src="https://cdn.pixabay.com/photo/2018/08/18/03/02/sport-3614173_960_720.png">
-                                        </a>
-                                    </div>
+							<div id="swim" style="display: none;">
+								<button class="collapsible">
+									<img src="images/swim.png" class="sportIcon"/> 
+										Swim
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT SWIM</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="field2" href="#">
-                                                Field
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="swim1" href="#">
-                                            <img src="http://res.publicdomainfiles.com/pdf_view/64/13548494415937.png">
-                                        </a>
-                                    </div>
+							<div id="tableTennis" style="display: none">
+								<button class="collapsible">
+									<img src="images/tableTennis.png" class="sportIcon"/> 
+										Table Tennis
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT TABLE TENNIS</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="swim2" href="#">
-                                                Swim
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="tableTennis1" href="#">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Table_tennis_pictogram.svg/480px-Table_tennis_pictogram.svg.png">
-                                        </a>
-                                    </div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="tableTennis2" href="#">
-                                                Table Tennis
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="teams1" href="#">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Plus_font_awesome.svg/2000px-Plus_font_awesome.svg.png">
-                                        </a>
-                                    </div>
+							<div id="teams" style="display: none">
+								<button class="collapsible">
+									<img src="images/teams.png" class="sportIcon"/> 
+										Teams
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT TEAMS</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="teams2" href="#">
-                                                Teams
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="track1" href="#">
-                                            <img src="http://www.clker.com/cliparts/9/N/8/G/a/0/run.svg">
-                                        </a>
-                                    </div>
+							<div id="track" style="display: none">
+								<button class="collapsible">
+									<img src="images/track.png" class="sportIcon"/> 
+										Track
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT TRACK</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="track2" href="#">
-                                                Track
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id="weightlifting1" href="#">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Weightlifting_pictogram.svg/2000px-Weightlifting_pictogram.svg.png">
-                                        </a>
-                                    </div>
+							<div id="weightlifting" style="display: none">
+								<button class="collapsible">
+									<img src="images/weightlifting.png" class="sportIcon"/>
+										Weightlifting
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT WEIGHTLIFTING</p>
+								</div>
+							</div>
 
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="weightlifting2" href="#">
-                                                Weightlifting
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="itemdiv memberdiv">
-                                <div class="inline pos-rel">
-                                    <div class="user">
-                                        <a id = "other1" href="#">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Minus_font_awesome.svg/2000px-Minus_font_awesome.svg.png">
-                                        </a>
-                                    </div>
-
-                                    <div class="body">
-                                        <div class="name">
-                                            <a id="other2" href="#">
-                                                Other
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+							<div id="other" style="display: none">
+								<button class="collapsible" >
+									<img src="images/other.png" class="sportIcon"/> 
+										Other
+								</button>
+								<div class="content">
+								  <p>INFO ABOUT OTHER SPORTS</p>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div><!-- /#sports -->
@@ -1829,25 +1877,43 @@ body{
 
 <script type="text/javascript">
 
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+console.log(coll);
+	//For the Sports Section Collapsible
+	for (i = 0; i < coll.length; i++) {
+
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.display === "block") {
+	      content.style.display = "none";
+	    } else {
+	      content.style.display = "block";
+	    }
+	  });
+	}
+
+	//Grabs the Data.csv file
     $(document).ready(function(){
             $.ajax({
                 type: "GET",
-                url: "data.csv",
+                url: "dataBackUp.csv",
                 dataType: "text",
                 success: function(data){populateForm(data);}
             });
         });
 
+    	//Function populates the page with the athlete's information
         function populateForm(data){
-            console.log(data);
-            var cols = 22;
-            var lines = data.split(/\r\n|\n/);
-            var colNames = lines[0].split(',');
-            console.log(colNames);
+            console.log(data); //shows all the data of Data.csv in Console Log
+            var lines = data.split(/\r\n|\n/); //Split Each Entry
+            var colNames = lines[0].split(','); //Split Each Entry into each columns
+            console.log(colNames); //displays the names of the columns
             var i = 0;
-            var temp = "";
             var url = new URL(window.location.href);
-            var id_url = url.searchParams.get("id");
+            var id_url = url.searchParams.get("id"); //gets the athlete's ID needed to display the informaion
+
             while (i++ < lines.length - 1) {
                 
                 var colEntries = lines[i].split(',');
@@ -1855,135 +1921,123 @@ body{
 
                 if (id == id_url) {
 
-                    var type = trimStr(colEntries[1]);
-                    var fname = trimStr(colEntries[2]);
-                    var lname = trimStr(colEntries[3]);
-                    var address1 = trimStr(colEntries[4]);
-                    var address2 = trimStr(colEntries[5]);
-                    var city = trimStr(colEntries[6]);
-                    var state = trimStr(colEntries[7]);
-                    var zip = trimStr(colEntries[8]);
-                    var country = trimStr(colEntries[9]);
-                    var email = trimStr(colEntries[10]);
-                    var phone = trimStr(colEntries[11]);
-                    var dob = trimStr(colEntries[12]);
-                    var age = trimStr(colEntries[13]);
-                    var gender = trimStr(colEntries[14]);
-                    var tsize = trimStr(colEntries[15]);
-                    var dso = trimStr(colEntries[16]);
-                    var regNumber = trimStr(colEntries[17]);
-                    var bibNumber = trimStr(colEntries[18]);
-                    var memNumber = trimStr(colEntries[19]);
-                    var ipcNumber = trimStr(colEntries[20]);
-                    var teamName = trimStr(colEntries[21]);
-                    var hcName = trimStr(colEntries[22]);
-                    var hcPhone = trimStr(colEntries[23]);
-                    var hcEmail = trimStr(colEntries[24]);
-                    var classified = trimStr(colEntries[25]);
-                    var coachPresence = trimStr(colEntries[26]);
-                    var archery = trimStr(colEntries[27]);
-                    var fencing = trimStr(colEntries[28]);
-                    var field = trimStr(colEntries[29]);
-                    var swim = trimStr(colEntries[30]);
-                    var tableTennis = trimStr(colEntries[31]);
-                    var teams = trimStr(colEntries[32]);
-                    var track = trimStr(colEntries[33]);
-                    var weightlifting = trimStr(colEntries[34]);
-                    var other = trimStr(colEntries[35]);
+                	//removes quotes and spaces from each element. (quotes may be added to the element by default if the stored value is more than one word)
+                    for (var j = 0; j < 36; j++) {
+                        colEntries[j] = trimStr(colEntries[j]);
+                        colNames[j] = trimStr(colNames[j]);
+                    }
 
-                    if(!(isEmpty(fname) && isEmpty(lname))) document.getElementById("names").innerHTML = fname + " " + lname;
-                    if(!isEmpty(phone)) {
-                        document.getElementById("call").innerHTML = phoneFormat(phone); 
-                        document.getElementById("hrefCall").href = "tel:" + phone; 
+					//List of what each colEntry represent:
+                    /*
+                    var type = (colEntries[1]);
+                    var fname = (colEntries[2]);
+                    var lname = (colEntries[3]);
+                    var address1 = (colEntries[4]);
+                    var address2 = (colEntries[5]);
+                    var city = (colEntries[6]);
+                    var state = (colEntries[7]);
+                    var zip = (colEntries[8]);
+                    var country = (colEntries[9]);
+                    var email = (colEntries[10]);
+                    var phone = (colEntries[11]);
+                    
+                    var dob = (colEntries[12]);
+                    var age = (colEntries[13]);
+                    var gender = (colEntries[14]);
+                    var tsize = (colEntries[15]);
+                    var dso = (colEntries[16]);
+                    var regNumber = (colEntries[17]);
+                    var bibNumber = (colEntries[18]);
+                    var memNumber = (colEntries[19]);
+                    var ipcNumber = (colEntries[20]);
+                    var teamName = (colEntries[21]);
+                    var hcName = (colEntries[22]);
+                    
+                    var hcPhone = (colEntries[23]);
+                    var hcEmail = (colEntries[24]);
+                    
+                    var classified = (colEntries[25]);
+                    var coachPresence = (colEntries[26]);
+                    
+                    var archery = (colEntries[27]);
+                    var fencing = (colEntries[28]);
+                    var field = (colEntries[29]);
+                    var swim = (colEntries[30]);
+                    var tableTennis = (colEntries[31]);
+                    var teams = (colEntries[32]);
+                    var track = (colEntries[33]);
+                    var weightlifting = (colEntries[34]);
+                    var other = (colEntries[35]); 
+                    */
+
+                    //Gets the ID of the athlete
+                    if(!(isEmpty(colEntries[0]))) document.getElementById("id").innerHTML = colEntries[0];
+                    if(!(isEmpty(colEntries[2]) && isEmpty(colEntries[3]))) document.getElementById("names").innerHTML = colEntries[2] + " " + colEntries[3]; //Gets the names of the person
+                   
+                   	//Gets the phone and email of the athlete and places them as a link
+                    if(!isEmpty(colEntries[11])) {
+                        document.getElementById("call").innerHTML = phoneFormat(colEntries[11]); 
+                        document.getElementById("hrefCall").href = "tel:" + colEntries[11];
                     }
-                    if(!isEmpty(email)){ 
-                        document.getElementById("email").innerHTML = email; 
-                        document.getElementById("hrefEmail").href = "mailto: " + email;
+                    if(!isEmpty(colEntries[10])){ 
+                        document.getElementById("email").innerHTML = colEntries[10]; 
+                        document.getElementById("hrefEmail").href = "mailto:" + colEntries[10];
                     }
-                    if(!isEmpty(address1) && (!isEmpty(zip) || (!isEmpty(city) && !isEmpty(state)))) {
-                        var address = address1 + (isEmpty(address2) ? "" : ", ") + address2  + (isEmpty(city) ? "" : ", ") + city + (isEmpty(state) ? "" : ", ") + state + (isEmpty(zip) ? "" : ", ") + zip + (isEmpty(country) ? "" : ", ") + country; 
+                   
+
+                    //Gets the addresss
+                    //State and City must be provided if zip is not provided. Address Line 1 must be provided
+                    if(!isEmpty(colEntries[4]) && (!isEmpty(colEntries[8]) || (!isEmpty(colEntries[6]) && !isEmpty(colEntries[7])))) {
+                        var address = colEntries[4] + (isEmpty(colEntries[5]) ? "" : ", <br>") + colEntries[5]  + (isEmpty(colEntries[6]) ? "" : ", <br>") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9]; 
                         document.getElementById("address").innerHTML = address;
-                        var address = address1 + (isEmpty(city) ? "" : ", ") + city + (isEmpty(state) ? "" : ", ") + state + (isEmpty(zip) ? "" : ", ") + zip + (isEmpty(country) ? "" : ", ") + country; 
+                        var address = colEntries[4] + (isEmpty(colEntries[6]) ? "" : ", ") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9]; 
                         document.getElementById("hrefAddress").href = "http://maps.google.com/?q=" + address;
                     }
-                    if(!isEmpty(dso)) document.getElementById("dso").innerHTML = dso;
-                    if(!isEmpty(gender)) document.getElementById("gender").innerHTML = gender;
-                    if(!isEmpty(dob)) document.getElementById("dob").innerHTML = dob;
-                    if (!isEmpty(age)) document.getElementById("age").innerHTML = age;
-                    if(!isEmpty(id)) document.getElementById("id").innerHTML = trimStr(id);
-                    if(!isEmpty(tsize)) document.getElementById("tshirt").innerHTML = tsize;
-                    if(!isEmpty(regNumber)) document.getElementById("regNum").innerHTML = regNumber;
-                    if(!isEmpty(bibNumber)) document.getElementById("bibNum").innerHTML = bibNumber;
-                    if(!isEmpty(memNumber)) document.getElementById("memNum").innerHTML = memNumber;
-                    if(!isEmpty(ipcNumber)) document.getElementById("ipcNum").innerHTML = ipcNumber;
 
-                    if(!isEmpty(teamName)) document.getElementById("team").innerHTML = teamName;
-                    if(!isEmpty(hcName)) document.getElementById("coach").innerHTML = hcName;
-                    if(!isEmpty(hcPhone)) {
-                        document.getElementById("hcPhone").innerHTML = phoneFormat(hcPhone);
-                        document.getElementById("hrefHcPhone").href = "tel:" + hcPhone;
+                    //Populated dob, age, gender, tsize, dso, regNum, bibNum, memNum, ipcNum, teamName, hcName, hcPhone, hcEmail. In that order
+                    for(var j = 12; j <= 26; j++) {
+                    	if(!isEmpty(colEntries[j]))
+                    		document.getElementById(colNames[j]).innerHTML = colEntries[j];
                     }
-                    if(!isEmpty(hcEmail)) {
-                        document.getElementById("hcEmail").innerHTML = hcEmail;
-                        document.getElementById("hrefHcEmail").href = "email" + hcEmail;
+
+                    //Gets the phone and email of the athlete and places them as a link
+                    if(!isEmpty(colEntries[23])) {
+                        document.getElementById("hcPhone").innerHTML = phoneFormat(colEntries[23]);
+                        document.getElementById("hrefHcPhone").href = "tel:" + colEntries[23];
                     }
-                    if(!isEmpty(classified)) document.getElementById("classified").innerHTML = "Yes";
-                    if(!isEmpty(coachPresence)) document.getElementById("coachPresence").innerHTML = "Yes";
-                    
-                    if(!isEmpty(archery) && archery == 1) {
-                        document.getElementById("archery1").href = "#";
-                        document.getElementById("archery2").href = "#";
+                    if(!isEmpty(colEntries[24])) {
+                        document.getElementById("hrefHcEmail").href = "mailto:" + colEntries[24];
                     }
-                    if(!isEmpty(fencing) && fencing == 1) {
-                        document.getElementById("fencing1").href = "#";
-                        document.getElementById("fencing2").href = "#";
+
+                    //Displays the sport section if selected
+                    for(var j = 27; j < 36; j++) {
+                    	if(!isEmpty(colEntries[j])  && colEntries[j] == 1) {
+                    		document.getElementById("noSports").style.display = "none";
+                    		document.getElementById(colNames[j]).style.display = "block";
+                    	}
                     }
-                    if(!isEmpty(field) && field == 1) {
-                        document.getElementById("field1").href = "#";
-                        document.getElementById("field2").href = "#";
-                    }
-                    if(!isEmpty(swim) && swim == 1) {
-                        document.getElementById("swim1").href = "#";
-                        document.getElementById("swim2").href = "#";
-                    }
-                    if(!isEmpty(tableTennis) && tableTennis == 1) {
-                        document.getElementById("tableTennis1").href = "#";
-                        document.getElementById("tableTennis2").href = "#";
-                    }
-                    if(!isEmpty(teams) && teams == 1) {
-                        document.getElementById("teams1").href = "#";
-                        document.getElementById("teams2").href = "#";
-                    }
-                    if(!isEmpty(track) && track == 1) {
-                        document.getElementById("track1").href = "#";
-                        document.getElementById("track2").href = "#";
-                    }
-                    if(!isEmpty(weightlifting) && weightlifting == 1) {
-                        document.getElementById("weightlifting1").href = "#";
-                        document.getElementById("weightlifting2").href = "#";
-                    }
-                    if(!isEmpty(other) && other == 1) {
-                        document.getElementById("other1").href = "#";
-                        document.getElementById("other2").href = "#";
-                    }
+                    document.getElementById("editProfile").href = "registrationUpdate.php?id=" + id;
 
                     break;
                 }
             }
             
-            if (i == lines.length)  alert("ID Not Found in the System");
+            if (i == lines.length)  alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
             
         }
-           
+        
+        //Removes quotes and spaces from a string   
         function trimStr(str) {
             str = str.replace(/^"(.*)"$/, '$1');
             return str.trim();
         }
         
+        //returns if the string provided is empty or not
         function isEmpty(str) {
             return str === "";
         }
         
+        //Puts a string into a number format: xxx-xxx-xxxx
         function phoneFormat(str) {
             var newStr = "";
             for (var i = 0; i < str.length; i++){

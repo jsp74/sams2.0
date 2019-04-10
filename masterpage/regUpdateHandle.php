@@ -60,91 +60,89 @@
         </div>
 
 
-	    <nav class="navbar navbar-inverse">
-	      <div class="navbar-header">
-	          <a class="navbar-brand"  href="./../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
-	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	              <span class="icon-bar"></span>
-	              <span class="icon-bar"></span>
-	              <span class="icon-bar"></span>                        
-	          </button>
-	      </div>
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand"  href="../SAMShome.php"  style="color: #B3DA2E;">Dashboard</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+            </div>
 
-	      <div class="collapse navbar-collapse" id="myNavbar">
-	          <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
 
-	            <!-- ALll nav-pages under this nav-bar is moved to masterpage folder -->
-	            <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
+                    <!-- ALll nav-pages under this nav-bar is moved to masterpage folder -->
+                    <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
 
-	            <li class="dropdown">
-	                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                    <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
-	                    <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
-	                    <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
-	                    <li><a id = "find_register" href = "findregistration.php">Find All Registration</a></li>
-	                    <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
-	                    <!-- <li><a id = "athlete_perform_record" href = "masterpage/athleteperform.html">Athlete Performance Records</a></li>
-	                    <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
-	                    <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
-	                    <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
-	                    <li><a id = "photo_database" href = "masterpage/photodatabase.html">Photo Database</a></li>
-	                    <li><a id = "classification" href = "masterpage/classificationfile.html">Classification file</a></li>
-	                    <li><a id = "Implements" href = "masterpage/implementsusedfile.html">Implements used file</a></li>
-	                    <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li> -->
-	                </ul>
-	            </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
+                            <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
+                            <li><a id = "register_form" href = "registrationform.php">Registration Form</a></li>
+                            <li><a id = "find_register" href = "findregistration.html">Find All Registration</a></li>
+                            <li><a id = "setup_pref" href = "setupmaster.php">Setup Master Preferences</a></li>
+                            
+                        <!-- 
+                            <li><a id = "qualifying_std" href = "masterpage/qualifyingstand.html">Qualifying Standards</a></li>
+                            <li><a id = "set_relay" href = "masterpage/setrelay.html">Set Relay Points</a></li>
+                            <li><a id = "see_credit" href = "masterpage/seecreditscreen.html">See Credit Screen</a></li>
+                            <li><a id = "photo_database" href = "masterpage/photodatabase.html">Photo Database</a></li>
+                            <li><a id = "classification" href = "masterpage/classificationfile.html">Classification file</a></li>
+                            <li><a id = "Implements" href = "masterpage/implementsusedfile.html">Implements used file</a></li>
+                            <li><a id = "pentathion" href = "masterpage/performancepointssetup.html">Performance Points Setup</a></li> -->
+                        </ul>
+                    </li>
 
-	            <!-- ALll nav-pages under this nav-bar is moved to resultpage folder -->
+                    <!-- ALll nav-pages under this nav-bar is moved to resultpage folder -->
 
-	            <li class="dropdown">
-	                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                    <li><a id = "extrackfield" href="./../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
-	                    <li><a id = "exswimming" href="./../resultpage/exportswimming.html">Export Swimming</a></li>
-	                </ul>
-	            </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "extrackfield" href="../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                            <li><a id = "exswimming" href="../resultpage/exportswimming.html">Export Swimming</a></li>
+                        </ul>
+                    </li>
 
-	            <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
+                    <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
 
-	            <!-- <li class="dropdown">
-	                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preferences <span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                    <li><a id = "backup" href="preferences/backuppreferences.html">Backup Preferences</a></li>
-	                    <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
-	                </ul>
-	            </li> -->
+                    <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preferences <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "backup" href="preferences/backuppreferences.html">Backup Preferences</a></li>
+                            <li><a id = "restore" href="preferences/restorepreferences.html">Restore Preferences</a></li>
+                        </ul>
+                    </li> -->
 
-	            <!-- All the Sports -->
+                    <!-- All the Sports -->
 
-	            <li class="dropdown">
-	                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                    <li><a id = "archery" href="./../sports/sportsTable.php?sport=archery">Archery</a></li>
-	                    <li><a id = "fencing" href="./../sports/sportsTable.php?sport=fencing">Fencing</a></li>
-	                    <li><a id = "field" href="./../sports/sportsTable.php?sport=field">Field</a></li>
-	                    <li><a id = "swimming" href="./../sports/sportsTable.php?sport=swim">Swimming</a></li>
-	                    <li><a id = "tabletennis" href="./../sports/sportsTable.php?sport=tableTennis">Table Tennis</a></li>
-	                    <li><a id = "teamsports" href="./../sports/sportsTable.php?sport=teams">Team Sports</a></li>
-	                    <li><a id = "track" href="./../sports/sportsTable.php?sport=track">Track</a></li>
-	                    <li><a id = "weightlifting" href="./../sports/sportsTable.php?sport=weightlifting">Weightlifting</a></li>
-	                    <li><a id = "other" href="./../sports/sportsTable.php?sport=other">Other Sports</a></li>
-	                </ul>
-	            </li>
-	            
-	        </ul>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id = "archery" href="#">Archery</a></li>
+                            <li><a id = "fencing" href="#">Fencing</a></li>
+                            <li><a id = "field" href="#">Field</a></li>
+                            <li><a id = "swimming" href="#">Swimming</a></li>
+                            <li><a id = "tabletennis" href="#">Table Tennis</a></li>
+                            <li><a id = "teamsports" href="#">Team Sports</a></li>
+                            <li><a id = "track" href="#">Track</a></li>
+                            <li><a id = "other" href="#">Other Sports</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
-	        <ul class="nav navbar-nav navbar-right dropdown">
-	            <li>
-	                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
-	                <ul class="dropdown-menu">
-	                    <li><a href="./../login/logout.php">Logout</a></li>
-	                </ul>
-	            </li>
-	        </ul>
-	      </div>
-	    </nav>
-    
+                <ul class="nav navbar-nav navbar-right dropdown">
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../login/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ui>
+            </div>
+        </nav>
   </body>
 </html>
 
@@ -157,8 +155,8 @@
 	session_start();     
 	gatekeeper("./../login/login.php");
 
-	$file = fopen("data.csv", 'a+') or errOccurred();
-	$newfile = fopen("newdata.csv", 'w+') or errOccurred();
+	$file = fopen("dataBackUp.csv", 'a+') or errOccurred();
+	$file2 = fopen("tempData987.csv", 'w+') or errOccurred();
 
 	$id = getdata("ID");
 	$type = getdata("radiolabel");
@@ -198,37 +196,143 @@
 	$other = getdata("other"); if (empty($other)) $other = 0;
 	$delete = getdata("Delete"); if (empty($delete)) $delete = 0;
 	$edit = getdata("Update"); if (empty($edit)) $edit = 0;
-	echo "ID: $id, DELETE: $delete, EDIT: $edit";
+
+	//echo "ID: $id, DELETE: $delete, EDIT: $edit";
 
 	$data = [$id, $type, $first, $last, $add1, $add2, $city, $state, $zip, $country, $email, $cellphone, $dob, $age, $gender, $tshirt, $dso, $reg_num, $bib_num, $mem_num, $ipc_num, $team, $coach, $coach_phone, $coach_email, $classified, $coach_coming, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other];
 
-	while(!feof($file)) {
-		$ar = fgetcsv($file);
-		if(!empty($ar[0])) {
-			if($ar[0] == $id && $edit == "1") {
-				fputcsv($newfile, $data) or errOccurred();
-			}
-			elseif ($ar[0] == $id && $delete == "1") {
-				continue;
-			}
-			else {
-				fputcsv($newfile, $ar) or errOccurred();
-			}
-		}
-	}
+	// while(!feof($file)) {
+	// 	$ar = fgetcsv($file);
+	// 	if(!empty($ar[0])) {
+	// 		if($ar[0] == $id && $edit == "1") {
+	// 			fputcsv($newfile, $data) or errOccurred();
+	// 		}
+	// 		elseif ($ar[0] == $id && $delete == "1") {
+	// 			continue;
+	// 		}
+	// 		else {
+	// 			fputcsv($newfile, $ar) or errOccurred();
+	// 		}
+	// 	}
+	// }
 
-  fclose($file);
-  fclose($newfile);
+ //  fclose($file);
+ //  fclose($newfile);
 
-	copy("newdata.csv", "data.csv") or errOccurred();
-	unlink("newdata.csv");
+	// copy("newdata.csv", "data.csv") or errOccurred();
+	// unlink("newdata.csv");
 
-	function errOccurred() {
-		echo "<center><font color= 'red' ><br><br><h2>Error Occurred While Registering, Please Try Again...</h2></font><br><div class='loader'></div>";
+
+    if($edit == "1")
+    {
+
+      $dataIncluded = false;
+      $ar = fgetcsv($file); //gets the title line
+      fputcsv($file2, $ar);
+      $ar = fgetcsv($file);
+
+      while(!feof($file) && $ar != false) {
+        //Orders Based on Last Name, First Name, Class, Age, Gender
+        if(!$dataIncluded && $ar[18] != $data[18]) { //Checks if the new data is already in
+            //Checks Last Name
+          if(strcasecmp($ar[3],$data[3]) < 0) {
+            fputcsv($file2, $ar) or errOccurred(239);
+          }
+          else if(strcasecmp($ar[3],$data[3]) > 0) {
+            fputcsv($file2, $data) or errOccurred();
+            fputcsv($file2, $ar) or errOccurred(243);
+            $dataIncluded = true;
+          }
+          else if(strcasecmp($ar[3],$data[3]) == 0) {
+              //Checks First Name
+            if(strcasecmp($ar[2],$data[2]) < 0) {
+              fputcsv($file2, $ar) or errOccurred(249);
+            }
+            else if(strcasecmp($ar[2],$data[2]) > 0) {
+              fputcsv($file2, $data) or errOccurred();
+              fputcsv($file2, $ar) or errOccurred(253);
+              $dataIncluded = true;
+            }
+            else if(strcasecmp($ar[2],$data[2]) == 0) {
+              //Checks Class
+              if(strcasecmp($ar[1],$data[1]) < 0) {
+                fputcsv($file2, $ar) or errOccurred();
+              }
+              else if(strcasecmp($ar[1],$data[1]) > 0) {
+                fputcsv($file2, $data) or errOccurred(262);
+                fputcsv($file2, $ar) or errOccurred(263);
+                $dataIncluded = true;
+              }
+              else if(strcasecmp($ar[1],$data[1]) == 0) {
+                  //Checks Age
+                if(strcasecmp($ar[13],$data[13]) < 0) {
+                  fputcsv($file2, $ar) or errOccurred(269);
+                }
+                else if(strcasecmp($ar[13],$data[13]) > 0) {
+                  fputcsv($file2, $data) or errOccurred(272);
+                  fputcsv($file2, $ar) or errOccurred(273);
+                  $dataIncluded = true;
+                }
+                else if(strcasecmp($ar[13],$data[13]) == 0) {
+                  //Checks Gender
+                  if(strcasecmp($ar[14],$data[14]) < 0) {
+                    fputcsv($file2, $ar) or errOccurred(279);
+                  }
+                  else if(strcasecmp($ar[14],$data[14]) > 0) {
+                    fputcsv($file2, $data) or errOccurred(282);
+                    fputcsv($file2, $ar) or errOccurred(283);
+                    $dataIncluded = true;
+                  }
+                  else {
+                    fputcsv($file2, $ar) or errOccurred(287);
+                    fputcsv($file2, $data) or errOccurred(288);
+                    $dataIncluded = true;
+                  }
+                }
+              }
+            }
+          }
+        }
+        else if($ar[18] != $data[18]) {
+          fputcsv($file2, $ar) or errOccurred(297);
+        }
+        $ar = fgetcsv($file);
+      }
+      if(!$dataIncluded) {
+        fputcsv($file2, $data) or errOccurred();
+      }
+
+    }
+
+    if($delete == "1") {
+      while(!feof($file)) {
+        $ar = fgetcsv($file);
+        if(!empty($ar[0])) {
+          if($ar[0] != $id) {
+            fputcsv($file2, $ar) or errOccurred();
+          }
+        }
+      }
+    }
+
+
+    fclose($file) or errOccurred();
+    fclose($file2) or errOccurred();
+
+    copy("tempData987.csv", "dataBackUp.csv") or errOccurred();
+    unlink("tempData987.csv") or errOccurred();
+
+    success(); 
+
+
+
+
+
+	function errOccurred($line=0) {
+		echo "<center><font color= 'red' ><br><br><h2>Error Occurred While Registering, Please Try Again...".$line."</h2></font><br><div class='loader'></div>";
 		echo "<script LANGUAGE='javascript'>";
 		echo "window.setTimeout(function() {window.location.href='registrationform.php';}, 2000)";
 		echo "</script>";
 		exit();
 	}
 ?>
-
