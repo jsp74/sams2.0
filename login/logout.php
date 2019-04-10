@@ -4,6 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Logout Page | SAMS</title>
     <style>
+    body {
+      background-image: url("images/background.png");
+      background-color: #cccccc; 
+    }
     .loader {
     	border: 7px solid #f3f3f3;
     	border-radius: 50%;
@@ -40,7 +44,7 @@ session_destroy();
 $_SESSION[ 'logged' ] = false;
 
 // $message = "<center><font color= 'blue' ><br><br><h2>LOGGING OUT</h2></font><br><font color= 'black'>Redirecting to Login Page</center>";
-$message = "<center><font color= 'black' ><br><br><h2>LOGGING OUT</h2></font><br><div class='loader'></div>";
+$message = "<center><font color= 'white' ><br><br><h2>LOGGING OUT</h2></font><br><div class='loader'></div>";
 $siteurl = "samslogin.html";
 $time = 2;
 redirect ($message, $siteurl, $time);
