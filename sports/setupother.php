@@ -331,7 +331,7 @@
                                                   <tr>
                                                        <th class="text-center">Event #</th>
                                                        <th class="text-center">Event Name</th>
-                                                       <th class="text-center">Type of Scoring</th> 
+                                                       <th class="text-center">Type of Event</th> 
                                                        <th class="text-center">Team Scoring</th>
                                                        <th class="text-center">Event Date</th>
                                                   </tr>
@@ -367,7 +367,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "fieldEvents.csv",
+               url: "otherEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });

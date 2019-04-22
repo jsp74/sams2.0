@@ -197,7 +197,20 @@ $data = [ $meetName, $shortName, $startDate, $endDate, $meetCity, $meetState, $c
 
 fputcsv($file, $data) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
 fclose($file) or errOccurred(); //Closes the file, or returns error
-success(); 
+// success(); 
+
+// if the file doesnt exists, creates it. If it exists, truncates the data and put the pointer at the beginning of the file
+$file = fopen("bibData.csv", 'w+') or errOccurred();
+// column headings
+$labels = ["bib","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
+fputcsv($file, $labels) or errOccurred(); //Formats $labels to csv and puts that into $file, or returns error
+
+// $data is an array of all the fields from the form
+$data = [ $bib, $archery, $fencing, $field, $swim, $tableTennis, $teams, $track, $weightlifting, $other ];
+
+fputcsv($file, $data) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
+fclose($file) or errOccurred(); //Closes the file, or returns error
+success();
 
 exit();
 
@@ -214,7 +227,6 @@ function success() {
 	echo "<script LANGUAGE='javascript'>";
 	echo "window.setTimeout(function() {window.location.href='setupmaster.php';}, 2000)";
 	echo "</script>";
-	exit();
    }
 
 // Check for return & newline and replace it with a comma

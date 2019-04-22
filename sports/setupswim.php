@@ -331,7 +331,11 @@
                                                   <tr>
                                                        <th class="text-center">Event #</th>
                                                        <th class="text-center">Event Name</th>
-                                                       <th class="text-center">Type of Scoring</th> 
+                                                       <th class="text-center">Type Pool</th>
+                                                       <th class="text-center">Max Per Heat</th>
+                                                       <th class="text-center">Promote Only</th>
+                                                       <th class="text-center">Seed Method</th>
+                                                       <th class="text-center">Relay</th>
                                                        <th class="text-center">Team Scoring</th>
                                                        <th class="text-center">Event Date</th>
                                                   </tr>
@@ -367,7 +371,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "fieldEvents.csv",
+               url: "swimEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });
@@ -384,14 +388,19 @@
 
           for(var x = 1; x < lines.length; x++){
                var info = lines[x].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
+               console.log(info);
 
                var value0 = removeQuotes(info[0]);
                var value1 = removeQuotes(info[1]);
                var value2 = removeQuotes(info[2]);
                var value3 = removeQuotes(info[3]);
                var value4 = removeQuotes(info[4]);
+               var value5 = removeQuotes(info[5]);
+               var value6 = removeQuotes(info[6]);
+               var value7 = removeQuotes(info[7]);
+               var value8 = removeQuotes(info[8]);
 
-               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='type"+x+"'>"+value2+"</td><td class='text-center' id='team"+x+"'>"+value3+"</td><td class='text-center' id='date"+x+"'>"+value4+"</td></tr></tbody>";
+               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='type"+x+"'>"+value2+"</td><td class='text-center' id='mph"+x+"'>"+value3+"</td><td class='text-center' id='promote"+x+"'>"+value4+"</td><td class='text-center' id='seed"+x+"'>"+value5+"</td><td class='text-center' id='relay"+x+"'>"+value6+"</td><td class='text-center' id='team"+x+"'>"+value7+"</td><td class='text-center' id='date"+x+"'>"+value8+"</td></tr></tbody>";
           }
      }
 
@@ -402,7 +411,7 @@
           if(x == 0){
                var size = $('#generateTable tr').length;
                var table = document.getElementById('generateTable');
-               table.innerHTML += ("<tbody><tr><td id='event"+size+"'>Event "+size+"</td><td id='name"+size+"'></td><td id='type"+size+"'></td><td id='team"+size+"'></td><td id='date"+size+"'></td></tr>");
+               table.innerHTML += ("<tbody><tr><td id='event"+size+"'>Event "+size+"</td><td id='name"+size+"'></td><td id='type"+size+"'></td><td id='mph"+size+"'></td><td id='promote"+size+"'></td><td id='seed"+size+"'></td><td id='relay"+size+"'></td><td id='team"+size+"'></td><td id='date"+size+"'></td></tr>");
                table.innerHTML += ("</tr></tbody>");
           }
 

@@ -391,7 +391,7 @@
                         </div>
                     </div>
 
-                    <h3>Select the Sports</h3><hr>
+                    <h3>Select the Sports To Assign Bib Numbers:</h3><hr>
                     <div class="col-sm-12">
                         <div class = "opt3 row checkbox-group required">    
                             <div class="form-group col-sm-4 col-xs-4">
@@ -425,8 +425,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>Assign Bib Numbers:</label><br>
-                                <input type="radio" id="bibYes" name="bib" value="1" required> Yes<br>
-                                <input type="radio" id="bibNo" name="bib" value="0"> No<br>
+                                <input type="number" id="bib" name="bib" value="100" required><br>
                             </div>
                         </div>
                     </div>
@@ -485,7 +484,11 @@
             console.log(info);      // corresponding value of the columns
 
             // -------------------- populating basic & additional information and disabling the attributes -------------------- //
-            for(var i = 0; i <= 10; i++){
+            for(var i = 0; i <= 12; i++){
+                // i = 11 is the logo and should be skipped
+                if(i == 11){
+                    continue;
+                }
                 var item = colNames[i];
                 var value = info[i];
                 var ele = document.getElementById(item);
@@ -498,15 +501,15 @@
             }
 
             // ------------------- checking either bib is selected or not and disabling both -------------------- //
-            var value12 = info[12];
-            document.getElementById('bibYes').disabled = true;
-            document.getElementById('bibNo').disabled = true;
-            if(value12 == 1){
-                document.getElementById('bibYes').checked = true;
-            }
-            else{
-                document.getElementById('bibNo').checked = true;
-            }
+            // var value12 = info[12];
+            // document.getElementById('bibYes').disabled = true;
+            // document.getElementById('bibNo').disabled = true;
+            // if(value12 == 1){
+            //     document.getElementById('bibYes').checked = true;
+            // }
+            // else{
+            //     document.getElementById('bibNo').checked = true;
+            // }
 
             // -------------------- populating sports sections and disabling the attributes -------------------- //
             for(var i = 13; i <= 21; i++){
@@ -529,8 +532,8 @@
         function enableSubmit(){
 
             var enableArray = [ 'meetName', 'shortName', 'startDate', 'endDate', 'meetCity', 'meetState', 
-                                'meetDirector', 'meetHotel', 'meetSponsors', 'meetLOC', 'bibYes', 'bibNo',
-                                'archery', 'fencing', 'field','swim', 'tableTennis', 'teams', 'track', 'weightlifting', 'other' ]
+                                'meetDirector', 'meetHotel', 'meetSponsors', 'meetLOC', 'bib', 'archery', 
+                                'fencing', 'field','swim', 'tableTennis', 'teams', 'track', 'weightlifting', 'other' ]
 
             // enabling all the attributes mentioned in the array,i.e., basic & addtional information and sports section
             for(var i = 0; i < enableArray.length; i++){
