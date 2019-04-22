@@ -2,22 +2,27 @@
      include( "./../login/functions.php" );
      session_start();     
      gatekeeper("./../login/login.php");
+     if(isset($_POST['data'])){
+          $row = $_POST['data'];
+          print_r($data);
+     }
 ?>
+
 <!DOCTYPE html>
 <html>
      <head>
           <meta name="viewport" content="width=device-width, initial-scale=1">
+          
           <!-- Latest compiled and minified CSS -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
           <!-- jQuery library -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script data-require="jquery@*" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
           <!-- Latest compiled JavaScript -->
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
           <!-- js for editting table functionality -->
-          <script src="./../css/js/bootstable.js"></script>
+          <!-- <script src="./../css/js/bootstable.js"></script> -->
           
           <style>
                
@@ -76,18 +81,18 @@
                }
 
                /* Submit button */
-               .half-right{
+               #half-right{
                     display: block;   
                     margin: 25px;  
                     clear: both;  
                     width: 24%;
                     height: 50px;
                     font-size: 18px;
-                    float: right;
+                    float: right
                }
 
                /* Update button */
-               .half-left{
+               #half-left{
                     display: block;
                     background-color: #303639;
                     color: white; 
@@ -96,7 +101,7 @@
                     width: 24%;
                     height: 50px;
                     font-size: 18px;
-                    float: left;
+                    float: left
                }
 
                .selectbox {  
@@ -155,7 +160,7 @@
                #form1_submit:active{
                     box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
                }
-
+               
                @media all and (max-width:30em){
                     #form1_submit{
                          display: block;
@@ -174,9 +179,8 @@
                }
                
           </style>
-          
      </head>
-    
+
      <body>
           <!-- <nav class="navbar navbar-inverse">
                <div class="navbar-header">
@@ -195,7 +199,7 @@
           </nav> -->
 
           <div class = "jumbotron">
-               <strong class="text-center"><h1>Track Event Preferences</h1></strong>
+               <strong class="text-center"><h1>Archery Event Preferences</h1></strong>
           </div>
 
           <nav class="navbar navbar-inverse">
@@ -215,7 +219,7 @@
                          <!-- Pages commeted out will be taken care og eventually as the project moves forward -->
 
                          <li class="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Page <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                    <!-- <li><a id = "master_file" href="masterpage/masterfile.html">Master Help File</a></li>
                                    <li><a id = "how_to" href="masterpage/howto.html">How to do it</a></li> -->
@@ -236,11 +240,11 @@
                          <!-- ALll nav-pages under this nav-bar is moved to resultpage folder -->
 
                          <li class="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                   <li><a id = "extrackfield" href="./../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
-                                   <li><a id = "exswimming" href="./../resultpage/exportswimming.html">Export Swimming</a></li>
-                              </ul>
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Result International Format <span class="caret"></span></a>
+                         <ul class="dropdown-menu">
+                              <li><a id = "extrackfield" href="./../resultpage/exporttrack.html">Export Track &amp; Field</a></li>
+                              <li><a id = "exswimming" href="./../resultpage/exportswimming.html">Export Swimming</a></li>
+                         </ul>
                          </li>
 
                          <!-- ALll nav-pages under this nav-bar is moved to preferences folder -->
@@ -256,18 +260,18 @@
                          <!-- All the Sports -->
 
                          <li class="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                   <li><a id = "archery" href="sportsTable.php?sport=archery">Archery</a></li>
-                                   <li><a id = "fencing" href="sportsTable.php?sport=fencing">Fencing</a></li>
-                                   <li><a id = "field" href="sportsTable.php?sport=field">Field</a></li>
-                                   <li><a id = "swimming" href="sportsTable.php?sport=swim">Swimming</a></li>
-                                   <li><a id = "tabletennis" href="sportsTable.php?sport=tableTennis">Table Tennis</a></li>
-                                   <li><a id = "teamsports" href="sportsTable.php?sport=teams">Team Sports</a></li>
-                                   <li><a id = "track" href="sportsTable.php?sport=track">Track</a></li>
-                                   <li><a id = "weightlifting" href="sportsTable.php?sport=weightlifting">Weightlifting</a></li>
-                                   <li><a id = "other" href="sportsTable.php?sport=other">Other Sports</a></li>
-                              </ul>
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
+                         <ul class="dropdown-menu">
+                              <li><a id = "archery" href="sportsTable.php?sport=archery">Archery</a></li>
+                              <li><a id = "fencing" href="sportsTable.php?sport=fencing">Fencing</a></li>
+                              <li><a id = "field" href="sportsTable.php?sport=field">Field</a></li>
+                              <li><a id = "swimming" href="sportsTable.php?sport=swim">Swimming</a></li>
+                              <li><a id = "tabletennis" href="sportsTable.php?sport=tableTennis">Table Tennis</a></li>
+                              <li><a id = "teamsports" href="sportsTable.php?sport=teams">Team Sports</a></li>
+                              <li><a id = "track" href="sportsTable.php?sport=track">Track</a></li>
+                              <li><a id = "weightlifting" href="sportsTable.php?sport=weightlifting">Weightlifting</a></li>
+                              <li><a id = "other" href="sportsTable.php?sport=other">Other Sports</a></li>
+                         </ul>
                          </li>
                          
                     </ul>
@@ -286,198 +290,187 @@
           <div class = "container">
                <div class="col-sm-12 well">
 
-                    <form name = "athregform" class = "form1" action = "handleSetupTrack.php" method="POST">
+                    <form name = "athregform" class = "form1" action = "" method="POST">
 
                          <h3>Basic Information</h3><hr>
                          <div class="col-sm-12">
                               <div class="row">
-                                   <div class="col-sm-6 form-group">
+                                   <div class="col-sm-4 form-group">
                                         <label>Venue Name:</label>
                                         <input type="text" class="form-control" id="venueName" name="venueName" required>
                                    </div>
+
                                    <div class="form-group col-md-4">
                                         <label>Venue Location:</label>
                                         <input type="text" class="form-control" id="locationName" name="locationName">
                                    </div>
                               </div>
+          
                               <div class = "row">
                                    <div class="col-sm-2 form-group">
                                         <label>Total Active Events:</label>
                                         <input type="number" class="form-control" id="activeEvents" name="activeEvents" disabled>
-                                   </div>
-                                   <div class="col-sm-2 form-group">
-                                        <label>Number of Lanes:</label>
-                                        <input type="number" class="form-control" id="activeLanes" name="activeLanes" required>
                                    </div>
                                    <div class="col-sm-4 form-group">
                                         <label>Currect Record Level:</label>
                                         <input type="text" class="form-control" id="crl" name="crl" required>
                                    </div>
                               </div>
-                              <div class="row">
-                                   <div class="col-sm-6">
-                                        <button type="submit" id="submit" name="Submit" class="btn btn-primary half-right">Submit</button>
-                                   </div>
-                                   <div class="col-sm-6">
-                                        <button type="button" id="update" onclick="enableSubmit()" class="btn btn-dark half-left">Update</button>
-                                   </div>
-                              </div>
                          </div>
+
                          <h3>Events</h3><hr>
                          <!-- Editable table -->
                          <div class="card">
-                              <table class="table table-bordered" id="trackTable">
-                                   <thead>
-                                        <tr>
-                                             <th class="text-center">Event #</th>
-                                             <th class="text-center">Event Name</th>
-                                             <th class="text-center">Max/heat</th>
-                                             <th class="text-center">Timed finals</th>
-                                             <th class="text-center">Promote only</th>
-                                             <th class="text-center">Seed Method</th>
-                                             <th class="text-center">Relay</th>
-                                             <th class="text-center">Team scoring</th>
-                                             <th class="text-center">Event Date</th>
-                                        </tr>
-                                   </thead>
-                                   <!-- <tbody>
-                                        <tr>
-                                             <td id="#1">Event 1</td>
-                                             <td id="#1name">Junior</td>
-                                             <td id="#1mh">12</td>
-                                             <td id="#1time">No</td>
-                                             <td id="#1promote">No</td>
-                                             <td id="#1seed">open/waterfall</td>
-                                             <td id="#1relay">first</td>
-                                             <td id="#1team">Yes</td>
-                                             <td id="#1date">26-JUL-18</td>
-                                        </tr>
-                                        <tr>
-                                             <td>Event 2</td>
-                                             <td>5000 meters</td>
-                                             <td>12</td>
-                                             <td>No</td>
-                                             <td>No</td>
-                                             <td>lanes</td>
-                                             <td></td>
-                                             <td>Yes</td>
-                                             <td>26-JUL-18</td>
-                                        </tr>
-                                   </tbody> -->
-                              </table>
-                         </div>
-                         <!-- Editable table -->
-                         <div class="row">
-                              <div class="col-sm-12">
-                                   <div class="text-center">
-                                        <button type="button" class="btn btn-info" onclick="editTable(0)" id="addRow">Add Row</button>
-                                        <button type="button" class="btn btn-info" onclick="editTable(1)" id="makeChanges">Make Changes</button>
-                                        <button type="button" class="btn btn-info" onclick="saveChanges()" id="submitChanges">Save Changes</button>
+                              <div class="card-body">
+                                   <div id="table" class="table-editable">
+                                        <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fas fa-plus fa-2x"
+                                                  aria-hidden="true"></i></a></span>
+                                                  <!-- Editable table -->
+                                        <table id="generateTable" class="table table-bordered table-responsive-md table-striped text-center">
+                                             <thead>
+                                                  <tr>
+                                                       <th class="text-center">Event #</th>
+                                                       <th class="text-center">Event Name</th>
+                                                       <th class="text-center">Max Per Heat</th>
+                                                       <th class="text-center">Timed Finals</th>
+                                                       <th class="text-center">Promote Only</th>
+                                                       <th class="text-center">Seed Method</th>
+                                                       <th class="text-center">Relay</th>
+                                                       <th class="text-center">Team Scoring</th>
+                                                       <th class="text-center">Event Date</th>
+                                                  </tr>
+                                             </thead>
+                                        </table>
+                                   </div>
+                                   <!-- Editable table -->
+                                   <div class="row">
+                                        <div class="col-sm-12">
+                                             <div class="text-center">
+                                                  <button type="button" class="btn btn-info" onclick="editTable(0)" id="addRow">Add Row</button>
+                                                  <button type="button" class="btn btn-info" onclick="editTable(1)" id="makeChanges">Make Changes</button>
+                                                  <button type="button" class="btn btn-info" onclick="saveChanges()" id="submitChanges">Save Changes</button>
+                                             </div>
+                                        </div>
                                    </div>
                               </div>
-                         </div>
+                         </div>        
                     </form>
                </div>
           </div>
      </body>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <script src="./../css/js/bootstable.js"></script>
      <script>
-          var tableSize = 0;
-          // jQuery library that makes the table edittable
-          // $('table').SetEditable();
 
-          // checks if data file exists, if success -> poppulate the form
-          $(document).ready(function(){
-               $.ajax({
-                    type: "GET",
-                    url: "trackData.csv",
-                    dataType: "text",
-                    success: function(data){populateForm(data);}
-               });
+     // removes all the double quotes from the string that is passed as an argument
+     function removeQuotes(text){
+          return text.replace(/["]+/g, '');
+     }
+
+     // Read csv to populate table with available events in archery
+     $(document).ready(function(){
+          $.ajax({
+               type: "GET",
+               url: "trackEvents.csv",
+               dataType: "text",
+               success: function(data){populateTable(data);}
           });
+     });
 
-          function editTable(x){
-               // x->0 for adding a row to the table;
-               // x->1 for enabling jQuery library to make the table editable
-               if(x == 0){
-                    window.tableSize++; 
-                    var size = window.tableSize; // global variable -> window.tableSize
-                    var table = document.getElementById('trackTable');
-                    table.innerHTML += ("<tbody><tr><td id='event"+size+"'>Event "+size+"</td><td id='name"+size+"'></td><td id='mh"+size+"'></td><td id='timed"+size+"'></td><td id='promote"+size+"'></td><td id='seed"+size+"'></td><td id='relay"+size+"'></td><td id='team"+size+"'></td><td id='date"+size+"'></td>");
-                    table.innerHTML += ("</tr></tbody>");
+     // Function is triggered if the requested .csv file exists,
+     // the function takes all the data from the file and populates the table with respective values
+     function populateTable(data){
+          console.log(data)
+          var lines = data.split(/\r\n|\n/);
+          var colNames = lines[0].split(',');
+          console.log(colNames);  // title of the columns
+          var generateTable = document.getElementById('generateTable');
+
+          for(var x = 1; x < lines.length; x++){
+               var info = lines[x].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
+               console.log(info);
+
+               var value0 = removeQuotes(info[0]);
+               var value1 = removeQuotes(info[1]);
+               var value2 = removeQuotes(info[2]);
+               var value3 = removeQuotes(info[3]);
+               var value4 = removeQuotes(info[4]);
+               var value5 = removeQuotes(info[5]);
+               var value6 = removeQuotes(info[6]);
+               var value7 = removeQuotes(info[7]);
+               var value8 = removeQuotes(info[8]);
+
+               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='mph"+x+"'>"+value2+"</td><td class='text-center' id='finals"+x+"'>"+value3+"</td><td class='text-center' id='promote"+x+"'>"+value4+"</td><td class='text-center' id='seed"+x+"'>"+value5+"</td><td class='text-center' id='relay"+x+"'>"+value6+"</td><td class='text-center' id='team"+x+"'>"+value7+"</td><td class='text-center' id='date"+x+"'>"+value8+"</td></tr></tbody>";
+          }
+     }
+
+     function editTable(x){
+
+          // x->0 for adding a row to the table;
+          // x->1 for enabling jQuery library to make the table editable
+          if(x == 0){
+               var size = $('#generateTable tr').length;
+               var table = document.getElementById('generateTable');
+               table.innerHTML += ("<tbody><tr><td id='event"+size+"'>Event "+size+"</td><td id='name"+size+"'></td><td id='mph"+size+"'></td><td id='finals"+size+"'></td><td id='promote"+size+"'></td><td id='seed"+size+"'></td><td id='relay"+size+"'></td><td id='team"+size+"'></td><td id='date"+size+"'></td></tr>");
+               table.innerHTML += ("</tr></tbody>");
+          }
+
+          if( x == 1){
+               // jQuery library that makes the table edittable
+               $('table').SetEditable();
+
+               var makeChanges = document.getElementById("makeChanges");
+               var submitChanges = document.getElementById("submitChanges");
+               var addRow = document.getElementById("addRow");
+               
+               // hiding makeChanges button
+               makeChanges.style.visibility = "hidden";
+               makeChanges.style.display = "none";
+
+               // hiding addRow button
+               addRow.style.visibility = "hidden";
+               addRow.style.display = "none";
+
+               // showing saveChanges button
+               submitChanges.style.visibility = "visible";
+          }
+     }
+
+     function saveChanges(){
+          var size = $('#generateTable tr').length;
+          console.log(size);
+          var allRows = []
+          for(var i = 1; i < size; i++){
+          		var row = []
+               var event = document.getElementById('event'+i).innerHTML;
+               row.push(event);
+               var name = document.getElementById('name'+i).innerHTML;
+               row.push(name);
+               var team = document.getElementById('team'+i).innerHTML;
+               row.push(team);
+               var date = document.getElementById('date'+i).innerHTML;
+               row.push(date);
+               console.log(row);
+               allRows.push(row)
+               // $.POST("setuparchery.php", {
+               // 		data: row
+               // });
+          }
+          console.log(allRows);
+          http = new XMLHttpRequest();
+          http.open("POST","handlearchery.php",true);
+          var params = "data="+"<?php serialize("+allRows+") ?>&sport=archery";
+          http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+          http.onreadystatechange = function(){
+               if(http.readyState == 4 && http.status == 200){
+                    console.log("Response: "+http.responseText);
                }
-
-               if( x == 1){
-                    // jQuery library that makes the table edittable
-                    $('table').SetEditable();
-
-                    var makeChanges = document.getElementById("makeChanges");
-                    var submitChanges = document.getElementById("submitChanges");
-                    var addRow = document.getElementById("addRow");
-                    
-                    // hiding makeChanges button
-                    makeChanges.style.visibility = "hidden";
-                    makeChanges.style.display = "none";
-
-                    // hiding addRow button
-                    addRow.style.visibility = "hidden";
-                    addRow.style.display = "none";
-
-                    // showing saveChanges button
-                    submitChanges.style.visibility = "visible";
-               }
           }
 
-          function saveChanges(){
-               var size = window.tableSize;
-               console.log(size);
-          }
+          http.send(params);
+     }
 
-          // Function is triggered if there is an existing excel file,
-          // the function takes all the data from the excel file and populates the form with respection values
-          // and disables the fields
-          function populateForm(data){
-               var cols = 22;
-               var lines = data.split(/\r\n|\n/);
-               var colNames = lines[0].split(',');
-               var info = lines[1].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
-               console.log(colNames);  // title of the columns
-               console.log(info);      // corresponding value of the columns
+     </script> 
 
-               // -------------------- populating basic & additional information and disabling the attributes -------------------- //
-               for(var i = 0; i <= (colNames.length-1); i++){
-                    var item = colNames[i];
-                    var value = info[i];
-                    var ele = document.getElementById(item);
-                    value = removeQuotes(value);
-                    ele.disabled = true;
-                    ele.value = value;
-               }
-
-               // -------------------- disabling/enabling the buttons -------------------- //
-               document.getElementById("submit").disabled = true; // submit button
-               document.getElementById("update").disabled = false; // update button
-
-          }
-
-          // when triggered enables all the form field to make it editable
-          function enableSubmit(){
-
-               var enableArray = [ 'venueName', 'locationName', 'activeEvents', 'activeLanes', 'crl' ];
-
-               // enabling all the attributes mentioned in the array,i.e., basic & addtional information and sports section
-               for(var i = 0; i < enableArray.length; i++){
-                    document.getElementById(enableArray[i]).disabled = false;
-               }
-
-               // enabling/disbaling buttons
-               document.getElementById("submit").disabled = false; // submit button
-               document.getElementById("update").disabled = true;   // update button
-          }
-
-          // removes all the double quotes from the string that is passed as an argument
-          function removeQuotes(text){
-               return text.replace(/["]+/g, '');
-          }
-
-     </script>
-</html>
+</html> 

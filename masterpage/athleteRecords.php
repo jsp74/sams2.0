@@ -1327,13 +1327,13 @@ while(($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
 $prevID = $rows[0][0];
 $nextID = $rows[2][0];
 if(!empty($prevID) && $prevID != $firstID) {
-    $prevLink = '<a href="https://web.njit.edu/~jsp74/sams2.0_2/masterpage/athleteRecords.php?id='.$prevID.'" class="previous round">&#8592;</a>';
+    $prevLink = '<a href="athleteRecords.php?id='.$prevID.'" class="previous round">&#8592;</a>';
 }
 else {
     $prevLink = "";
 }
 if(!empty($nextID)){
-    $nextLink = '<a href="https://web.njit.edu/~jsp74/sams2.0_2/masterpage/athleteRecords.php?id='.$nextID.'" class="next round">&#8594;</a>';
+    $nextLink = '<a href="athleteRecords.php?id='.$nextID.'" class="next round">&#8594;</a>';
 }
 else {
     $nextLink = "";
