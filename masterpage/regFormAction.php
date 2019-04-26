@@ -240,30 +240,30 @@ while(!feof($file) && $ar != false) {
       }
       else if(strcasecmp($ar[2],$data[2]) == 0) {
         //Checks Class
-        if(strcasecmp($ar[1],$data[1]) < 0) {
+        if(strcasecmp($ar[17],$data[17]) < 0) {
           fputcsv($file2, $ar) or errOccurred();
         }
-        else if(strcasecmp($ar[1],$data[1]) > 0) {
+        else if(strcasecmp($ar[17],$data[17]) > 0) {
           fputcsv($file2, $data) or errOccurred();
           fputcsv($file2, $ar) or errOccurred();
           $dataIncluded = true;
         }
-        else if(strcasecmp($ar[1],$data[1]) == 0) {
+        else if(strcasecmp($ar[1],$data[17]) == 0) {
             //Checks Age
-          if(strcasecmp($ar[13],$data[13]) < 0) {
+          if(strcasecmp($ar[34],$data[34]) < 0) {
             fputcsv($file2, $ar) or errOccurred();
           }
-          else if(strcasecmp($ar[13],$data[13]) > 0) {
+          else if(strcasecmp($ar[34],$data[34]) > 0) {
             fputcsv($file2, $data) or errOccurred();
             fputcsv($file2, $ar) or errOccurred();
             $dataIncluded = true;
           }
-          else if(strcasecmp($ar[13],$data[13]) == 0) {
+          else if(strcasecmp($ar[34],$data[34]) == 0) {
             //Checks Gender
-            if(strcasecmp($ar[14],$data[14]) < 0) {
+            if(strcasecmp($ar[4],$data[4]) < 0) {
               fputcsv($file2, $ar) or errOccurred();
             }
-            else if(strcasecmp($ar[14],$data[14]) > 0) {
+            else if(strcasecmp($ar[4],$data[4]) > 0) {
               fputcsv($file2, $data) or errOccurred();
               fputcsv($file2, $ar) or errOccurred();
               $dataIncluded = true;
