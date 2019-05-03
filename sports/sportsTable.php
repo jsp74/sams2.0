@@ -6,7 +6,7 @@ gatekeeper("./../login/login.php");
 
 // echo $_GET["sport"];
 $displaySport=$_GET["sport"];
-$file = fopen("../masterpage/data.csv", 'r') or die("Unable to open file!"); // Opens the file, or returns error
+$file = fopen("../masterpage/dataBackUp.csv", 'r') or die("Unable to open file!"); // Opens the file, or returns error
 $out = <<<EOD
 <table class="table">
   <thead>

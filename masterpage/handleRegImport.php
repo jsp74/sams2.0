@@ -182,13 +182,14 @@ if ($_FILES["regFile"]["error"] > 0) {
 } else {
 	print_r($_FILES["regFile"]);
 	move_uploaded_file($_FILES["regFile"]["tmp_name"], $destination_path . "uploadedData.csv");
-	sortData("imports/uploadedData.csv");
+	//sortData("imports/uploadedData.csv");
 	import();
 	//sortData("data.csv");
+	success();
 
 }
 
-//Displays an error alert and then redirects to the form
+//PROBLEM WITH SORTDATA(), IT ADDS QUOTES TO SOME FIELDS WITH SPACES IN IT. FIXED IT BUT THE PROGRAM MIGHT BE SLOW BECAUSE OF THAT
 function sortData($path) {
 	$row = 0;
 	$csvData = array();
@@ -210,24 +211,29 @@ function sortData($path) {
 	if($csvData != false) {
 		$data = array_splice($csvData, 1);
 		foreach ($data as $key => $row) {
-		    $lname[$key] = $row[3];
-		    $fname[$key] = $row[2];
-		    $class[$key] = $row[17];
-		    $class2[$key] = $row[34];
-		    $age[$key] = $row[16];
-		    $gender[$key] = $row[4];
+			$row = explode(",", $row[0]);
+		    $lname[$key] = trim($row[2], '"');
+		    $fname[$key] = trim($row[1], '"');
+		    $class[$key] = trim($row[16], '"');
+		    $class2[$key] = trim($row[33], '"');
+		    $age[$key] = trim($row[15], '"');
+		    $gender[$key] = trim($row[3], '"');
 		}
 		$file = fopen($path, "w");
 		fputcsv($file, $header);
 		array_multisort($lname, SORT_ASC, $fname, SORT_ASC, $class, SORT_ASC, $class2, SORT_ASC, $age, SORT_ASC, $gender, SORT_ASC, $data);
 		foreach ($data as $arr) {
 			$arr = explode(",", $arr[0]);
+			for ($i = 0; $i < count($arr); $i++) {
+				$arr[$i] = trim($arr[$i], '"');
+			}
 			fputcsv($file, $arr);
 		}
 		fclose($file);
 	}
 	//https://stackoverflow.com/questions/39421575/how-to-sort-csv-table-data-in-php-by-a-specific-column
 }
+
 
 function import() {
 	$id_file = fopen("id.csv", 'a+');
@@ -260,13 +266,13 @@ function import() {
 
 		while ($upload_ar != NULL || $upload_ar != false) {
 			array_unshift($upload_ar, $id); $id++;
-			if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-				array_push($upload_ar, $bib);
-				$bib++;
-			}
-			else {
-				array_push($upload_ar, "");
-			}
+			// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+			// 	array_push($upload_ar, $bib);
+			// 	$bib++;
+			// }
+			// else {
+			// 	array_push($upload_ar, "");
+			// }
 			fputcsv($dataFile, $upload_ar);
 			$upload_ar = fgetcsv($upload);
 		}
@@ -294,13 +300,13 @@ function import() {
 			if (feof($dataFile) || $data_ar == false || $data_ar == NULL) {
 				while (!feof($upload) || $upload_ar != false || $upload_ar != NULL) {
 					array_unshift($upload_ar, $id); $id++;
-					if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-						array_push($upload_ar, $bib);
-						$bib++;
-					}
-					else {
-						array_push($upload_ar, "");
-					}
+					// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+					// 	array_push($upload_ar, $bib);
+					// 	$bib++;
+					// }
+					// else {
+					// 	array_push($upload_ar, "");
+					// }
 					fputcsv($temp, $upload_ar) or errOccured(204);
 					$upload_ar = fgetcsv($upload);
 				}
@@ -308,7 +314,6 @@ function import() {
 			} else if (feof($upload) || $upload_ar == false || $upload_ar == NULL) {
 				//Loop through until dataFile Ends
 				while (!feof($dataFile) || $data_ar != false || $data_ar != NULL) {
-					//array_unshift($data_ar, $id); $id++;
 					fputcsv($temp, $data_ar) or errOccured(211);
 					$data_ar = fgetcsv($dataFile);
 				}
@@ -316,55 +321,55 @@ function import() {
 			} else {
 				if (strcasecmp($data_ar[3], $upload_ar[3]) > 0) {
 					array_unshift($upload_ar, $id); $id++;
-					if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-						array_push($upload_ar, $bib);
-						$bib++;
-					}
+					// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+					// 	array_push($upload_ar, $bib);
+					// 	$bib++;
+					// }
 					fputcsv($temp, $upload_ar) or errOccurred(219);
 					$curDataIncluded = true;
 				} else if (strcasecmp($data_ar[3], $upload_ar[3]) == 0) {
 					if (strcasecmp($data_ar[2], $upload_ar[2]) > 0) {
 						array_unshift($upload_ar, $id); $id++;
-						if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-							array_push($upload_ar, $bib);
-							$bib++;
-						}
+						// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+						// 	array_push($upload_ar, $bib);
+						// 	$bib++;
+						// }
 						fputcsv($temp, $upload_ar) or errOccurred(224);
 						$curDataIncluded = true;
 					} else if (strcasecmp($data_ar[2], $upload_ar[2]) == 0) {
 						if (strcasecmp($data_ar[17], $upload_ar[17]) > 0) {
 							array_unshift($upload_ar, $id); $id++;
-							if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-								array_push($upload_ar, $bib);
-								$bib++;
-							}
+							// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+							// 	array_push($upload_ar, $bib);
+							// 	$bib++;
+							// }
 							fputcsv($temp, $upload_ar) or errOccurred(229);
 							$curDataIncluded = true;
 						} else if (strcasecmp($data_ar[17], $upload_ar[17]) == 0) {
 							if (strcasecmp($data_ar[34], $upload_ar[34]) > 0) {
 								array_unshift($upload_ar, $id); $id++;
-								if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-									array_push($upload_ar, $bib);
-									$bib++;
-								}
+								// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+								// 	array_push($upload_ar, $bib);
+								// 	$bib++;
+								// }
 								fputcsv($temp, $upload_ar) or errOccurred(234);
 								$curDataIncluded = true;
 							} else if (strcasecmp($data_ar[34], $upload_ar[34]) == 0) {
 								if (strcasecmp($data_ar[16], $upload_ar[16]) > 0) {
 									array_unshift($upload_ar, $id); $id++;
-									if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-										array_push($upload_ar, $bib);
-										$bib++;
-									}
+									// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+									// 	array_push($upload_ar, $bib);
+									// 	$bib++;
+									// }
 									fputcsv($temp, $upload_ar) or errOccurred(239);
 									$curDataIncluded = true;
 								} else if (strcasecmp($data_ar[16], $upload_ar[16]) == 0) {
 									if (strcasecmp($data_ar[4], $upload_ar[4]) > 0) {
 										array_unshift($upload_ar, $id); $id++;
-										if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
-											array_push($upload_ar, $bib);
-											$bib++;
-										}
+										// if((!empty($upload_ar[17]) && $track == 1) || (!empty($upload_ar[34]) && $field == 1 ) ) {
+										// 	array_push($upload_ar, $bib);
+										// 	$bib++;
+										// }
 										fputcsv($temp, $upload_ar) or errOccurred(244);
 										$curDataIncluded = true;
 									}
@@ -392,12 +397,19 @@ function import() {
 
 		copy("tempData987.csv", "data.csv") or errOccurred(268);
 		unlink("tempData987.csv") or errOccurred(269);
-		//unlink("imports/uploadedData.csv") or errOccurred(270);
+		unlink("imports/uploadedData.csv") or errOccurred(270);
 		
 		$id_file = fopen("id.csv", 'w+');
 		$id = [$id];
 		fputcsv($id_file, $id);
 		fclose($id_file);
+
+		// $bib_file = fopen("bibData.csv", 'w+');
+		// $info = fgetcsv($bib_file);
+		// $info = fgetcsv($bib_file);
+		// $info[0] = $bib;
+		// fputcsv($bib_file, $info);
+		// fclose($bib_file);
 
 	}
 }
