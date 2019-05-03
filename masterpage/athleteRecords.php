@@ -1373,6 +1373,8 @@ body{
 
         echo $arrow;
 
+        fclose("data.csv");
+
         ?>
 
         <div id="user-profile-2" class="user-profile">
@@ -1905,7 +1907,7 @@ body{
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "dataBackUp.csv",
+            url: "data.csv",
             dataType: "text",
             success: function(data) {
                 populateForm(data);
@@ -2137,7 +2139,6 @@ body{
                 var track = (colEntries[33]);
                 var weightlifting = (colEntries[34]);
                 var other = (colEntries[35]); 
-                */
 
                 //Gets the ID of the athlete
                 if (!(isEmpty(colEntries[0]))) document.getElementById("id").innerHTML = colEntries[0];
@@ -2191,7 +2192,7 @@ body{
             }
         }
 
-        if (i == lines.length) alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
+        if (i >= lines.length) alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
 
     }
 

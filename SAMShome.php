@@ -1,8 +1,8 @@
 <?php
 
-	include( "login/functions.php" );
-	session_start();     
-	gatekeeper("login/login.php");
+    include( "login/functions.php" );
+    session_start();     
+    gatekeeper("login/login.php");
 
 ?>
 
