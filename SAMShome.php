@@ -186,6 +186,21 @@
                             <li><a id = "other" href="sports/sportsTable.php?sport=other">Other Sports</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports Preferences<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sports/setuparchery.php">Archery Preferences</a></li>
+                            <li><a href="sports/setupfencing.php">Fencing Preferences</a></li>
+                            <li><a href="sports/setupfield.php">Field Preferences</a></li>
+                            <li><a href="sports/setupswim.php">Swimming Preferences</a></li>
+                            <li><a href="sports/setuptableTennis.php">Table Tennis Preferences</a></li>
+                            <li><a href="sports/setupteams.php">Team Sports Preferences</a></li>
+                            <li><a href="sports/setuptrack.php">Track Preferences</a></li>
+                            <li><a href="sports/setupweightlifting.php">Weightlifting Preferences</a></li>
+                            <li><a href="sports/setupother.php">Other Sports Preferences</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right dropdown">
