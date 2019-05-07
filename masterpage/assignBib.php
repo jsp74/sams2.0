@@ -59,8 +59,11 @@ unlink("tempData9876.csv"); //Deletes the temp file
 //Changes the bib in bibData.csv to the next starting bib
 $bib_file = fopen("bibData.csv", 'w+');
 $bibData[0] = $bib;
+$bibData[10] = 1;
 fputcsv($bib_file, $bibHeader);
 fputcsv($bib_file, $bibData);
 fclose($bib_file);
+
+header("refresh: 3; url = setupmaster.php")
 
 ?>

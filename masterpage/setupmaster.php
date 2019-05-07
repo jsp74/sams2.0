@@ -158,6 +158,12 @@
                   margin:0.4em auto;
                  }
             }
+
+            #assignBib{
+                text-align: center;
+                float: right;
+                margin-bottom: 1em;
+            }
             
         </style>
         
@@ -255,6 +261,12 @@
                 </ul>
             </div>
         </nav>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <button type="button" id="assignBib" class="btn btn-success" onclick="assignBibNum()">Assign Bib Numbers</button>
+            </div>
+        </div>
 
         <div class = "container">
             <div class="col-sm-12 well">
@@ -424,7 +436,7 @@
                         </div>  
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <label>Assign Bib Numbers:</label><br>
+                                <label>Starting Bib Number:</label><br>
                                 <input type="number" id="bib" name="bib" value="100" required><br>
                             </div>
                         </div>
@@ -460,6 +472,15 @@
                 url: "masterData.csv",
                 dataType: "text",
                 success: function(data){populateForm(data);}
+            });
+        });
+
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: "bibData.csv",
+                dataType: "text",
+                success: function(data){checkBib(data);}
             });
         });
 
@@ -526,6 +547,20 @@
             document.getElementById("half-right").disabled = true; // submit button
             document.getElementById("half-left").disabled = false; // update button
 
+        }
+
+        function checkBib(data){
+            console.log(data)
+            var lines = data.split(/\r\n|\n/);
+            var info = lines[1].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
+            console.log(info)
+            if(info[10] == 1){
+                document.getElementById("assignBib").disabled = true;
+            }
+        }
+
+        function assignBibNum(){
+            window.location.href = "assignBib.php";
         }
 
         // when triggered enables all the form field to make it editable
