@@ -1442,7 +1442,7 @@ body{
 
                                 <h4 class="blue">
                                     <span id="names">Name Not Provided</span>
-                                    <button style="float: right" onclick="printDiv()" type="button">Print</button>
+                                    <button style="float: right" onclick="printFromId()" type="button">Print</button>
                                 </h4>
 
                                 <div class="button">
@@ -2210,7 +2210,7 @@ body{
         if (i >= lines.length) alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
 
     }
-    function printDiv(){
+    function printFromId(){
         window.print();
     }
     //Removes quotes and spaces from a string   
