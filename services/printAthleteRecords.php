@@ -16,16 +16,19 @@ gatekeeper("../login/login.php");
 </head>
 <body>
     <table class="table">
-        <tr>
+        
             <?php 
                 $file = fopen("../masterpage/data.csv",'r') or die("unable to open file");
                 $data = fgetcsv($file);
+                echo "<tr>";
                 for($i = 0; $i < count($data); $i++){
                     $out = '
                     <th scope = "col"> <p class="text-center">'.$data[$i].'</p></th>
                     ';
                     echo $out;
                 }
+                echo "</tr>";
+                echo "<tr>";
                 while(($data = fgetcsv($file)) !== false){
                     for($i = 0; $i < count($data); $i++){
                         $out = '
@@ -34,9 +37,10 @@ gatekeeper("../login/login.php");
                         echo $out;
                     }
                 }
+                echo "</tr>";
+
                 fclose($file);
             ?>
-        </tr>
     </table>
 </body>
 </html>
