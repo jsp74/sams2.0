@@ -15,15 +15,20 @@ gatekeeper("../login/login.php");
     <title>Document</title>
 </head>
 <body>
-    <?php
-        $file = fopen("../masterpage/data.csv") or die("unable to open file");
-        $data = fgetcsv($file);
-        for($i = 0; $i < count($data); $i++){
-            echo `
-            <th scope = 'col'> <p class='text-center'>{{$data[$i]}}</p></th>
-            `
-        }
-        fclose($file);
-    ?>
+    <table class="table">
+        <tr>
+            <?php 
+                $file = fopen("../masterpage/data.csv") or die("unable to open file");
+                $data = fgetcsv($file);
+                for($i = 0; $i < count($data); $i++){
+                    $out = '
+                    <th scope = "col"> <p class="text-center">{$data[$i]}</p></th>
+                    ';
+                    echo $out;
+                }
+                fclose($file);
+            ?>
+        </tr>
+    </table>
 </body>
 </html>
