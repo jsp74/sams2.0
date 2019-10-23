@@ -236,6 +236,7 @@
                     <button id = "importrecord" class="btn btn-primary"><a href = "dashboard/importrecords.html">Import Records</a></button>
                     <button id = "viewimportrecord" class="btn btn-primary"><a href = "dashboard/viewimportrecord.html">View Import Records</a></button>
                     <button id = "exportselrecord" class="btn btn-primary" onclick="downloadReg()">Export Registration Records</button>
+                    <button id = "printAllAthleteRecords" class="btn btn-primary" onclick="printAll()"> Print All AthleteRecords</button>
                     <iframe id="regFrame" style="display: none;"></iframe>
                     <br><br>
                     <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
@@ -244,7 +245,9 @@
         </div>
     </body>
     <script>
-        
+        function printAll() {
+            console.log("printing");
+        }
         function downloadReg(){
             document.getElementById('regFrame').src = "./masterpage/data.csv";
         }
