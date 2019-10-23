@@ -18,7 +18,7 @@ gatekeeper("../login/login.php");
     <table class="table">
         <tr>
             <?php 
-                $file = fopen("./../masterpage/data.csv") or die("unable to open file");
+                $file = fopen("../masterpage/data.csv") or die("unable to open file");
                 $data = fgetcsv($file);
                 for($i = 0; $i < count($data); $i++){
                     $out = '
