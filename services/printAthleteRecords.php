@@ -28,16 +28,18 @@ gatekeeper("../login/login.php");
                     echo $out;
                 }
                 echo "</tr>";
-                echo "<tr>";
                 while(($data = fgetcsv($file)) !== false){
+                    echo "<tr>";
+
                     for($i = 0; $i < count($data); $i++){
                         $out = '
                         <td scope = "col"> <p class="text-center">'.$data[$i].'</p></td>
                         ';
                         echo $out;
                     }
+                    echo "</tr>";
+
                 }
-                echo "</tr>";
 
                 fclose($file);
             ?>
