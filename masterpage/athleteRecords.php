@@ -1866,9 +1866,12 @@ body{
         });
     });
     
-    //Function populates the page with the athlete's information
-    class athletes {
-        constructor(reg,Fname,Lname, gender, DOB, address1, address2, city, state, zipcode, country, homephone, email, memberNumber, teamName, agetrkfld) {
+    
+    class athlete {
+        constructor(reg,Fname,Lname, gender, DOB, address1, address2, city, state, zipcode, country, homephone, email, memberNumber, teamName, agetrkfld, 
+                    trclass, trevent1, trev1mark, trevent2, trev2mark, trevent3, trev3mark, trevent4, trev4mark, trevent5, trev5mark, trevent6, 
+                    trev6mark, trevent7, trev7mark, trevent8, trev8mark, fifieldclass, fievent1, fiev1mark, fievent2, fiev2mark, fievent3, 
+                    fiev3mark, fievent4, fiev4mark, fievent5, fiev5mark, fievent6, fiev6mark, fievent7, fiev7mark, fievent8, fiev8mark) {
             this.reg = reg;
             this.Fname = Fname;
             this.Lname = Lname;
@@ -1885,9 +1888,44 @@ body{
             this.memberNumber = memberNumber;
             this.teamName = teamName;
             this.agetrkfld = agetrkfld;
+            this.trclass = trclass;
+            this.trevent1 = trevent1;
+            this.trev1mark = trev1mark;
+            this.trevent2 = trevent2;
+            this.trev2mark = trev2mark;
+            this.trevent3 = trevent3;
+            this.trev3mark = trev3mark;
+            this.trevent4 = trevent4;
+            this.trev4mark = trev4mark;
+            this.trevent5 = trevent5;
+            this.trev5mark = trev5mark;
+            this.trevent6 = trevent6;
+            this.trev6mark = trev6mark;
+            this.trevent7 = trevent7;
+            this.trev7mark = trev7mark;
+            this.trevent8 = trevent8;
+            this.trev8mark = trev8mark;
+            this.fifieldclass = fifieldclass;
+            this.fievent1 = fievent1;
+            this.fiev1mark = fiev1mark;
+            this.fievent2 = fievent2;
+            this.fiev2mark = fiev2mark;
+            this.fievent3 = fievent3;
+            this.fiev3mark = fiev3mark;
+            this.fievent4 = fievent4;
+            this.fiev4mark = fiev4mark;
+            this.fievent5 = fievent5;
+            this.fiev5mark = fiev5mark;
+            this.fievent6 = fievent6;
+            this.fiev6mark = fiev6mark;
+            this.fievent7 = fievent7;
+            this.fiev7mark = fiev7mark;
+            this.fievent8 = fievent8;
+            this.fiev8mark = fiev8mark;
         }
     }
-    let athlete = [];
+    let athletes = [];
+    //Function populates the page with the athlete's information
     function populateForm(data) {
         
         console.log(data);
@@ -1899,9 +1937,14 @@ body{
         }
         console.log(colNames)
 
-        
+        //Makes a list of classes of all the athletes 
         for(let i = 0; i < colNames.length; i++){
-            athlete[i] = new athletes(colNames[i][0],colNames[i][1],colNames[i][2],colNames[i][3],colNames[i][4],colNames[i][5],colNames[i][6],colNames[i][7],colNames[i][8],colNames[i][9],colNames[i][10],colNames[i][11],colNames[i][12],colNames[i][13],colNames[i][14],colNames[i][15]);
+            athletes[i] = new athlete(colNames[i][0],colNames[i][1],colNames[i][2],colNames[i][3],colNames[i][4],colNames[i][5],colNames[i][6],
+            colNames[i][7],colNames[i][8],colNames[i][9],colNames[i][10],colNames[i][11],colNames[i][12],colNames[i][13],colNames[i][14],colNames[i][15],
+            colNames[i][16],colNames[i][17],colNames[i][18],colNames[i][19],colNames[i][20],colNames[i][21],colNames[i][22],colNames[i][23],colNames[i][24],
+            colNames[i][25],colNames[i][26],colNames[i][27],colNames[i][28],colNames[i][29],colNames[i][30],colNames[i][31],colNames[i][31],colNames[i][32],
+            colNames[i][33],colNames[i][34],colNames[i][35],colNames[i][36],colNames[i][37],colNames[i][38],colNames[i][39],colNames[i][40],colNames[i][41],
+            colNames[i][42],colNames[i][43],colNames[i][44],colNames[i][45],colNames[i][46],colNames[i][47],colNames[i][48],colNames[i][49],colNames[i][50]);
         }
         console.log(athlete[1]);
 
