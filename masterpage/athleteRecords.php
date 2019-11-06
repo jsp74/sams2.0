@@ -7,20 +7,6 @@ gatekeeper("./../login/samslogin.html");
 <!DOCTYPE HTML>
 
 <style>
-    @media print {
-        .user-profile {
-            background-color: white;
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 15px;
-            font-size: 14px;
-            line-height: 18px;
-        }
-    }
     body {
         margin-top: 20px;
     }
@@ -1442,7 +1428,6 @@ body{
 
                                 <h4 class="blue">
                                     <span id="names">Name Not Provided</span>
-                                    <button style="float: right" onclick="printDiv()" type="button">Print</button>
                                 </h4>
 
                                 <div class="button">
@@ -2210,9 +2195,7 @@ body{
         if (i >= lines.length) alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
 
     }
-    function printDiv(){
-        window.print();
-    }
+
     //Removes quotes and spaces from a string   
     function trimStr(str) {
         str = str.replace(/^"(.*)"$/, '$1');

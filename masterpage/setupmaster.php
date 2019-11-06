@@ -18,10 +18,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
         <style>
-            .centerBib{
-                margin: auto;
-                width: fit-content;
-            }
+            
             .navbar{
                 margin-bottom: 10;
                 border-radius: 0 !important;
@@ -266,7 +263,7 @@
         </nav>
 
         <div class="row">
-            <div class="centerBib">
+            <div class="col-sm-8">
                 <button type="button" id="assignBib" class="btn btn-success" onclick="assignBibNum()">Assign Bib Numbers</button>
             </div>
         </div>
