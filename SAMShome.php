@@ -218,36 +218,73 @@
 
             <!-- ALll nav-pages under this section is moved to dashboard folder -->
             
-            <div class="row">
-                
-                <div class="col-sm-6">
-                    <button id = "assignbib" class="btn btn-info"><a href = "dashboard/assignbib.html">Assign Bib Numbers</a></button>
-                    <button id = "goreport" class="btn btn-info"><a href = "dashboard/goreportpg.html">Go To Report Page</a></button>
-                    <br><br>
-                    <button id = "airgun" class="btn btn-warning"><a href = "dashboard/airgun.html">Air Guns</a></button>
-                    <button id = "Paratristhion" class="btn btn-warning"><a href = "dashboard/paratristhion.html">Paratristhion</a></button>
-                    <button id = "Paratristhion300" class="btn btn-warning"><a href = "dashboard/paratristhion300.html">Paratristhion - 300</a></button>
-                    <button id = "othervenue" class="btn btn-warning"><a href = "dashboard/othervenuename.html">Other Venue Name</a></button>
-                </div>
+            <div class="row " >
 
-                <div class="col-sm-6">
+
+                <div class="col-lg-4 col-md-6 text-center  col-sm-12 ">
+                  <a href = "dashboard/assignbib.html"><button id = "assignbib" class="btn btn-info">Assign Bib Numbers</button></a>
+              </div>
+              
+              <div class="col-lg-4 col-md-6 text-center col-sm-12 ">
+
+                  <a href = "#"><button id = "Classify" class="btn btn-info" onclick="checkClassifications()" >Classify</button></a>
+              </div>
+
+                  <!--<button id = "airgun" class="btn btn-warning"><a href = "dashboard/airgun.html">Air Guns</a></button>-->
+                 <!-- <button id = "Paratristhion" class="btn btn-warning"><a href = "dashboard/paratristhion.html">Paratristhion</a></button>-->
+                  <!--<button id = "Paratristhion300" class="btn btn-warning"><a href = "dashboard/paratristhion300.html">Paratristhion - 300</a></button> -->
+                  <!--<button id = "othervenue" class="btn btn-warning"><a href = "dashboard/othervenuename.html">Other Venue Name</a></button>-->
+              
+             <div class="col-lg-4 col-md-6 text-center col-sm-12  " >
+                <a href = "#"><button id = "PrintAthletes" class="btn btn-info">Print All Atheltes</button></a>
+              </div>
+             <div class="col-lg-4 col-md-6 text-center col-sm-12  ">
+                 <a href = "dashboard/goreportpg.html"> <button id = "goreport" class="btn btn-info">Go To Report Page</button></a>
+                  
+             </div>
+              
+              <div class="col-lg-4 col-md-6 text-center col-sm-12   ">
+                  <a href = "dashboard/viewimportrecord.html"><button id = "viewimportrecord" class="btn btn-primary">View Import Records</button></a>
+              </div>
+              
+              <div class="col-lg-4 col-md-6 text-center col-sm-12   ">
+                  <button id = "exportselrecord" class="btn btn-primary" onclick="downloadReg()">Export Registration Records</button>
+                  <iframe id="regFrame" style="display: none;"></iframe>
+                  
+              </div>
+
+              
+              <div class="col-lg-4 col-md-6 text-center col-sm-12 ">
+                  <a href = "dashboard/importrecords.html"><button id = "importrecord" class="btn btn-primary">Import Records</button></a>
+              </div>
+              
+              
+              
+              
+              
+              <div class="col-lg-4 col-md-6 text-center col-sm-12  ">
+                  <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
+              </div>
+              <div class="col-lg-4 col-md-6 text-center col-sm-12  ">
 <!--                    <h5>Move data to<br>or get data from<br>other meets</h5>-->
-                    <button id = "createfilesbackup" class="btn btn-danger" style="height: 100px;"><a href = "dashboard/backupfiles.html">Create files for backup or to<br>send to National or<br>Next Higher Level Games</a></button>
-                    <button id = "importrecord" class="btn btn-primary"><a href = "dashboard/importrecords.html">Import Records</a></button>
-                    <button id = "viewimportrecord" class="btn btn-primary"><a href = "dashboard/viewimportrecord.html">View Import Records</a></button>
-                    <button id = "exportselrecord" class="btn btn-primary" onclick="downloadReg()">Export Registration Records</button>
-                    <iframe id="regFrame" style="display: none;"></iframe>
-                    <br><br>
-                    <button id = "deleterecords" class="btn btn-danger"><a href = "">Delete All Records<br> Start New Game</a></button>
-                </div>
+                  <a href = "dashboard/backupfiles.html"><button id = "createfilesbackup" class="btn btn-danger" style="height: 100px;">Create files for backup or to<br>send to National or<br>Next Higher Level Games</button></a>
+              </div>
+
+                
             </div>
         </div>
     </body>
     <script>
+    
+        function checkClassifications()
+        {
+          $.post('./masterpage/classifications/classificationInsert.php', {}, function(result) {});
+        }
         
         function downloadReg(){
             document.getElementById('regFrame').src = "./masterpage/data.csv";
         }
+        
     
     </script>
 </html>
