@@ -19,7 +19,7 @@ class SamsJsonReader{
         echo __CLASS__." for file:".$filename." created";
         $jr = JsonReader::getInstance();
         var_dump($jr);
-        self::$headersFile = "json.json";
+        self::$headersFile = "csvHeaders.json";
         $this->filename = $filename;
         $this->indexPrefix = $filename.";indexes;";
         $this->headerKey = $filename.";_headers";
