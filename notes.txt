@@ -1,0 +1,8 @@
+add one file at a time
+no need to add login functionality
+have a good naming scheme
+comment all code
+remove everything thats not used
+work on services before UI
+make a single header for all pages
+
