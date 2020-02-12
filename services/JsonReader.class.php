@@ -134,7 +134,7 @@ class JsonReader
         {
             echo "<br><b>DONE DECODE, START Object2Array</b><br>";
         }
-        $arr = $this->objectToArray($json, $v);
+        $arr = $this->objectToArray($json);
         if ($v)
         {
             echo "<br><b>End, O2A, VAR DUMP O2A START</b><br>";
@@ -175,11 +175,13 @@ class JsonReader
      */
     function addToJsonMap(&$arr, $key, $value)
     {
+ 
         global $v;
         $pathArray = explode(";", $key);
-        $size = sizeof($pathArray);
+        $size = sizeof($pathArray); 
         if ($v)
         {
+            echo "<br>";
             print ("Size of Key '" . $key . "' is " . $size . "\n");
             var_dump($pathArray);
         }
@@ -199,18 +201,18 @@ class JsonReader
 
             $subKey = $pathArray[0];
             $val = $arr[$subKey];
-            echo "<br>Full Path";
-            var_dump(implode("->") , $pathArray);
-            echo "<br>";
-            echo "<br>SubKey";
-            var_dump($subKey);
-            echo "<br>";
-            echo "<br>Val";
-            var_dump($val);
-            echo "<br>";
-            echo "<br>Arr";
-            var_dump($arr);
-            echo "<br>";
+            // echo "<br>Full Path";
+            // var_dump(implode("->" , $pathArray));
+            // echo "<br>";
+            // echo "<br>SubKey";
+            // var_dump($subKey);
+            // echo "<br>";
+            // echo "<br>Val";
+            // var_dump($val);
+            // echo "<br>";
+            // echo "<br>Arr";
+            // var_dump($arr);
+            // echo "<br>";
             //Prevent people from adding to a Key Value pair into a non array type
             // Example from Json Reference Object in Comments above
             // $key = "data;_headers;newKey"
@@ -234,7 +236,7 @@ class JsonReader
                 **/
             array_splice($pathArray, 0, 1);
             $newKey = implode(";", $pathArray);
-            $this->addToJsonMap($arr[$subKey], $newKey, $value);
+            self::addToJsonMap($arr[$subKey], $newKey, $value);
 
         }
     }
@@ -287,7 +289,7 @@ class JsonReader
             }
             array_splice($pathArray, 0, 1);
             $newKey = implode(";", $pathArray);
-            $this->deleteFromJsonMap($arr[$subKey], $newKey);
+            self::deleteFromJsonMap($arr[$subKey], $newKey);
         }
     }
 
@@ -332,6 +334,10 @@ class JsonReader
             settype($val, 'array');
             return JsonReader::fetchFromJsonMap($val, $newKey);
         }
+    }
+    function testFunction(){
+        echo "hi";
+        return "hi";
     }
 }
 
