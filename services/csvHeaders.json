@@ -1,1 +1,335 @@
-{"data":{"_headers":"lname,fname,something1,something2,something3","indexes":{"lname":1,"fname":2,"something1":3,"something2":4,"something3":5}},"data.csv":{"_headers":"something86,something80,something11","indexes":{"something86":0,"something80":1,"something11":2}}}
+{
+    "2018_Jr_Nationals_registrations_only_TF.csv": {
+        "_headers": "regfor,firstname,lastname,gender,DOB,address1,address2,city,state,zipcode,country,homephone,email,membernumber,teamname,agetrkfld,trclass,trevent1,trev1mark,trevent2,trev2mark,trevent3,trev3mark,trevent4,trev4mark,trevent5,trev5mark,trevent6,trev6mark,trevent7,trev7mark,trevent8,trev8mark,fifieldclass,fievent1,fiev1mark,fievent2,fiev2mark,fievent3,fiev3mark,fievent4,fiev4mark,fievent5,fiev5mark,fievent6,fiev6mark,fievent7,fiev7mark,fievent8,fiev8mark\r\n",
+        "indexes": {
+            "regfor": 0,
+            "firstname": 1,
+            "lastname": 2,
+            "gender": 3,
+            "DOB": 4,
+            "address1": 5,
+            "address2": 6,
+            "city": 7,
+            "state": 8,
+            "zipcode": 9,
+            "country": 10,
+            "homephone": 11,
+            "email": 12,
+            "membernumber": 13,
+            "teamname": 14,
+            "agetrkfld": 15,
+            "trclass": 16,
+            "trevent1": 17,
+            "trev1mark": 18,
+            "trevent2": 19,
+            "trev2mark": 20,
+            "trevent3": 21,
+            "trev3mark": 22,
+            "trevent4": 23,
+            "trev4mark": 24,
+            "trevent5": 25,
+            "trev5mark": 26,
+            "trevent6": 27,
+            "trev6mark": 28,
+            "trevent7": 29,
+            "trev7mark": 30,
+            "trevent8": 31,
+            "trev8mark": 32,
+            "fifieldclass": 33,
+            "fievent1": 34,
+            "fiev1mark": 35,
+            "fievent2": 36,
+            "fiev2mark": 37,
+            "fievent3": 38,
+            "fiev3mark": 39,
+            "fievent4": 40,
+            "fiev4mark": 41,
+            "fievent5": 42,
+            "fiev5mark": 43,
+            "fievent6": 44,
+            "fiev6mark": 45,
+            "fievent7": 46,
+            "fiev7mark": 47,
+            "fievent8": 48,
+            "fiev8mark\r\n": 49
+        }
+    },
+    "archeryEvents.csv": {
+        "_headers": "\"Event #\",\"Event Name\",\"Team Scoring\",\"Event Date\"\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            "\"Event Name\"": 1,
+            "\"Team Scoring\"": 2,
+            "\"Event Date\"\n": 3
+        }
+    },
+    "archeryEvents_copy.csv": {
+        "_headers": "\"Event #\",\"Event Name\",\"Team Scoring\",\"Event Date\"\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            "\"Event Name\"": 1,
+            "\"Team Scoring\"": 2,
+            "\"Event Date\"\n": 3
+        }
+    },
+    "bibData.csv": {
+        "_headers": "bib,archery,fencing,field,swim,tableTennis,teams,track,weightlighting,other,assigned\n",
+        "indexes": {
+            "bib": 0,
+            "archery": 1,
+            "fencing": 2,
+            "field": 3,
+            "swim": 4,
+            "tableTennis": 5,
+            "teams": 6,
+            "track": 7,
+            "weightlighting": 8,
+            "other": 9,
+            "assigned\n": 10
+        }
+    },
+    "data.csv": {
+        "_headers": "1111,radiolabel,fname,lname,address1,address2,city,state,zip,country,email,phone,dob,age,gender,tsize,dso,regNumber,bibNumber,memNumber,ipcNumber,teamName,hcName,hcPhone,hcEmail,classified,coachPresence,archery,fencing,field,swim,tableTennis,teams,track,weightlifting,other\n",
+        "indexes": {
+            "1111": 0,
+            "radiolabel": 1,
+            "fname": 2,
+            "lname": 3,
+            "address1": 4,
+            "address2": 5,
+            "city": 6,
+            "state": 7,
+            "zip": 8,
+            "country": 9,
+            "email": 10,
+            "phone": 11,
+            "dob": 12,
+            "age": 13,
+            "gender": 14,
+            "tsize": 15,
+            "dso": 16,
+            "regNumber": 17,
+            "bibNumber": 18,
+            "memNumber": 19,
+            "ipcNumber": 20,
+            "teamName": 21,
+            "hcName": 22,
+            "hcPhone": 23,
+            "hcEmail": 24,
+            "classified": 25,
+            "coachPresence": 26,
+            "archery": 27,
+            "fencing": 28,
+            "field": 29,
+            "swim": 30,
+            "tableTennis": 31,
+            "teams": 32,
+            "track": 33,
+            "weightlifting": 34,
+            "other\n": 35
+        }
+    },
+    "data2.csv": {
+        "_headers": "1111,radiolabel,fname,lname,address1,address2,city,state,zip,country,email,phone,dob,age,gender,tsize,dso,regNumber,bibNumber,memNumber,ipcNumber,teamName,hcName,hcPhone,hcEmail,classified,coachPresence,archery,fencing,field,swim,tableTennis,teams,track,weightlifting,other\n",
+        "indexes": {
+            "1111": 0,
+            "radiolabel": 1,
+            "fname": 2,
+            "lname": 3,
+            "address1": 4,
+            "address2": 5,
+            "city": 6,
+            "state": 7,
+            "zip": 8,
+            "country": 9,
+            "email": 10,
+            "phone": 11,
+            "dob": 12,
+            "age": 13,
+            "gender": 14,
+            "tsize": 15,
+            "dso": 16,
+            "regNumber": 17,
+            "bibNumber": 18,
+            "memNumber": 19,
+            "ipcNumber": 20,
+            "teamName": 21,
+            "hcName": 22,
+            "hcPhone": 23,
+            "hcEmail": 24,
+            "classified": 25,
+            "coachPresence": 26,
+            "archery": 27,
+            "fencing": 28,
+            "field": 29,
+            "swim": 30,
+            "tableTennis": 31,
+            "teams": 32,
+            "track": 33,
+            "weightlifting": 34,
+            "other\n": 35
+        }
+    },
+    "dataBackUp.csv": {
+        "_headers": "1111,radiolabel,fname,lname,address1,address2,city,state,zip,country,email,phone,dob,age,gender,tsize,dso,regNumber,bibNumber,memNumber,ipcNumber,teamName,hcName,hcPhone,hcEmail,classified,coachPresence,archery,fencing,field,swim,tableTennis,teams,track,weightlifting,other\n",
+        "indexes": {
+            "1111": 0,
+            "radiolabel": 1,
+            "fname": 2,
+            "lname": 3,
+            "address1": 4,
+            "address2": 5,
+            "city": 6,
+            "state": 7,
+            "zip": 8,
+            "country": 9,
+            "email": 10,
+            "phone": 11,
+            "dob": 12,
+            "age": 13,
+            "gender": 14,
+            "tsize": 15,
+            "dso": 16,
+            "regNumber": 17,
+            "bibNumber": 18,
+            "memNumber": 19,
+            "ipcNumber": 20,
+            "teamName": 21,
+            "hcName": 22,
+            "hcPhone": 23,
+            "hcEmail": 24,
+            "classified": 25,
+            "coachPresence": 26,
+            "archery": 27,
+            "fencing": 28,
+            "field": 29,
+            "swim": 30,
+            "tableTennis": 31,
+            "teams": 32,
+            "track": 33,
+            "weightlifting": 34,
+            "other\n": 35
+        }
+    },
+    "fencingEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Team Scoring\"": 2,
+            " \"Event Date\"\r\n": 3
+        }
+    },
+    "fieldEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Type of Scoring\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Type of Scoring\"": 2,
+            " \"Team Scoring\"": 3,
+            " \"Event Date\"\r\n": 4
+        }
+    },
+    "id.csv": {
+        "_headers": "1547\n",
+        "indexes": {
+            "1547\n": 0
+        }
+    },
+    "masterData.csv": {
+        "_headers": "meetName,shortName,startDate,endDate,meetCity,meetState,country,meetDirector,meetHotel,meetSponsors,meetLOC,jn_logo,bib,archery,fencing,field,swim,tableTennis,teams,track,weightlifting,other\n",
+        "indexes": {
+            "meetName": 0,
+            "shortName": 1,
+            "startDate": 2,
+            "endDate": 3,
+            "meetCity": 4,
+            "meetState": 5,
+            "country": 6,
+            "meetDirector": 7,
+            "meetHotel": 8,
+            "meetSponsors": 9,
+            "meetLOC": 10,
+            "jn_logo": 11,
+            "bib": 12,
+            "archery": 13,
+            "fencing": 14,
+            "field": 15,
+            "swim": 16,
+            "tableTennis": 17,
+            "teams": 18,
+            "track": 19,
+            "weightlifting": 20,
+            "other\n": 21
+        }
+    },
+    "otherEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Type of Event\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Type of Event\"": 2,
+            " \"Team Scoring\"": 3,
+            " \"Event Date\"\r\n": 4
+        }
+    },
+    "swimEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Type Pool\", \"Max Per Heat\", \"Promote Only\", \"Seed Method\", \"Relay\" \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Type Pool\"": 2,
+            " \"Max Per Heat\"": 3,
+            " \"Promote Only\"": 4,
+            " \"Seed Method\"": 5,
+            " \"Relay\" \"Team Scoring\"": 6,
+            " \"Event Date\"\r\n": 7
+        }
+    },
+    "tableTennisEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Team Scoring\"": 2,
+            " \"Event Date\"\r\n": 3
+        }
+    },
+    "teamEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Team Scoring\"": 2,
+            " \"Event Date\"\r\n": 3
+        }
+    },
+    "trackEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Max Per Heat\", \"Timed Finals\", \"Promote Only\", \"Seed Method\", \"Relay\" \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Max Per Heat\"": 2,
+            " \"Timed Finals\"": 3,
+            " \"Promote Only\"": 4,
+            " \"Seed Method\"": 5,
+            " \"Relay\" \"Team Scoring\"": 6,
+            " \"Event Date\"\r\n": 7
+        }
+    },
+    "uploadedData.csv": {
+        "_headers": false,
+        "indexes": {
+            "_empty_": 0
+        }
+    },
+    "weightliftingEvents.csv": {
+        "_headers": "\"Event #\", \"Event Name\", \"Team Scoring\", \"Event Date\"\r\n",
+        "indexes": {
+            "\"Event #\"": 0,
+            " \"Event Name\"": 1,
+            " \"Team Scoring\"": 2,
+            " \"Event Date\"\r\n": 3
+        }
+    }
+}

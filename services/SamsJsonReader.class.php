@@ -92,7 +92,7 @@ class SamsJsonReader{
             throw new Exception("File Not Found ". self::$headersFile);
         }
         var_dump($this->arr);
-        file_put_contents(self::$headersFile,json_encode($this->arr));
+        file_put_contents(self::$headersFile,json_encode($this->arr,JSON_PRETTY_PRINT));
         
 
     }
