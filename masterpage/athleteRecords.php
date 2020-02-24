@@ -1322,74 +1322,8 @@ body{
     </nav>
 
     <div class="container">
-
-        <?php
-
-        //Gets the ID of the First Row
-        $handle = fopen("data.csv", 'a+');
-        $rows = array();
-        $firstID = fgetcsv($handle);
-        $firstID = $firstID[0];
-        fclose("data.csv");
-
-        $handle = fopen("data.csv", 'a+');
-        $rows = array();
-
-        //Opens the file. Gets the 3 rows at a time. The current. Prev and Next.
-        while (($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
-            $rows[] = $data;
-            if (count($rows) == 3) {
-                $currentRow = $rows[1];
-                if ($_GET['id'] != $currentRow[0])
-                    array_shift($rows);
-                else {
-                    break;
-                }
-            }
-        }
-
-        $prevID = $rows[0][0];
-        $nextID = $rows[2][0];
-        if (!empty($prevID) && $prevID != $firstID) {
-            $prevLink = '<a href="athleteRecords.php?id=' . $prevID . '" class="previous round">&#8592;</a>';
-        } else {
-            $prevLink = "";
-        }
-        if (!empty($nextID)) {
-            $nextLink = '<a href="athleteRecords.php?id=' . $nextID . '" class="next round">&#8594;</a>';
-        } else {
-            $nextLink = "";
-        }
-
-        $arrow = '
-        <style>
-        .previous {
-        background-color: #009664;
-        color: white;
-        float: inline-start;
-        }
-        .next {
-        background-color: #009664;
-        color: white;
-        float: right;
-        }
-        .round {
-        border-radius: 100%;
-        display: inline-block;
-        padding: 8px 16px;
-        }
-        </style>
-        <body>
-        ' . $prevLink . $nextLink . '
-        </body>
-        <br>
-        ';
-
-        echo $arrow;
-
-        fclose("data.csv");
-
-        ?>
+        <button id="arrow" onclick="back()">Back</button>
+        <button id="arrow" onclick="next()">next</button>
 
         <div id="user-profile-2" class="user-profile">
             <div class="tabbable">
@@ -1901,8 +1835,9 @@ body{
 </body>
 
 <script type="text/javascript">
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
+
+    let coll = document.getElementsByClassName("collapsible");
+    let num = 1;
     console.log(coll);
     //For the Sports Section Collapsible
     for (i = 0; i < coll.length; i++) {
@@ -1922,293 +1857,230 @@ body{
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "data.csv",
+            url: "2018_Jr_Nationals_registrations_only_TF.csv",
             dataType: "text",
             success: function(data) {
                 populateForm(data);
             }
         });
     });
-
+    
+    
+    class athlete {
+        constructor(reg,Fname,Lname, gender, DOB, address1, address2, city, state, zipcode, country, homephone, email, memberNumber, teamName, agetrkfld, 
+                    trclass, trevent1, trev1mark, trevent2, trev2mark, trevent3, trev3mark, trevent4, trev4mark, trevent5, trev5mark, trevent6, 
+                    trev6mark, trevent7, trev7mark, trevent8, trev8mark, fifieldclass, fievent1, fiev1mark, fievent2, fiev2mark, fievent3, 
+                    fiev3mark, fievent4, fiev4mark, fievent5, fiev5mark, fievent6, fiev6mark, fievent7, fiev7mark, fievent8, fiev8mark) {
+            this.reg = reg;
+            this.Fname = Fname;
+            this.Lname = Lname;
+            this.gender = gender;
+            this.DOB = DOB;
+            this.address1 = address1;
+            this.address2 = address2;
+            this.city = city;
+            this.state = state;
+            this.zipcode = zipcode;
+            this.country = country;
+            this.homephone = homephone;
+            this.email = email;
+            this.memberNumber = memberNumber;
+            this.teamName = teamName;
+            this.agetrkfld = agetrkfld;
+            this.trclass = trclass;
+            this.trevent1 = trevent1;
+            this.trev1mark = trev1mark;
+            this.trevent2 = trevent2;
+            this.trev2mark = trev2mark;
+            this.trevent3 = trevent3;
+            this.trev3mark = trev3mark;
+            this.trevent4 = trevent4;
+            this.trev4mark = trev4mark;
+            this.trevent5 = trevent5;
+            this.trev5mark = trev5mark;
+            this.trevent6 = trevent6;
+            this.trev6mark = trev6mark;
+            this.trevent7 = trevent7;
+            this.trev7mark = trev7mark;
+            this.trevent8 = trevent8;
+            this.trev8mark = trev8mark;
+            this.fifieldclass = fifieldclass;
+            this.fievent1 = fievent1;
+            this.fiev1mark = fiev1mark;
+            this.fievent2 = fievent2;
+            this.fiev2mark = fiev2mark;
+            this.fievent3 = fievent3;
+            this.fiev3mark = fiev3mark;
+            this.fievent4 = fievent4;
+            this.fiev4mark = fiev4mark;
+            this.fievent5 = fievent5;
+            this.fiev5mark = fiev5mark;
+            this.fievent6 = fievent6;
+            this.fiev6mark = fiev6mark;
+            this.fievent7 = fievent7;
+            this.fiev7mark = fiev7mark;
+            this.fievent8 = fievent8;
+            this.fiev8mark = fiev8mark;
+        }
+    }
+    let athletes = [];
+   
+    let regIndex,FnameIndex, LnameIndex, genderIndex, DOBIndex, address1Index, address2Index, cityIndex, stateIndex, zipcodeIndex, countryIndex, homephoneIndex, emailIndex, memberNumberIndex, teamNameIndex, agetrkfldIndex;
+    let trclassIndex, trevent1Index, trev1markIndex, trevent2Index, trev2markIndex, trevent3Index, trev3markIndex, trevent4Index, trev4markIndex, trevent5Index, trev5markIndex, trevent6Index;
+    let trev6markIndex, trevent7Index, trev7markIndex, trevent8Index, trev8markIndex, fifieldclassIndex, fievent1Index, fiev1markIndex, fievent2Index, fiev2markIndex, fievent3Index;
+    let fiev3markIndex, fievent4Index, fiev4markIndex, fievent5Index, fiev5markIndex, fievent6Index, fiev6markIndex, fievent7Index, fiev7markIndex, fievent8Index, fiev8markIndex;
+     
     //Function populates the page with the athlete's information
     function populateForm(data) {
-        console.log(data); //shows all the data of Data.csv in Console Log
-        var lines = data.split(/\r\n|\n/); //Split Each Entry
-        var colNames = lines[0].split(','); //Split Each Entry into each columns
-        console.log(colNames); //displays the names of the columns
-        var i = 0;
-        var url = new URL(window.location.href);
-        var id_url = url.searchParams.get("id"); //gets the athlete's ID needed to display the informaion
+        
+        let lines = data.split(/\r\n|\n/); 
+        let colNames = []
+        let check = []
+        for(let i = 0; i < lines.length; i++){
+            colNames[i] = lines[i].split(',');
+        }
+        console.log(colNames)
 
-        while (i++ < lines.length - 1) {
-
-            var colEntries = lines[i].split(',');
-            var id = colEntries[0];
-
-            if (id == id_url) {
-
-                //removes quotes and spaces from each element. (quotes may be added to the element by default if the stored value is more than one word)
-                for (var j = 0; j < 36; j++) {
-                    colEntries[j] = trimStr(colEntries[j]);
-                    colNames[j] = trimStr(colNames[j]);
+        for(let row = 0; row < 1; row++){
+            check[row] = lines[row].split(',');
+            for(let column = 0; column < check[0].length; column++){
+                if(check[row][column].toLowerCase() == "regfor"){
+                    regIndex = column;
+                }else if(check[row][column].toLowerCase() == "firstname"){
+                    FnameIndex = column;
+                }else if(check[row][column].toLowerCase() == "lastname"){
+                    LnameIndex = column;
+                }else if(check[row][column].toLowerCase() == "gender"){
+                    genderIndex = column;
+                }else if(check[row][column].toLowerCase() == "dob"){
+                    DOBIndex = column;
+                }else if(check[row][column].toLowerCase() == "address1"){
+                    address1Index = column;
+                }else if(check[row][column].toLowerCase() == "address2"){
+                    address2Index = column;
+                }else if(check[row][column].toLowerCase() == "city"){
+                    cityIndex = column;
+                }else if(check[row][column].toLowerCase() == "state"){
+                    stateIndex = column;
+                }else if(check[row][column].toLowerCase() == "zipcode"){
+                    zipcodeIndex = column;
+                }else if(check[row][column].toLowerCase() == "country"){
+                    countryIndex = column;
+                }else if(check[row][column].toLowerCase() == "homephone"){
+                    homephoneIndex = column;
+                }else if(check[row][column].toLowerCase() == "email"){
+                    emailIndex = column;
+                }else if(check[row][column].toLowerCase() == "membernumber"){
+                    memberNumberIndex = column;
+                }else if(check[row][column].toLowerCase() == "teamname"){
+                    teamNameIndex = column;
+                }else if(check[row][column].toLowerCase() == "agetrkfld"){
+                    agetrkfldIndex = column;
+                }else if(check[row][column].toLowerCase() == "trclass"){
+                    trclassIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent1"){
+                    trevent1Index = column;
+                }else if(check[row][column].toLowerCase() == "trev1mark"){
+                    trev1markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent2"){
+                    trevent2Index = column;
+                }else if(check[row][column].toLowerCase() == "trev2mark"){
+                    trev2markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent3"){
+                    trevent3Index = column;
+                }else if(check[row][column].toLowerCase() == "trev3mark"){
+                    trev3markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent4"){
+                    trevent4Index = column;
+                }else if(check[row][column].toLowerCase() == "trev4mark"){
+                    trev4markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent5"){
+                    trevent5Index = column;
+                }else if(check[row][column].toLowerCase() == "trev5mark"){
+                    trev5markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent6"){
+                    trevent6Index = column;
+                }else if(check[row][column].toLowerCase() == "trev6mark"){
+                    trev6markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent7"){
+                    trevent7Index = column;
+                }else if(check[row][column].toLowerCase() == "trev7mark"){
+                    trev7markIndex = column;
+                }else if(check[row][column].toLowerCase() == "trevent8"){
+                    trevent8Index = column;
+                }else if(check[row][column].toLowerCase() == "trev8mark"){
+                    trev8markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fifieldclass"){
+                    fifieldclassIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent1"){
+                    fievent1Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev1mark"){
+                    fiev1markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent2"){
+                    fievent2Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev2mark"){
+                    fiev2markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent3"){
+                    fievent3Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev3mark"){
+                    fiev3markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent4"){
+                    fievent4Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev4mark"){
+                    fiev4markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent5"){
+                    fievent5Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev5mark"){
+                    fiev5markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent6"){
+                    fievent6Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev6mark"){
+                    fiev6markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent7"){
+                    fievent7Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev7mark"){
+                    fiev7markIndex = column;
+                }else if(check[row][column].toLowerCase() == "fievent8"){
+                    fievent8Index = column;
+                }else if(check[row][column].toLowerCase() == "fiev8mark"){
+                    fiev8markIndex = column;
                 }
-
-                //List of what each colEntry represent:
-                /*
-                var type = (colEntries[1]);
-                var fname = (colEntries[2]);
-                var lname = (colEntries[3]);
-                var address1 = (colEntries[4]);
-                var address2 = (colEntries[5]);
-                var city = (colEntries[6]);
-                var state = (colEntries[7]);
-                var zip = (colEntries[8]);
-                var country = (colEntries[9]);
-                var email = (colEntries[10]);
-                var phone = (colEntries[11]);
-                /*
-                    var type = (colEntries[1]);
-                    var fname = (colEntries[2]);
-                    var lname = (colEntries[3]);
-                    var address1 = (colEntries[4]);
-                    var address2 = (colEntries[5]);
-                    var city = (colEntries[6]);
-                    var state = (colEntries[7]);
-                    var zip = (colEntries[8]);
-                    var country = (colEntries[9]);
-                    var email = (colEntries[10]);
-                    var phone = (colEntries[11]);
-                    
-                    var dob = (colEntries[12]);
-                    var age = (colEntries[13]);
-                    var gender = (colEntries[14]);
-                    var tsize = (colEntries[15]);
-                    var dso = (colEntries[16]);
-                    var regNumber = (colEntries[17]);
-                    var bibNumber = (colEntries[18]);
-                    var memNumber = (colEntries[19]);
-                    var ipcNumber = (colEntries[20]);
-                    var teamName = (colEntries[21]);
-                    var hcName = (colEntries[22]);
-                    
-                    var hcPhone = (colEntries[23]);
-                    var hcEmail = (colEntries[24]);
-                    
-                    var classified = (colEntries[25]);
-                    var coachPresence = (colEntries[26]);
-                    
-                    var archery = (colEntries[27]);
-                    var fencing = (colEntries[28]);
-                    var field = (colEntries[29]);
-                    var swim = (colEntries[30]);
-                    var tableTennis = (colEntries[31]);
-                    var teams = (colEntries[32]);
-                    var track = (colEntries[33]);
-                    var weightlifting = (colEntries[34]);
-                    var other = (colEntries[35]); 
-                    */
-                var dob = (colEntries[12]);
-                var age = (colEntries[13]);
-                var gender = (colEntries[14]);
-                var tsize = (colEntries[15]);
-                var dso = (colEntries[16]);
-                var regNumber = (colEntries[17]);
-                var bibNumber = (colEntries[18]);
-                var memNumber = (colEntries[19]);
-                var ipcNumber = (colEntries[20]);
-                var teamName = (colEntries[21]);
-                var hcName = (colEntries[22]);
-                /*
-                    var type = (colEntries[1]);
-                    var fname = (colEntries[2]);
-                    var lname = (colEntries[3]);
-                    var address1 = (colEntries[4]);
-                    var address2 = (colEntries[5]);
-                    var city = (colEntries[6]);
-                    var state = (colEntries[7]);
-                    var zip = (colEntries[8]);
-                    var country = (colEntries[9]);
-                    var email = (colEntries[10]);
-                    var phone = (colEntries[11]);
-                    
-                    var dob = (colEntries[12]);
-                    var age = (colEntries[13]);
-                    var gender = (colEntries[14]);
-                    var tsize = (colEntries[15]);
-                    var dso = (colEntries[16]);
-                    var regNumber = (colEntries[17]);
-                    var bibNumber = (colEntries[18]);
-                    var memNumber = (colEntries[19]);
-                    var ipcNumber = (colEntries[20]);
-                    var teamName = (colEntries[21]);
-                    var hcName = (colEntries[22]);
-                    
-                    var hcPhone = (colEntries[23]);
-                    var hcEmail = (colEntries[24]);
-                    
-                    var classified = (colEntries[25]);
-                    var coachPresence = (colEntries[26]);
-                    
-                    var archery = (colEntries[27]);
-                    var fencing = (colEntries[28]);
-                    var field = (colEntries[29]);
-                    var swim = (colEntries[30]);
-                    var tableTennis = (colEntries[31]);
-                    var teams = (colEntries[32]);
-                    var track = (colEntries[33]);
-                    var weightlifting = (colEntries[34]);
-                    var other = (colEntries[35]); 
-                    */
-                var hcPhone = (colEntries[23]);
-                var hcEmail = (colEntries[24]);
-                /*
-                    var type = (colEntries[1]);
-                    var fname = (colEntries[2]);
-                    var lname = (colEntries[3]);
-                    var address1 = (colEntries[4]);
-                    var address2 = (colEntries[5]);
-                    var city = (colEntries[6]);
-                    var state = (colEntries[7]);
-                    var zip = (colEntries[8]);
-                    var country = (colEntries[9]);
-                    var email = (colEntries[10]);
-                    var phone = (colEntries[11]);
-                    
-                    var dob = (colEntries[12]);
-                    var age = (colEntries[13]);
-                    var gender = (colEntries[14]);
-                    var tsize = (colEntries[15]);
-                    var dso = (colEntries[16]);
-                    var regNumber = (colEntries[17]);
-                    var bibNumber = (colEntries[18]);
-                    var memNumber = (colEntries[19]);
-                    var ipcNumber = (colEntries[20]);
-                    var teamName = (colEntries[21]);
-                    var hcName = (colEntries[22]);
-                    
-                    var hcPhone = (colEntries[23]);
-                    var hcEmail = (colEntries[24]);
-                    
-                    var classified = (colEntries[25]);
-                    var coachPresence = (colEntries[26]);
-                    
-                    var archery = (colEntries[27]);
-                    var fencing = (colEntries[28]);
-                    var field = (colEntries[29]);
-                    var swim = (colEntries[30]);
-                    var tableTennis = (colEntries[31]);
-                    var teams = (colEntries[32]);
-                    var track = (colEntries[33]);
-                    var weightlifting = (colEntries[34]);
-                    var other = (colEntries[35]); 
-                    */
-                var classified = (colEntries[25]);
-                var coachPresence = (colEntries[26]);
-                /*
-                    var type = (colEntries[1]);
-                    var fname = (colEntries[2]);
-                    var lname = (colEntries[3]);
-                    var address1 = (colEntries[4]);
-                    var address2 = (colEntries[5]);
-                    var city = (colEntries[6]);
-                    var state = (colEntries[7]);
-                    var zip = (colEntries[8]);
-                    var country = (colEntries[9]);
-                    var email = (colEntries[10]);
-                    var phone = (colEntries[11]);
-                    
-                    var dob = (colEntries[12]);
-                    var age = (colEntries[13]);
-                    var gender = (colEntries[14]);
-                    var tsize = (colEntries[15]);
-                    var dso = (colEntries[16]);
-                    var regNumber = (colEntries[17]);
-                    var bibNumber = (colEntries[18]);
-                    var memNumber = (colEntries[19]);
-                    var ipcNumber = (colEntries[20]);
-                    var teamName = (colEntries[21]);
-                    var hcName = (colEntries[22]);
-                    
-                    var hcPhone = (colEntries[23]);
-                    var hcEmail = (colEntries[24]);
-                    
-                    var classified = (colEntries[25]);
-                    var coachPresence = (colEntries[26]);
-                    
-                    var archery = (colEntries[27]);
-                    var fencing = (colEntries[28]);
-                    var field = (colEntries[29]);
-                    var swim = (colEntries[30]);
-                    var tableTennis = (colEntries[31]);
-                    var teams = (colEntries[32]);
-                    var track = (colEntries[33]);
-                    var weightlifting = (colEntries[34]);
-                    var other = (colEntries[35]); 
-                    */
-                var archery = (colEntries[27]);
-                var fencing = (colEntries[28]);
-                var field = (colEntries[29]);
-                var swim = (colEntries[30]);
-                var tableTennis = (colEntries[31]);
-                var teams = (colEntries[32]);
-                var track = (colEntries[33]);
-                var weightlifting = (colEntries[34]);
-                var other = (colEntries[35]); 
-
-                //Gets the ID of the athlete
-                if (!(isEmpty(colEntries[0]))) document.getElementById("id").innerHTML = colEntries[0];
-                if (!(isEmpty(colEntries[2]) && isEmpty(colEntries[3]))) document.getElementById("names").innerHTML = colEntries[2] + " " + colEntries[3]; //Gets the names of the person
-
-                //Gets the phone and email of the athlete and places them as a link
-                if (!isEmpty(colEntries[11])) {
-                    document.getElementById("call").innerHTML = phoneFormat(colEntries[11]);
-                    document.getElementById("hrefCall").href = "tel:" + colEntries[11];
-                }
-                if (!isEmpty(colEntries[10])) {
-                    document.getElementById("email").innerHTML = colEntries[10];
-                    document.getElementById("hrefEmail").href = "mailto:" + colEntries[10];
-                }
-
-
-                //Gets the addresss
-                //State and City must be provided if zip is not provided. Address Line 1 must be provided
-                if (!isEmpty(colEntries[4]) && (!isEmpty(colEntries[8]) || (!isEmpty(colEntries[6]) && !isEmpty(colEntries[7])))) {
-                    var address = colEntries[4] + (isEmpty(colEntries[5]) ? "" : ", <br>") + colEntries[5] + (isEmpty(colEntries[6]) ? "" : ", <br>") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9];
-                    document.getElementById("address").innerHTML = address;
-                    var address = colEntries[4] + (isEmpty(colEntries[6]) ? "" : ", ") + colEntries[6] + (isEmpty(colEntries[7]) ? "" : ", ") + colEntries[7] + (isEmpty(colEntries[8]) ? "" : ", ") + colEntries[8] + (isEmpty(colEntries[9]) ? "" : ", ") + colEntries[9];
-                    document.getElementById("hrefAddress").href = "http://maps.google.com/?q=" + address;
-                }
-
-                //Populated dob, age, gender, tsize, dso, regNum, bibNum, memNum, ipcNum, teamName, hcName, hcPhone, hcEmail. In that order
-                for (var j = 12; j <= 26; j++) {
-                    if (!isEmpty(colEntries[j]))
-                        document.getElementById(colNames[j]).innerHTML = colEntries[j];
-                }
-
-                //Gets the phone and email of the athlete and places them as a link
-                if (!isEmpty(colEntries[23])) {
-                    document.getElementById("hcPhone").innerHTML = phoneFormat(colEntries[23]);
-                    document.getElementById("hrefHcPhone").href = "tel:" + colEntries[23];
-                }
-                if (!isEmpty(colEntries[24])) {
-                    document.getElementById("hrefHcEmail").href = "mailto:" + colEntries[24];
-                }
-
-                //Displays the sport section if selected
-                for (var j = 27; j < 36; j++) {
-                    if (!isEmpty(colEntries[j]) && colEntries[j] == 1) {
-                        document.getElementById("noSports").style.display = "none";
-                        document.getElementById(colNames[j]).style.display = "block";
-                    }
-                }
-                document.getElementById("editProfile").href = "registrationUpdate.php?id=" + id;
-
-                break;
             }
         }
+        //Makes a list of classes of all the athletes with their attributes
+        for(let i = 1; i < colNames.length; i++){
+            athletes[i] = new athlete(colNames[i][regIndex],colNames[i][FnameIndex],colNames[i][LnameIndex],colNames[i][genderIndex],colNames[i][DOBIndex],colNames[i][address1Index],colNames[i][address2Index],
+            colNames[i][cityIndex],colNames[i][stateIndex],colNames[i][zipcodeIndex],colNames[i][countryIndex],colNames[i][homephoneIndex],colNames[i][emailIndex],colNames[i][memberNumberIndex],colNames[i][teamNameIndex],colNames[i][agetrkfldIndex],
+            colNames[i][trclassIndex],colNames[i][trevent1Index],colNames[i][trev1markIndex],colNames[i][trevent2Index],colNames[i][trev2markIndex],colNames[i][trevent3Index],colNames[i][trev3markIndex],colNames[i][trevent4Index],colNames[i][trev4markIndex],
+            colNames[i][trevent5Index],colNames[i][trev5markIndex],colNames[i][trevent6Index],colNames[i][trev6markIndex],colNames[i][trevent7Index],colNames[i][trev7markIndex],colNames[i][trevent8Index],colNames[i][trev8markIndex],colNames[i][fifieldclassIndex],
+            colNames[i][fievent1Index],colNames[i][fiev1markIndex],colNames[i][fievent2Index],colNames[i][fiev2markIndex],colNames[i][fievent3Index],colNames[i][fiev3markIndex],colNames[i][fievent4Index],colNames[i][fiev4markIndex],colNames[i][fievent5Index],
+            colNames[i][fiev5markIndex],colNames[i][fievent6Index],colNames[i][fiev6markIndex],colNames[i][fievent7Index],colNames[i][fiev7markIndex],colNames[i][fievent8Index],colNames[i][fiev8markIndex]);
+        }
+        // console.log(athletes);
 
-        if (i >= lines.length) alert("ID Not Found in the System"); //Alerts if the id requested is not in the system
+        document.getElementById("names").innerHTML = athletes[num].Fname + athletes[num].Lname;
+        document.getElementById("gender").innerHTML = athletes[num].gender;
+        document.getElementById("dob").innerHTML = athletes[num].DOB;
+        document.getElementById("address").innerHTML = athletes[num].address1 + " " + athletes[num].city + ", " + athletes[num].state + " " + athletes[num].zipcode;
+        document.getElementById("email").innerHTML = athletes[num].email;
+        document.getElementById("call").innerHTML = athletes[num].homephone;
+        document.getElementById("id").innerHTML = athletes[num].memberNumber;
+        document.getElementById("teamName").innerHTML = athletes[num].teamName;
+        document.getElementById("age").innerHTML = athletes[num].agetrkfld;
+        console.log(athletes)
 
+    }
+    
+    function updateForm(){
+        document.getElementById("names").innerHTML = athletes[num].Fname + " " + athletes[num].Lname;
+        document.getElementById("gender").innerHTML = athletes[num].gender;
+        document.getElementById("dob").innerHTML = athletes[num].DOB;
+        document.getElementById("address").innerHTML = athletes[num].address1 + " " + athletes[num].city + ", " + athletes[num].state + " " + athletes[num].zipcode;
+        document.getElementById("email").innerHTML = athletes[num].email;
+        document.getElementById("call").innerHTML = athletes[num].homephone;
+        document.getElementById("id").innerHTML = athletes[num].memberNumber;
+        document.getElementById("teamName").innerHTML = athletes[num].teamName;
+        document.getElementById("age").innerHTML = athletes[num].agetrkfld;
     }
     function printDiv(){
         window.print();
@@ -2234,6 +2106,18 @@ body{
             newStr += str.charAt(i);
         }
         return newStr;
+    }
+    function next(){
+        num++;
+        updateForm();
+        console.log(num);
+    }
+    function back(){
+        if (num > 1){
+            num--;
+        }
+        updateForm();
+        console.log(num);
     }
 </script>
 
