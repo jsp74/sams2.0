@@ -441,14 +441,14 @@
                row.push(date);
                console.log(row);
                allRows.push(row)
-               // $.POST("setuparchery.php", {
-               // 		data: row
-               // });
           }
+          
           console.log(allRows);
           http = new XMLHttpRequest();
           http.open("POST","handlearchery.php",true);
-          var params = "data="+"<?php serialize("+allRows+") ?>&sport=archery";
+          var ser = JSON.stringify(allRows);
+          var params = "data="+ser+"&sport=archery";
+
           http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
           http.onreadystatechange = function(){
