@@ -152,8 +152,8 @@ session_start();
 gatekeeper("./../login/samslogin.html");
 
 //If the file does not have any column labels, or if the file does not exist, then create column labels
-if(!file_exists("dataBackUp.csv") or empty("dataBackUp.csv")) {
-  $file = fopen("dataBackUp.csv", 'a') or errOccurred();
+if(!file_exists("../databases/dataBackUp.csv") or empty("../databases/dataBackUp.csv")) {
+  $file = fopen("../databases/dataBackUp.csv", 'a') or errOccurred();
   $labels = [1111,"radiolabel","fname","lname","address1","address2","city","state","zip","country","email","phone","dob","age","gender","tsize","dso","regNumber","bibNumber","memNumber","ipcNumber","teamName","hcName","hcPhone","hcEmail","classified","coachPresence","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
 
   fputcsv($file, $labels) or errOccurred(); //Formats $data to csv and puts that into $file, or returns error
@@ -162,7 +162,7 @@ if(!file_exists("dataBackUp.csv") or empty("dataBackUp.csv")) {
 
 $ID = nextBib(); //gets the next bib number
 
-$file = fopen("dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
+$file = fopen("../databases/dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
 $file2 = fopen("tempData987.csv", 'w+') or errOccurred(); // Creates and opens a temporary file or returns error
 
 //Gets Data from each Field of the Form
@@ -290,7 +290,7 @@ if(!$dataIncluded) {
 fclose($file) or errOccurred();
 fclose($file2) or errOccurred();
 
-copy("tempData987.csv", "dataBackUp.csv") or errOccurred();
+copy("tempData987.csv", "../databases/dataBackUp.csv") or errOccurred();
 unlink("tempData987.csv") or errOccurred();
 
 success(); 
@@ -298,7 +298,7 @@ success();
 exit();
 
 function nextBib() {
-  $file = fopen("dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
+  $file = fopen("../databases/dataBackUp.csv", 'a+') or errOccurred(); // Opens the file, or returns error
   $ID = 0;
   while(!feof($file)) {
     $ar = fgetcsv($file);

@@ -155,7 +155,7 @@
 	session_start();     
 	gatekeeper("./../login/login.php");
 
-	$file = fopen("dataBackUp.csv", 'a+') or errOccurred();
+	$file = fopen("../databases/dataBackUp.csv", 'a+') or errOccurred();
 	$file2 = fopen("tempData987.csv", 'w+') or errOccurred();
 
 	$id = getdata("ID");
@@ -319,7 +319,7 @@
     fclose($file) or errOccurred();
     fclose($file2) or errOccurred();
 
-    copy("tempData987.csv", "dataBackUp.csv") or errOccurred();
+    copy("tempData987.csv", "../databases/dataBackUp.csv") or errOccurred();
     unlink("tempData987.csv") or errOccurred();
 
     success(); 

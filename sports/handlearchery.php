@@ -13,7 +13,7 @@ if(isset($_POST['data'])){
 	// echo '<script>console.log("Inside HandleArchery")</script>';
 	
 	// if the file doesnt exists, creates it. If it exists, truncates the data and put the pointer at the beginning of the file
-	$file = fopen("archeryEvents.csv", 'w+') or errOccurred();
+	$file = fopen("../databases/archeryEvents.csv", 'w+') or errOccurred();
 	// column headings
 	if($sport = 'archery'){
 		$labels = ["Event #","Event Name","Team Scoring","Event Date"];

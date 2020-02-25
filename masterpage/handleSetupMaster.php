@@ -157,7 +157,7 @@ session_start();
 gatekeeper("./../login/samslogin.html");
 
 // if the file doesnt exists, creates it. If it exists, truncates the data and put the pointer at the beginning of the file
-$file = fopen("masterData.csv", 'w+') or errOccurred();
+$file = fopen("../databases/masterData.csv", 'w+') or errOccurred();
 // column headings
 $labels = ["meetName","shortName","startDate","endDate","meetCity","meetState","country","meetDirector",
 			"meetHotel","meetSponsors","meetLOC","jn_logo","bib","archery","fencing","field","swim",
@@ -200,7 +200,7 @@ fclose($file) or errOccurred(); //Closes the file, or returns error
 // success(); 
 
 // if the file doesnt exists, creates it. If it exists, truncates the data and put the pointer at the beginning of the file
-$file = fopen("bibData.csv", 'w+') or errOccurred();
+$file = fopen("../databases/bibData.csv", 'w+') or errOccurred();
 // column headings
 $labels = ["bib","archery","fencing","field","swim","tableTennis","teams","track","weightlifting","other"];
 fputcsv($file, $labels) or errOccurred(); //Formats $labels to csv and puts that into $file, or returns error

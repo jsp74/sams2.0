@@ -282,7 +282,7 @@
         }
         
         function downloadReg(){
-            document.getElementById('regFrame').src = "./masterpage/data.csv";
+            document.getElementById('regFrame').src = "./databases/data.csv";
         }
         
     

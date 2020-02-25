@@ -10,8 +10,10 @@ include( "./../login/functions.php" );
 session_start();
 gatekeeper("./../login/samslogin.html");
 
+$trackDataFilePath = "../databases/trackEvents.csv";
+
 // if the file doesnt exists, creates it. If it exists, truncates the data and put the pointer at the beginning of the file
-$file = fopen("trackData.csv", 'w+') or errOccurred();
+$file = fopen($trackDataFilePath, 'w+') or errOccurred();
 // column headings
 $labels = ["venueName","locationName","activeEvents","activeLanes","crl"];
 fputcsv($file, $labels) or errOccurred(); //Formats $labels to csv and puts that into $file, or returns error

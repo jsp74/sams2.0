@@ -472,7 +472,7 @@
         $(document).ready(function(){
             $.ajax({
                 type: "GET",
-                url: "masterData.csv",
+                url: "../databases/masterData.csv",
                 dataType: "text",
                 success: function(data){populateForm(data);}
             });
@@ -481,7 +481,7 @@
         $(document).ready(function(){
             $.ajax({
                 type: "GET",
-                url: "bibData.csv",
+                url: "../databases/bibData.csv",
                 dataType: "text",
                 success: function(data){checkBib(data);}
             });

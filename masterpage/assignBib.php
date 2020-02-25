@@ -15,7 +15,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include("./../login/functions.php");
 
-$bib_file = fopen("bibData.csv", 'a+');
+$bibDataCsv_FilePath = "../databases/bibData.csv";
+$dataCsv_FilePath = "../databases/data.csv";
+
+$bib_file = fopen($bibDataCsv_FilePath, 'a+');
 $bibHeader = fgetcsv($bib_file); //Gets the header line
 $bibData = fgetcsv($bib_file); //gets the line with all the information
 
@@ -31,7 +34,7 @@ $track = $bibData[7];
 // $other = $bibDatap[9];
 fclose($bib_file);
 
-$data_file = fopen("data.csv", 'a+');
+$data_file = fopen($dataCsv_FilePath, 'a+');
 $temp = fopen("tempData9876.csv", 'a+');
 
 $data = fgetcsv($data_file); //gets the title line
@@ -49,15 +52,15 @@ while(!feof($data_file) && $data != NULL && $data != false ) {
 	$data = fgetcsv($data_file); //Gets the next line
 }
 
-fclose("data.csv");
+fclose($dataCsv_FilePath);
 fclose("tempData9876.csv");
 
-copy("tempData9876.csv", "data.csv"); //Copies the content of temp file into data.csv
+copy("tempData9876.csv", $dataCsv_FilePath); //Copies the content of temp file into data.csv
 unlink("tempData9876.csv"); //Deletes the temp file
 
 
 //Changes the bib in bibData.csv to the next starting bib
-$bib_file = fopen("bibData.csv", 'w+');
+$bib_file = fopen($bibDataCsv_FilePath, 'w+');
 $bibData[0] = $bib;
 $bibData[10] = 1;
 fputcsv($bib_file, $bibHeader);

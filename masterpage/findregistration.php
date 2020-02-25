@@ -314,7 +314,7 @@ gatekeeper("./../login/login.php");
                         session_start();     
                         //gatekeeper("./../login/login.php");
                         
-                        $file = fopen("./data.csv", 'r') or die("Unable to open file!"); // Opens the file, or returns error
+                        $file = fopen("../databases/data.csv", 'r') or die("Unable to open file!"); // Opens the file, or returns error
                         
                         $out = <<<EOD
                         <table class="table" id="searchTable">
@@ -763,7 +763,7 @@ EOD;
         $(document).ready(function(){
             $.ajax({
                 type: "GET",
-                url: "data.csv",
+                url: "../databases/data.csv",
                 dataType: "text",
                 success: function(data){populateForm(data);}
             });

@@ -371,7 +371,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "swimEvents.csv",
+               url: "../databases/swimEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });

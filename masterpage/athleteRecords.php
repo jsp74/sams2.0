@@ -1857,7 +1857,7 @@ body{
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "2018_Jr_Nationals_registrations_only_TF.csv",
+            url: "../databases/2018_Jr_Nationals_registrations_only_TF.csv",
             dataType: "text",
             success: function(data) {
                 populateForm(data);

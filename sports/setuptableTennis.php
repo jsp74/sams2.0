@@ -366,7 +366,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "tableTennisEvents.csv",
+               url: "../databases/tableTennisEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });

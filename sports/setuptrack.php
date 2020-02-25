@@ -371,7 +371,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "trackEvents.csv",
+               url: "../databases/trackEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });

@@ -659,7 +659,7 @@
         document.getElementById("ID").value = id_url;
             $.ajax({
                 type: "GET",
-                url: "dataBackUp.csv",
+                url: "../databases/dataBackUp.csv",
                 dataType: "text",
                 success: function(data){populateForm(data);}
             });

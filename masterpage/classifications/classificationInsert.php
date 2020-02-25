@@ -8,7 +8,7 @@
     $TRC18 = $TRC19 = $FC18 = $FC19 = '';// track class field class
       //get data from 2018 csv file
       $classifications2018 = array(); 
-      $file = fopen("./2018_Jr_Nationals_registrations_only_TF (2).csv", 'r') or die("Unable to open file!");
+      $file = fopen("../../databases/2018_Jr_Nationals_registrations_only_TF (2).csv", 'r') or die("Unable to open file!");
       while (($temp = fgetcsv($file)) !== FALSE)
       {
         array_push($classifications2018, $temp);
@@ -16,7 +16,7 @@
       
       //get data from 2019 csv file
       $classifications2019 = array();
-      $file = fopen("./classification_table_2019.csv", 'r') or die("Unable to open file!");
+      $file = fopen("../../databases/classification_table_2019.csv", 'r') or die("Unable to open file!");
       while (($temp = fgetcsv($file)) !== FALSE) //for full array
       {
         array_push($classifications2019, $temp);
@@ -115,7 +115,7 @@
 /////////////////////////////////////////////////////////////////original classification insert . php//////////////////////////////////////////////////
 $allathletes = array();  //a 2d array for all athletes
 $athleteCount = 0;
-$file = fopen("./2018_Jr_Nationals_registrations_only_TF (2).csv", 'r') or die("Unable to open file!");
+$file = fopen("../../databases/2018_Jr_Nationals_registrations_only_TF (2).csv", 'r') or die("Unable to open file!");
 $headers = fgetcsv($file);
 
 
@@ -143,7 +143,7 @@ fclose($file);
 
 
 ////////////////////////////////////////////////////////file including all athletes and comments///////////////////////////////////////////////
-$file = fopen('./2018_Jr_Nationals_registrations_with_errors.csv', 'w');
+$file = fopen('../../databases/2018_Jr_Nationals_registrations_with_errors.csv', 'w');
  
 $headersWithComments = array();
 for($i = 0; $i < count($headers); $i++)
@@ -167,7 +167,7 @@ fclose($file);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////file including only athletes with errors///////////////////////////////////////////////
-$file = fopen('./2018_Jr_Nationals_registrations_errors_only.csv', 'w');
+$file = fopen('../../databases/2018_Jr_Nationals_registrations_errors_only.csv', 'w');
  
 fputcsv($file, $headersWithComments);
 

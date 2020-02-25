@@ -366,7 +366,7 @@
      $(document).ready(function(){
           $.ajax({
                type: "GET",
-               url: "weightliftingEvents.csv",
+               url: "../databases/weightliftingEvents.csv",
                dataType: "text",
                success: function(data){populateTable(data);}
           });

@@ -236,12 +236,12 @@ function sortData($path) {
 
 
 function import() {
-	$id_file = fopen("id.csv", 'a+');
+	$id_file = fopen("../databases/id.csv", 'a+');
 	$id = fgetcsv($id_file);
 	fclose($id_file);
 	$id = $id[0];
 
-	$bib_file = fopen("bibData.csv", 'a+');
+	$bib_file = fopen("../databases/bibData.csv", 'a+');
 	$bibdata = fgetcsv($bib_file);
 	$bibdata = fgetcsv($bib_file);
 	$bib = $bibdata[0];
@@ -254,7 +254,7 @@ function import() {
 	echo "Track: $track";
 
 
-	$dataFile = fopen("data.csv", 'a+') or errOccurred(180); // Opens the file, or returns error
+	$dataFile = fopen("../databases/data.csv", 'a+') or errOccurred(180); // Opens the file, or returns error
 	$temp = fopen("tempData987.csv", 'w+') or errOccurred(181); //Opens/Creates a temp file
 	$upload = fopen("imports/uploadedData.csv", 'a+') or errOccurred(182); //Opens the file that is uploaded
 	
@@ -395,11 +395,11 @@ function import() {
 		fclose($temp) or errOccurred(265);
 		fclose($upload) or errOccurred(266);
 
-		copy("tempData987.csv", "data.csv") or errOccurred(268);
+		copy("tempData987.csv", "../databases/data.csv") or errOccurred(268);
 		unlink("tempData987.csv") or errOccurred(269);
 		unlink("imports/uploadedData.csv") or errOccurred(270);
 		
-		$id_file = fopen("id.csv", 'w+');
+		$id_file = fopen("../databases/d.csv", 'w+');
 		$id = [$id];
 		fputcsv($id_file, $id);
 		fclose($id_file);
