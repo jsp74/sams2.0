@@ -162,10 +162,10 @@
                }
                
                @media all and (max-width:30em){
-                    #form1_submit{
+                    #form1_submit{
                          display: block;
                          margin: 0.4em auto;
-                    }
+                    }
                }
 
                /* edittable Table */
@@ -259,7 +259,7 @@
 
                          <!-- All the Sports -->
 
-                         <li class="dropdown">
+                         <li clatss="dropdown">
                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports <span class="caret"></span></a>
                          <ul class="dropdown-menu">
                               <li><a id = "archery" href="sportsTable.php?sport=archery">Archery</a></li>
@@ -329,7 +329,8 @@
                                         <table id="generateTable" class="table table-bordered table-responsive-md table-striped text-center">
                                              <thead>
                                                   <tr>
-                                                       <th class="text-center">Event #</th>
+                                                       <th 
+                                                       class="text-center" >Event #</th>
                                                        <th class="text-center">Event Name</th>
                                                        <th class="text-center">Team Scoring</th>
                                                        <th class="text-center">Event Date</th>
@@ -344,6 +345,7 @@
                                                   <button type="button" class="btn btn-info" onclick="editTable(0)" id="addRow">Add Row</button>
                                                   <button type="button" class="btn btn-info" onclick="editTable(1)" id="makeChanges">Make Changes</button>
                                                   <button type="button" class="btn btn-info" onclick="saveChanges()" id="submitChanges">Save Changes</button>
+                                                 
                                              </div>
                                         </div>
                                    </div>
@@ -357,9 +359,12 @@
      <script src="./../css/js/bootstable.js"></script>
      <script>
 
-     // removes all the double quotes from the string that is passed as an argument
-     function removeQuotes(text){
-          return text.replace(/["]+/g, '');
+     // removes all the leading and trailing double quotes from the string that is passed as an argument
+    function removeQuotes(text){
+          while (text.charAt(0) === '"' && text.charAt(text.length - 1) === '"') {
+               text = text.substr(1,text.length -2);
+          }
+          return text;
      }
 
      // Read csv to populate table with available events in archery
@@ -374,21 +379,43 @@
 
      // Function is triggered if the requested .csv file exists,
      // the function takes all the data from the file and populates the table with respective values
+     var colNames;
      function populateTable(data){
-          console.log(data)
+          console.log("data");
+          console.log(data);
           var lines = data.split(/\r\n|\n/);
-          var colNames = lines[0].split(',');
+          colNames = lines[0].split(',');
           console.log(colNames);  // title of the columns
           var generateTable = document.getElementById('generateTable');
 
           for(var x = 1; x < lines.length; x++){
                var info = lines[x].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
+               if (info == "" || info == undefined) {
+                    continue;
+               }
 
                var value0 = removeQuotes(info[0]);
                var value1 = removeQuotes(info[1]);
                var value2 = removeQuotes(info[2]);
                var value3 = removeQuotes(info[3]);
 
+               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='team"+x+"'>"+value2+"</td><td class='text-center' id='date"+x+"'>"+value3+"</td></tr></tbody>";
+          }
+     }
+
+     function rePopulateTable(rows) {
+          console.log("inside rePopulateTable");
+          console.log(rows);
+
+          var generateTable = document.getElementById('generateTable');
+          generateTable.innerHTML = "<thead><tr><th class=\"text-center\" >Event #</th> <th class=\"text-center\">Event Name</th> <th class=\"text-center\">Team Scoring</th> <th class=\"text-center\">Event Date</th> </tr> </thead>";
+
+          for(var x = 1; x < rows.length; x++){
+               row = rows[x];
+               var value0 = row[0];
+               var value1 = row[1];
+               var value2 = row[2];
+               var value3 = row[3];
                generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='team"+x+"'>"+value2+"</td><td class='text-center' id='date"+x+"'>"+value3+"</td></tr></tbody>";
           }
      }
@@ -415,7 +442,7 @@
                // hiding makeChanges button
                makeChanges.style.visibility = "hidden";
                makeChanges.style.display = "none";
-
+               
                // hiding addRow button
                addRow.style.visibility = "hidden";
                addRow.style.display = "none";
@@ -443,6 +470,7 @@
                allRows.push(row)
           }
           
+          allRows.sort();
           console.log(allRows);
           http = new XMLHttpRequest();
           http.open("POST","handlearchery.php",true);
@@ -458,8 +486,8 @@
           }
 
           http.send(params);
+          rePopulateTable(allRows);
      }
 
      </script> 
-
 </html> 
