@@ -24,10 +24,14 @@ class csvService{
         if($file == NULL && $file == false){
             throw new Exception("Problem occured when opening file");
         }
-        $this->headerString = fgets($file);
+
+        //strip headerstring of newLine characters before saving
+        $this->headerString = str_replace("\n","",fgets($file));
         $tempArr = explode(',',$this->headerString);
+
+        //Makes HeaderArray with Header Name to index relationship
         foreach( $tempArr as $key => $value) {
-            $this->headerArray[$value] = $key;
+            $this->headerArray[strtolower($value)] = $key;
         } 
         fclose($file);
     }
@@ -46,8 +50,6 @@ class csvService{
         fclose($file);
     }
 
-    #PROBLEMS
-        # Its writing on the same line. so csv file is only 1 line instead of many
     function writeDataNoHeader($data){
     
         $file = fopen($this->fileName,$this->mode);
@@ -55,16 +57,9 @@ class csvService{
         if($file == null || $file == false){
             throw new Exception("Problem occured when trying to write");
             return;
-        }
-        ### ADD HEADERS BEFORE WRITING
-        ## TODO
+        }    
         if(is_array($data)){
             array_unshift($data,$this->headerString);
-            # Do a loop here to fix it
-            // foreach($data as $key => $value){
-            //     echo "<br>value $value";
-            //     fputcsv($file,$value);
-            // }
             $data = implode("\n",$data);
             fwrite($file,$data);
         
@@ -85,7 +80,33 @@ class csvService{
     function getHeaderIndex($name){
         # TODO
         # have an arrray with name to index header?
-        # 
+        
+        $index = $this->headerArray[strtolower($name)];
+        if(isset($index)){
+            return $index;
+        }
+        else{
+            return -1;
+        }
+    }
+    function addLine($string){
+        #TODO
+        # Append new line to file
+        printError(1);
+        $line = explode(",",$string);
+        printError(2);
+        echo count($line),"<br>";
+        echo count($this->headerArray);
+        if(count($line) != count($this->headerArray)){
+            printError(3);
+            throw new Exception("Parameters Given Does Not Match Parameters Needed");
+        }
+        printError(4);
+        $file = fopen($this->fileName,'a');
+        printError(5);
+        echo "putting in file";
+        fputcsv($file,$line);
+        fclose($file);
     }
 }
 ?>
@@ -102,7 +123,11 @@ try{
     // $data->write($valueArray);
     print_r( $data->read()  );
     echo "<br>========================POST DATA ARRAY=================<br>";
-    $data->writeDataNoHeader($valueArray);
+    // array_splice($valueArray,0,1);
+    // $data->writeDataNoHeader($valueArray);
+    $data->addLine("1113,Support_Staff,Yuli Drake,Teagan Lynch,783 Old Parkway,Eius sit quasi beata,Sapiente tempora ame,WV,52485,USA,foqonira@mailinator.net,4,9/24/1985,94,male,large,ot,540,543,32,375,Griffith Stuart,Gannon Riggs,86,luxypute@mailinator.net,0,1,1,,,1,1,1,1,,1");
+    $data->addLine("1116,Athlete,RoseTillman,LuciusStone,25OldStreet,Etsedeumvoluptate,Duisitaqueloremdo,MT,15651,USA,besyji@mailinator.net,70,12/9/1982,38,female,cMedium,amb,766,358,360,499,WinifredFrench,ShaineHoffman,53,fequq@mailinator.net,No,No,0,1,1,1,1,1,0,0,0");
+
     print("<br><br>");
     print_r( $data->read() );
 
