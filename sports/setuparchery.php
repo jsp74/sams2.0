@@ -405,8 +405,6 @@
                var value2 = removeQuotes(info[2]);
                var value3 = removeQuotes(info[3]);
 
-               // https://www.jquery-az.com/a-jquery-select-dropdown-an-editable-input-plug-in/
-               // https://www.jqueryscript.net/table/jQuery-Plugin-For-Editable-Table-Rows-Table-Edits.html
                generateTable.innerHTML += `
                <tbody>
                     <tr>
@@ -501,6 +499,10 @@
           }
 
           if( x == 1){
+
+               // https://www.jquery-az.com/a-jquery-select-dropdown-an-editable-input-plug-in/
+               // https://www.jqueryscript.net/table/jQuery-Plugin-For-Editable-Table-Rows-Table-Edits.html
+
                // jQuery library that makes the table edittable
                $('table').SetEditable({
                     columnsEd:"0,2,3"
@@ -534,7 +536,7 @@
           		var row = []
                var event = document.getElementById('event'+i).innerHTML;
                row.push(event);
-               var name = document.getElementById('name'+i).innerHTML;
+               var name = document.getElementById('select_name'+i).value;
                row.push(name);
                var team = document.getElementById('team'+i).innerHTML;
                row.push(team);
@@ -561,6 +563,7 @@
 
           http.send(params);
           rePopulateTable(allRows);
+          location.reload();
      }
 
      </script> 
