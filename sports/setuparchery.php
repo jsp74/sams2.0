@@ -357,6 +357,12 @@
      </body>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="./../css/js/bootstable.js"></script>
+     <script src="js/jquery-editable-select.js"></script>
+     <script>
+          $(function(){
+          $('select').editableSelect();
+          });
+     </script>
      <script>
 
      // removes all the leading and trailing double quotes from the string that is passed as an argument
@@ -364,7 +370,7 @@
           while (text.charAt(0) === '"' && text.charAt(text.length - 1) === '"') {
                text = text.substr(1,text.length -2);
           }
-          return text;
+          return text.trim();
      }
 
      // Read csv to populate table with available events in archery
@@ -379,14 +385,14 @@
 
      // Function is triggered if the requested .csv file exists,
      // the function takes all the data from the file and populates the table with respective values
-     var colNames;
      function populateTable(data){
           console.log("data");
           console.log(data);
           var lines = data.split(/\r\n|\n/);
-          colNames = lines[0].split(',');
+          var colNames = lines[0].split(',');
           console.log(colNames);  // title of the columns
           var generateTable = document.getElementById('generateTable');
+          var events = [];
 
           for(var x = 1; x < lines.length; x++){
                var info = lines[x].split(/,+(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
@@ -399,8 +405,37 @@
                var value2 = removeQuotes(info[2]);
                var value3 = removeQuotes(info[3]);
 
-               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='team"+x+"'>"+value2+"</td><td class='text-center' id='date"+x+"'>"+value3+"</td></tr></tbody>";
+               // https://www.jquery-az.com/a-jquery-select-dropdown-an-editable-input-plug-in/
+               // https://www.jqueryscript.net/table/jQuery-Plugin-For-Editable-Table-Rows-Table-Edits.html
+               generateTable.innerHTML += `
+               <tbody>
+                    <tr>
+                         <td class='text-center' id='event${x}'>${value0}</td>
+                         <td class='text-center' id='name${x}'>
+                              <select class='ui-select' data-field='names' id='select_name${x}'>
+                                   <option value='' id='defaultSelect' disabled>Please Select:</option>
+                                   <option value='Yeoman' id='Yeoman${x}'>Yeoman</option>
+                                   <option value='Junior' id='Junior${x}'>Junior</option>
+                                   <option value='Bowmen' id='Bowmen${x}'>Bowmen</option>
+                                   <option value='Cub' id='Cub${x}'>Cub</option>
+                                   <option value='Cadet' id='Cadet${x}'>Cadet</option>
+                              </select>
+                         </td>
+                         <td class='text-center' id='team${x}'>${value2}</td>
+                         <td class='text-center' id='date${x}'>${value3}</td>
+                    </tr>
+               </tbody>
+               `;
+
+               events.push(value1+x);
           }
+
+          console.log(document.querySelectorAll('*[id]'));
+
+          events.forEach(event => {
+               console.log(event);
+               document.getElementById(event).selected = "true";
+          })
      }
 
      function rePopulateTable(rows) {
@@ -408,16 +443,50 @@
           console.log(rows);
 
           var generateTable = document.getElementById('generateTable');
-          generateTable.innerHTML = "<thead><tr><th class=\"text-center\" >Event #</th> <th class=\"text-center\">Event Name</th> <th class=\"text-center\">Team Scoring</th> <th class=\"text-center\">Event Date</th> </tr> </thead>";
+          generateTable.innerHTML = `
+               <thead>
+                    <tr>
+                         <th class="text-center">Event #</th>
+                         <th class="text-center">Event Name</th>
+                         <th class="text-center">Team Scoring</th>
+                         <th class="text-center">Event Date</th>
+                    </tr>
+               </thead>
+          `;
 
-          for(var x = 1; x < rows.length; x++){
+          var events = [];
+
+          for(var x = 0; x < rows.length; x++){
                row = rows[x];
                var value0 = row[0];
                var value1 = row[1];
                var value2 = row[2];
                var value3 = row[3];
-               generateTable.innerHTML += "<tbody><tr><td class='text-center' id='event"+x+"'>"+value0+"</td><td class='text-center' id='name"+x+"'>"+value1+"</td><td class='text-center' id='team"+x+"'>"+value2+"</td><td class='text-center' id='date"+x+"'>"+value3+"</td></tr></tbody>";
+               
+               generateTable.innerHTML += `
+               <tbody>
+                    <tr>
+                         <td class='text-center' id='event${x}'>${value0}</td>
+                         <td class='text-center' data-field='names' id='name${x}'>
+                              <select id='select_name${x}'>
+                                   <option value='Yeoman' id='Yeoman${x}'>Yeoman</option>
+                                   <option value='Junior' id='Junior${x}'>Junior</option>
+                                   <option value='Bowmen' id='Bowmen${x}'>Bowmen</option>
+                                   <option value='Cub' id='Cub${x}'>Cub</option>
+                                   <option value='Cadet' id='Cadet${x}'>Cadet</option>
+                              </select>
+                         </td>
+                         <td class='text-center' id='team${x}'>${value2}</td>
+                         <td class='text-center' id='date${x}'>${value3}</td>
+                    </tr>
+               </tbody>
+               `;
+               events.push(value1+x);
           }
+
+          events.forEach(event => {
+               document.getElementById(event).selected = "true";
+          })
      }
 
      function editTable(x){
@@ -433,7 +502,12 @@
 
           if( x == 1){
                // jQuery library that makes the table edittable
-               $('table').SetEditable();
+               $('table').SetEditable({
+                    columnsEd:"0,2,3"
+                    // dropdowns: {
+                    //      names: ['Yeoman', 'Junior', 'Bowmen', 'Cub', 'Cadet']
+                    // }
+               });
 
                var makeChanges = document.getElementById("makeChanges");
                var submitChanges = document.getElementById("submitChanges");
